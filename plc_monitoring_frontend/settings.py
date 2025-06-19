@@ -16,6 +16,8 @@ INSTALLED_APPS = [
     'material',
     'material.frontend',
     'dashboard',
+    'users',
+    'reports',
     
 ]
 
