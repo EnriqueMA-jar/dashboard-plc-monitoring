@@ -6,12 +6,13 @@
   <li>Cargando datos...</li>
 </ul>
 
-<canvas id="humidityChart" width="400" height="200"></canvas>
+<canvas id="humidityChart" width="600" height="250"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   const labels = [];
-  const humidityData = [];
+  const humidityStartData = [];
+  const humidityEndData = [];
 
   document.addEventListener('DOMContentLoaded', function () {
     fetch('http://127.0.0.1:8001/api/charges/')
@@ -31,15 +32,15 @@
             const formatted = rawDate.toLocaleDateString('es-MX');
 
             labels.push(formatted);
-            humidityData.push(charge.charge_humidity_start);
+            humidityStartData.push(charge.charge_humidity_start);
+            humidityEndData.push(charge.charge_humidity_finish);
 
             const item = document.createElement('li');
             item.textContent = `#${charge.id} | Inicio: ${formatted} | Entrada: ${charge.charge_weight_start} kg - ${charge.charge_humidity_start}% humedad`;
             list.appendChild(item);
           });
 
-          // ⬇️ Renderiza el gráfico al final
-          renderChart(labels, humidityData);
+          renderChart(labels, humidityStartData, humidityEndData);
         }
       })
       .catch(error => {
@@ -48,32 +49,44 @@
       });
   });
 
-  function renderChart(labels, data) {
+  function renderChart(labels, startData, endData) {
     const ctx = document.getElementById('humidityChart').getContext('2d');
     new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Humedad de entrada (%)',
-          data: data,
-          borderColor: 'rgba(75, 192, 192, 1)',
-          fill: false,
-          tension: 0.1
-        }]
+        datasets: [
+          {
+            label: 'Humedad de entrada (%)',
+            data: startData,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Humedad de salida (%)',
+            data: endData,
+            backgroundColor: 'rgba(255, 99, 132, 0.7)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }
+        ]
       },
       options: {
-        responsive: true,
+        responsive: false,
         plugins: {
           title: {
             display: true,
-            text: 'Humedad de entrada por carga'
+            text: 'Comparativa de humedad por carga'
+          },
+          legend: {
+            position: 'top'
           }
         },
         scales: {
           y: {
             beginAtZero: true,
-            max: 100
+            max: 20
           }
         }
       }
