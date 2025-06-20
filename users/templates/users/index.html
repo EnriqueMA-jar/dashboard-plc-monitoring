@@ -1,35 +1,45 @@
 {% extends 'users/base.html' %}
 {% block content %}
-<h1>Aqui ira el login principal</h1><hr>
-
-<h4>Intento de hacer fetch al api</h4><hr>
 
 <h2>Últimas cargas de sal</h2>
 <ul id="charge-list">
   <li>Cargando datos...</li>
 </ul>
 
+<canvas id="humidityChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+  const labels = [];
+  const humidityData = [];
+
   document.addEventListener('DOMContentLoaded', function () {
     fetch('http://127.0.0.1:8001/api/charges/')
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Error en la respuesta del servidor');
-        }
+        if (!response.ok) throw new Error('Error en la respuesta del servidor');
         return response.json();
       })
       .then(data => {
         const list = document.getElementById('charge-list');
-        list.innerHTML = ''; // limpia el "Cargando..."
+        list.innerHTML = '';
 
         if (data.length === 0) {
           list.innerHTML = '<li>No hay cargas registradas.</li>';
         } else {
           data.forEach(charge => {
+            const rawDate = new Date(charge.charge_time_start);
+            const formatted = rawDate.toLocaleDateString('es-MX');
+
+            labels.push(formatted);
+            humidityData.push(charge.charge_humidity_start);
+
             const item = document.createElement('li');
-            item.textContent = `#${charge.id} | Inicio: ${charge.charge_time_start} | Entrada: ${charge.charge_weight_start} kg - ${charge.charge_humidity_start}% humedad`;
+            item.textContent = `#${charge.id} | Inicio: ${formatted} | Entrada: ${charge.charge_weight_start} kg - ${charge.charge_humidity_start}% humedad`;
             list.appendChild(item);
           });
+
+          // ⬇️ Renderiza el gráfico al final
+          renderChart(labels, humidityData);
         }
       })
       .catch(error => {
@@ -37,7 +47,38 @@
         console.error('Error al obtener datos:', error);
       });
   });
-</script>
 
+  function renderChart(labels, data) {
+    const ctx = document.getElementById('humidityChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Humedad de entrada (%)',
+          data: data,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          fill: false,
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Humedad de entrada por carga'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  }
+</script>
 
 {% endblock %}
