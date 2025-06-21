@@ -1,0 +1,167 @@
+{% extends 'reports/base.html' %}
+{% block content %}
+
+<h2>Últimas cargas de sal</h2>
+<ul id="charge-list">
+  <li>Cargando datos...</li>
+</ul>
+
+<!-- Chart de humedad conectado al API -->
+<canvas id="humidityChart" width="600" height="300"></canvas>
+
+<!-- Chart de peso con datos simulados -->
+<canvas id="weightLineChart" width="600" height="300" style="margin-top: 40px;"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labelsHumidity = [];
+  const humidityStartData = [];
+  const humidityEndData = [];
+
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch('http://127.0.0.1:8001/api/charges/')
+      .then(response => {
+        if (!response.ok) throw new Error('Error en la respuesta del servidor');
+        return response.json();
+      })
+      .then(data => {
+        const list = document.getElementById('charge-list');
+        list.innerHTML = '';
+
+        if (data.length === 0) {
+          list.innerHTML = '<li>No hay cargas registradas.</li>';
+          return;
+        }
+
+        const last15 = data.slice(-15);
+
+        last15.forEach(charge => {
+          const id = charge.id;
+          const startTime = new Date(charge.charge_time_start).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+          const endTime = new Date(charge.charge_time_finish).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+
+          labelsHumidity.push(`Carga #${id}: ${startTime}-${endTime}`);
+          humidityStartData.push(charge.charge_humidity_start);
+          humidityEndData.push(charge.charge_humidity_finish);
+
+          const item = document.createElement('li');
+          item.textContent = `#${id} | ${startTime} - ${endTime} | Entrada: ${charge.charge_weight_start} kg – ${charge.charge_humidity_start}% humedad`;
+          list.appendChild(item);
+        });
+
+        renderHumidityChart();
+        renderWeightChart(); // también se ejecuta, pero usa datos fijos
+      })
+      .catch(error => {
+        document.getElementById('charge-list').innerHTML = `<li>Error: ${error.message}</li>`;
+        console.error('Error al obtener datos:', error);
+      });
+
+    function renderHumidityChart() {
+      const ctx = document.getElementById('humidityChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labelsHumidity,
+          datasets: [
+            {
+              label: 'Humedad de entrada (%)',
+              data: humidityStartData,
+              backgroundColor: 'rgba(54, 162, 235, 0.7)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            },
+            {
+              label: 'Humedad de salida (%)',
+              data: humidityEndData,
+              backgroundColor: 'rgba(255, 99, 132, 0.7)',
+              borderColor: 'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Comparativa de humedad por carga'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
+    }
+// INTERFAZ DE PRUEBA PARA LA GRAFICA DE PESO ---------------------------------------------------------
+    function renderWeightChart() {
+      const labels = Array.from({ length: 9 }, (_, i) => `Carga ${i + 1}`);
+      const weightStart = [2000, 1980, 2020, 1950, 2050, 2100, 2005, 1995, 2010];
+      const weightFinish = [1500, 1480, 1510, 1450, 1490, 1530, 1495, 1475, 1505];
+
+      const ctx = document.getElementById('weightLineChart').getContext('2d');
+
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Peso Entrada (kg)',
+              data: weightStart,
+              borderColor: 'rgba(54, 162, 235, 1)',
+              backgroundColor: 'blue',
+              tension: 0.3,
+              fill: false,
+              pointRadius: 4,
+              pointHoverRadius: 6
+            },
+            {
+              label: 'Peso Salida (kg)',
+              data: weightFinish,
+              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: 'red',
+              tension: 0.3,
+              fill: false,
+              pointRadius: 4,
+              pointHoverRadius: 6
+            }
+          ]
+        },
+        options: {
+          responsive: false,
+          plugins: {
+            title: {
+              display: true,
+              text: 'Peso registrado en las ultimas cargas',
+              font: {
+                size: 18
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'Kilogramos (kg)'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'Cargas recientes'
+              }
+            }
+          }
+        }
+      });
+    }
+  });
+</script>
+
+{% endblock %}
