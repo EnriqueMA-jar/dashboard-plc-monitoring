@@ -1,6 +1,4 @@
-{% extends 'reports/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'reports/base.html' %} {% load static %} {% block content %}
 
 <h2>Últimas cargas de sal</h2>
 <ul id="charge-list">
@@ -8,10 +6,28 @@
 </ul>
 
 <!-- Chart de humedad conectado al API -->
-<canvas id="humidityChart" width="600" height="300"></canvas>
 
-<!-- Chart de peso con datos simulados -->
-<canvas id="weightLineChart" width="600" height="300" style="margin-top: 40px;"></canvas>
+<div class="responsive-container">
+  <div>
+    <h3>Humedad por carga</h3>
+    <canvas id="humidityChart"></canvas>
+  </div>
+
+  <div>
+    <h3>Peso por carga</h3>
+    <canvas id="weightLineChart"></canvas>
+  </div>
+
+  <div>
+    <h3>Peso de entrada</h3>
+    <canvas id="weightPieEntrada"></canvas>
+  </div>
+
+  <div>
+    <h3>Peso de salida</h3>
+    <canvas id="weightPieSalida"></canvas>
+  </div>
+</div>
 
 <script src="{% static 'js/chart.js' %}"></script>
 <script>
@@ -19,33 +35,37 @@
   const humidityStartData = [];
   const humidityEndData = [];
 
-  document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://127.0.0.1:8001/api/charges/')
-      .then(response => {
-        if (!response.ok) throw new Error('Error en la respuesta del servidor');
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("http://127.0.0.1:8001/api/charges/")
+      .then((response) => {
+        if (!response.ok) throw new Error("Error en la respuesta del servidor");
         return response.json();
       })
-      .then(data => {
-        const list = document.getElementById('charge-list');
-        list.innerHTML = '';
+      .then((data) => {
+        const list = document.getElementById("charge-list");
+        list.innerHTML = "";
 
         if (data.length === 0) {
-          list.innerHTML = '<li>No hay cargas registradas.</li>';
+          list.innerHTML = "<li>No hay cargas registradas.</li>";
           return;
         }
 
         const last15 = data.slice(-15);
 
-        last15.forEach(charge => {
+        last15.forEach((charge) => {
           const id = charge.id;
-          const startTime = new Date(charge.charge_time_start).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
-          const endTime = new Date(charge.charge_time_finish).toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+          const startTime = new Date(
+            charge.charge_time_start
+          ).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
+          const endTime = new Date(
+            charge.charge_time_finish
+          ).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" });
 
-          labelsHumidity.push(`Carga #${id}: ${startTime}-${endTime}`);
+          labelsHumidity.push(`#${id}`);
           humidityStartData.push(charge.charge_humidity_start);
           humidityEndData.push(charge.charge_humidity_finish);
 
-          const item = document.createElement('li');
+          const item = document.createElement("li");
           item.textContent = `#${id} | ${startTime} - ${endTime} | Entrada: ${charge.charge_weight_start} kg – ${charge.charge_humidity_start}% humedad`;
           list.appendChild(item);
         });
@@ -54,120 +74,127 @@
         renderWeightChart(); // también se ejecuta, pero usa datos fijos
         renderWeightPieCharts();
       })
-      .catch(error => {
-        document.getElementById('charge-list').innerHTML = `<li>Error: ${error.message}</li>`;
-        console.error('Error al obtener datos:', error);
+      .catch((error) => {
+        document.getElementById(
+          "charge-list"
+        ).innerHTML = `<li>Error: ${error.message}</li>`;
+        console.error("Error al obtener datos:", error);
       });
 
     function renderHumidityChart() {
-      const ctx = document.getElementById('humidityChart').getContext('2d');
+      const ctx = document.getElementById("humidityChart").getContext("2d");
       new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
           labels: labelsHumidity,
           datasets: [
             {
-              label: 'Humedad de entrada (%)',
+              label: "Humedad de entrada (%)",
               data: humidityStartData,
-              backgroundColor: 'rgba(54, 162, 235, 0.7)',
-              borderColor: 'rgba(54, 162, 235, 1)',
-              borderWidth: 1
+              backgroundColor: "rgba(54, 162, 235, 0.7)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
             },
             {
-              label: 'Humedad de salida (%)',
+              label: "Humedad de salida (%)",
               data: humidityEndData,
-              backgroundColor: 'rgba(255, 99, 132, 0.7)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              borderWidth: 1
-            }
-          ]
+              backgroundColor: "rgba(255, 99, 132, 0.7)",
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           responsive: true,
           plugins: {
             title: {
               display: true,
-              text: 'Comparativa de humedad por carga'
-            }
+              text: "Comparativa de humedad por carga",
+            },
           },
           scales: {
             y: {
               beginAtZero: true,
-              max: 100
-            }
-          }
-        }
+              max: 100,
+            },
+          },
+        },
       });
     }
-// INTERFAZ DE PRUEBA PARA LA GRAFICA DE PESO ---------------------------------------------------------
+    // INTERFAZ DE PRUEBA PARA LA GRAFICA DE PESO ---------------------------------------------------------
     function renderWeightChart() {
-      const labels = Array.from({ length: 9 }, (_, i) => `Carga ${i + 1}`);
-      const weightStart = [2000, 1980, 2020, 1950, 2050, 2100, 2005, 1995, 2010];
-      const weightFinish = [1500, 1480, 1510, 1450, 1490, 1530, 1495, 1475, 1505];
+      const labels = Array.from({ length: 9 }, (_, i) => `No. # ${i + 1}`);
+      const weightStart = [
+        2000, 1980, 2020, 1950, 2050, 2100, 2005, 1995, 2010,
+      ];
+      const weightFinish = [
+        1500, 1480, 1510, 1450, 1490, 1530, 1495, 1475, 1505,
+      ];
 
-      const ctx = document.getElementById('weightLineChart').getContext('2d');
+      const ctx = document.getElementById("weightLineChart").getContext("2d");
 
       new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
           labels: labels,
           datasets: [
             {
-              label: 'Peso Entrada (kg)',
+              label: "Peso Entrada (kg)",
               data: weightStart,
-              borderColor: 'rgba(54, 162, 235, 1)',
-              backgroundColor: 'blue',
+              borderColor: "rgba(54, 162, 235, 1)",
+              backgroundColor: "blue",
               tension: 0.3,
               fill: false,
               pointRadius: 4,
-              pointHoverRadius: 6
+              pointHoverRadius: 6,
             },
             {
-              label: 'Peso Salida (kg)',
+              label: "Peso Salida (kg)",
               data: weightFinish,
-              borderColor: 'rgba(255, 99, 132, 1)',
-              backgroundColor: 'red',
+              borderColor: "rgba(255, 99, 132, 1)",
+              backgroundColor: "red",
               tension: 0.3,
               fill: false,
               pointRadius: 4,
-              pointHoverRadius: 6
-            }
-          ]
+              pointHoverRadius: 6,
+            },
+          ],
         },
         options: {
           responsive: false,
           plugins: {
             title: {
               display: true,
-              text: 'Peso registrado en las ultimas cargas',
+              text: "Peso registrado en las ultimas cargas",
               font: {
-                size: 18
-              }
-            }
+                size: 18,
+              },
+            },
           },
           scales: {
             y: {
               beginAtZero: true,
               title: {
                 display: true,
-                text: 'Kilogramos (kg)'
-              }
+                text: "Kilogramos (kg)",
+              },
             },
             x: {
               title: {
                 display: true,
-                text: 'Cargas recientes'
-              }
-            }
-          }
-        }
+                text: "Cargas recientes",
+              },
+            },
+          },
+        },
       });
     }
   });
 </script>
 
 <!-- Tabla estilizada -->
- <h2>Tabla</h2><hr>
+<h2>Tabla</h2>
+<hr />
 <div class="table-container">
   <table id="charge-table">
     <thead>
@@ -183,13 +210,35 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td colspan="9">Cargando datos...</td></tr>
+      <tr>
+        <td colspan="9">Cargando datos...</td>
+      </tr>
     </tbody>
   </table>
 </div>
 
 <!-- Estilos CSS para la tabla -->
 <style>
+  .responsive-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    align-items: start;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  #charge-list {
+    padding-left: 20px;
+    margin-bottom: 30px;
+  }
+
   .table-container {
     overflow-x: auto;
     padding: 20px;
@@ -201,7 +250,7 @@
     width: 100%;
     max-width: 100%;
     margin: auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background: white;
     border-radius: 8px;
     overflow: hidden;
@@ -214,13 +263,15 @@
     text-align: left;
   }
 
-  th, td {
+  th,
+  td {
     padding: 12px 15px;
     text-align: center;
+    white-space: nowrap;
   }
 
   tr:nth-child(even) {
-    background-color: #ffffff;
+    background-color: #f8f8f8;
   }
 
   tr:hover {
@@ -231,31 +282,58 @@
   th {
     font-weight: bold;
   }
+
+  @media (max-width: 768px) {
+    .responsive-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    table {
+      font-size: 0.85em;
+    }
+
+    th,
+    td {
+      padding: 8px;
+    }
+
+    h2,
+    h3 {
+      font-size: 1.1em;
+    }
+  }
 </style>
 
 <!-- JavaScript para poblar la tabla -->
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const tableBody = document.querySelector('#charge-table tbody');
+  document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.querySelector("#charge-table tbody");
 
-    fetch('http://127.0.0.1:8001/api/charges/')
-      .then(response => {
-        if (!response.ok) throw new Error('Error al obtener los datos del servidor');
+    fetch("http://127.0.0.1:8001/api/charges/")
+      .then((response) => {
+        if (!response.ok)
+          throw new Error("Error al obtener los datos del servidor");
         return response.json();
       })
-      .then(data => {
-        tableBody.innerHTML = '';
+      .then((data) => {
+        tableBody.innerHTML = "";
 
         if (data.length === 0) {
-          tableBody.innerHTML = '<tr><td colspan="9">No hay cargas registradas.</td></tr>';
+          tableBody.innerHTML =
+            '<tr><td colspan="9">No hay cargas registradas.</td></tr>';
           return;
         }
 
-        data.forEach(charge => {
-          const row = document.createElement('tr');
+        data.forEach((charge) => {
+          const row = document.createElement("tr");
 
-          const timeStart = new Date(charge.charge_time_start).toLocaleString('es-MX');
-          const timeFinish = new Date(charge.charge_time_finish).toLocaleString('es-MX');
+          const timeStart = new Date(charge.charge_time_start).toLocaleString(
+            "es-MX"
+          );
+          const timeFinish = new Date(charge.charge_time_finish).toLocaleString(
+            "es-MX"
+          );
 
           row.innerHTML = `
             <td>${timeStart}</td>
@@ -271,70 +349,78 @@
           tableBody.appendChild(row);
         });
       })
-      .catch(error => {
+      .catch((error) => {
         tableBody.innerHTML = `<tr><td colspan="9">Error: ${error.message}</td></tr>`;
-        console.error('Error al obtener los datos:', error);
+        console.error("Error al obtener los datos:", error);
       });
   });
 </script>
 
-<!-- Pie chart: Peso de entrada -->
-<h3>Peso de entrada por carga</h3>
-<canvas id="weightPieEntrada" width="400" height="400"></canvas>
-
-<!-- Pie chart: Peso de salida -->
-<h3>Peso de salida por carga</h3>
-<canvas id="weightPieSalida" width="400" height="400" style="margin-bottom: 30px;"></canvas>
-
 <script>
   function renderWeightPieCharts() {
-    const labels = Array.from({ length: 9 }, (_, i) => `Carga ${i + 1}`);
-    const weightStartPie = [2000, 1980, 2020, 1950, 2050, 2100, 2005, 1995, 2010];
-    const weightFinishPie = [1500, 1480, 1510, 1450, 1490, 1530, 1495, 1475, 1505];
+    const labels = Array.from({ length: 9 }, (_, i) => `No. # ${i + 1}`);
+    const weightStartPie = [
+      2000, 1980, 2020, 1950, 2050, 2100, 2005, 1995, 2010,
+    ];
+    const weightFinishPie = [
+      1500, 1480, 1510, 1450, 1490, 1530, 1495, 1475, 1505,
+    ];
 
-    const ctxEntrada = document.getElementById('weightPieEntrada').getContext('2d');
-    const ctxSalida = document.getElementById('weightPieSalida').getContext('2d');
+    const ctxEntrada = document
+      .getElementById("weightPieEntrada")
+      .getContext("2d");
+    const ctxSalida = document
+      .getElementById("weightPieSalida")
+      .getContext("2d");
 
     new Chart(ctxEntrada, {
-      type: 'pie',
+      type: "pie",
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Peso de entrada (kg)',
-          data: weightStartPie,
-          backgroundColor: labels.map(() => `hsl(${Math.random() * 360}, 70%, 60%)`),
-        }]
+        datasets: [
+          {
+            label: "Peso de entrada (kg)",
+            data: weightStartPie,
+            backgroundColor: labels.map(
+              () => `hsl(${Math.random() * 360}, 70%, 60%)`
+            ),
+          },
+        ],
       },
       options: {
         responsive: true,
         plugins: {
           title: {
             display: true,
-            text: 'Peso de entrada por carga'
-          }
-        }
-      }
+            text: "Peso de entrada por carga",
+          },
+        },
+      },
     });
 
     new Chart(ctxSalida, {
-      type: 'pie',
+      type: "pie",
       data: {
         labels: labels,
-        datasets: [{
-          label: 'Peso de salida (kg)',
-          data: weightFinishPie,
-          backgroundColor: labels.map(() => `hsl(${Math.random() * 360}, 70%, 60%)`),
-        }]
+        datasets: [
+          {
+            label: "Peso de salida (kg)",
+            data: weightFinishPie,
+            backgroundColor: labels.map(
+              () => `hsl(${Math.random() * 360}, 70%, 60%)`
+            ),
+          },
+        ],
       },
       options: {
         responsive: true,
         plugins: {
           title: {
             display: true,
-            text: 'Peso de salida por carga'
-          }
-        }
-      }
+            text: "Peso de salida por carga",
+          },
+        },
+      },
     });
   }
 </script>
