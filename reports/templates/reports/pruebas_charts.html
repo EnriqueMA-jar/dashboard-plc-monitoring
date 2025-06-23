@@ -52,6 +52,7 @@
 
         renderHumidityChart();
         renderWeightChart(); // también se ejecuta, pero usa datos fijos
+        renderWeightPieCharts();
       })
       .catch(error => {
         document.getElementById('charge-list').innerHTML = `<li>Error: ${error.message}</li>`;
@@ -277,5 +278,65 @@
   });
 </script>
 
+<!-- Pie chart: Peso de entrada -->
+<h3>Peso de entrada por carga</h3>
+<canvas id="weightPieEntrada" width="400" height="400"></canvas>
+
+<!-- Pie chart: Peso de salida -->
+<h3>Peso de salida por carga</h3>
+<canvas id="weightPieSalida" width="400" height="400" style="margin-bottom: 30px;"></canvas>
+
+<script>
+  function renderWeightPieCharts() {
+    const labels = Array.from({ length: 9 }, (_, i) => `Carga ${i + 1}`);
+    const weightStartPie = [2000, 1980, 2020, 1950, 2050, 2100, 2005, 1995, 2010];
+    const weightFinishPie = [1500, 1480, 1510, 1450, 1490, 1530, 1495, 1475, 1505];
+
+    const ctxEntrada = document.getElementById('weightPieEntrada').getContext('2d');
+    const ctxSalida = document.getElementById('weightPieSalida').getContext('2d');
+
+    new Chart(ctxEntrada, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Peso de entrada (kg)',
+          data: weightStartPie,
+          backgroundColor: labels.map(() => `hsl(${Math.random() * 360}, 70%, 60%)`),
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Peso de entrada por carga'
+          }
+        }
+      }
+    });
+
+    new Chart(ctxSalida, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Peso de salida (kg)',
+          data: weightFinishPie,
+          backgroundColor: labels.map(() => `hsl(${Math.random() * 360}, 70%, 60%)`),
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Peso de salida por carga'
+          }
+        }
+      }
+    });
+  }
+</script>
 
 {% endblock %}
