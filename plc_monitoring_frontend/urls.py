@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('users.urls')),  # ahora la app users se encarga del inicio
     path('dashboard/', include('dashboard.urls')),
     path('reports/', include('reports.urls')),
+    path('records/', include('records.urls')),
 ]

@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'dashboard',
     'users',
     'reports',
+    'records',
     
 ]
 

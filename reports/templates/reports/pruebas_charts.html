@@ -164,4 +164,117 @@
   });
 </script>
 
+<!-- Tabla estilizada -->
+ <h2>Tabla</h2><hr>
+<div class="table-container">
+  <table id="charge-table">
+    <thead>
+      <tr>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Peso Entrada (kg)</th>
+        <th>Peso Salida (kg)</th>
+        <th>Humedad Entrada (%)</th>
+        <th>Humedad Salida (%)</th>
+        <th>Temp. Entrada (°C)</th>
+        <th>Temp. Salida (°C)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="9">Cargando datos...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Estilos CSS para la tabla -->
+<style>
+  .table-container {
+    overflow-x: auto;
+    padding: 20px;
+    background: #ffffff;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  thead {
+    background-color: #db0632;
+    color: white;
+    text-align: left;
+  }
+
+  th, td {
+    padding: 12px 15px;
+    text-align: center;
+  }
+
+  tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  tr:hover {
+    background-color: #800000;
+    color: white;
+  }
+
+  th {
+    font-weight: bold;
+  }
+</style>
+
+<!-- JavaScript para poblar la tabla -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const tableBody = document.querySelector('#charge-table tbody');
+
+    fetch('http://127.0.0.1:8001/api/charges/')
+      .then(response => {
+        if (!response.ok) throw new Error('Error al obtener los datos del servidor');
+        return response.json();
+      })
+      .then(data => {
+        tableBody.innerHTML = '';
+
+        if (data.length === 0) {
+          tableBody.innerHTML = '<tr><td colspan="9">No hay cargas registradas.</td></tr>';
+          return;
+        }
+
+        data.forEach(charge => {
+          const row = document.createElement('tr');
+
+          const timeStart = new Date(charge.charge_time_start).toLocaleString('es-MX');
+          const timeFinish = new Date(charge.charge_time_finish).toLocaleString('es-MX');
+
+          row.innerHTML = `
+            <td>${timeStart}</td>
+            <td>${timeFinish}</td>
+            <td>${charge.charge_weight_start}</td>
+            <td>${charge.charge_weight_finish}</td>
+            <td>${charge.charge_humidity_start}</td>
+            <td>${charge.charge_humidity_finish}</td>
+            <td>${charge.charge_temperature_start}</td>
+            <td>${charge.charge_temperature_finish}</td>
+          `;
+
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        tableBody.innerHTML = `<tr><td colspan="9">Error: ${error.message}</td></tr>`;
+        console.error('Error al obtener los datos:', error);
+      });
+  });
+</script>
+
+
 {% endblock %}
