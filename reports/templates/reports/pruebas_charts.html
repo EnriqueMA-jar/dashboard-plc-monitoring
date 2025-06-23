@@ -1,4 +1,5 @@
 {% extends 'reports/base.html' %}
+{% load static %}
 {% block content %}
 
 <h2>Últimas cargas de sal</h2>
@@ -12,7 +13,7 @@
 <!-- Chart de peso con datos simulados -->
 <canvas id="weightLineChart" width="600" height="300" style="margin-top: 40px;"></canvas>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'js/chart.js' %}"></script>
 <script>
   const labelsHumidity = [];
   const humidityStartData = [];
