@@ -139,6 +139,11 @@
               title: {
                 display: true,
                 text: "Comparativa de humedad por carga",
+                font: {
+                  size: 18,
+                  family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                },
+
               },
             },
             scales: {
@@ -201,6 +206,7 @@
                 text: "Peso registrado en las ultimas cargas",
                 font: {
                   size: 18,
+                  family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
                 },
               },
             },
@@ -216,6 +222,10 @@
                 title: {
                   display: true,
                   text: "Cargas recientes",
+                  font:{
+                  
+                  family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                },
                 },
               },
             },
@@ -313,6 +323,10 @@
             title: {
               display: true,
               text: "Peso de entrada por carga",
+              font: {
+                  size: 18,
+                  family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                },
             },
           },
         },
@@ -341,6 +355,10 @@
             title: {
               display: true,
               text: "Peso de salida por carga",
+              font: {
+                  size: 18,
+                  family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                },
             },
           },
         },
@@ -443,103 +461,127 @@
   </div>
 
 
-  
+
   <!-- Estilos CSS para la tabla -->
 
   <style>
+  .responsive-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 50%, 500px), 1fr));
+    gap: 30px;
+    padding: 20px;
+    align-items: center;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    margin-top: 20px;
+  }
+
+  #charge-list {
+    padding-left: 20px;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(.75rem, 0.5vw + 0.5rem, 1rem);
+  }
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  #charge-table {
+    width: 100%;
+    min-width: 700px;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  h3,
+  h2,
+  h1 {
+    text-align: center;
+    font-size: clamp(1.2rem, 1vw + 1rem, 2rem);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  thead {
+    background-color: #db0632;
+    color: white;
+    text-align: left;
+  }
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+
+  tr:hover {
+    background-color: #800000;
+    color: white;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
     .responsive-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(clamp(300px, 50%, 450px), 1fr));
-      gap: 30px;
-      padding: 20px;
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
 
-    canvas {
-      width: 100% !important;
-      height: auto !important;
-      max-width: 100% !important;
-      margin-top: 20px;
-    }
-
-    #charge-list {
-      padding-left: 20px;
-      margin-bottom: 30px;
-    }
-
-    .table-container {
-      overflow-x: auto;
-      padding: 20px;
-      background: #ffffff;
+    #charge-table {
+      font-size: 0.8rem;
+      min-width: 100%;
     }
 
     table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 100%;
-      margin: auto;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h3,
-    h2,
-    h1 {
-      text-align: center;
-      font-size: clamp(1.5vw, 2vw + 1rem, 5vw);
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    thead {
-      background-color: #db0632;
-      color: white;
-      text-align: left;
+      font-size: 0.8rem;
     }
 
     th,
     td {
-      padding: 12px 15px;
-      text-align: center;
-      white-space: nowrap;
+      padding: 8px;
     }
 
-    tr:nth-child(even) {
-      background-color: #f8f8f8;
+    h2,
+    h3 {
+      font-size: 1rem;
     }
+  }
+</style>
 
-    tr:hover {
-      background-color: #800000;
-      color: white;
-    }
-
-    th {
-      font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-      .responsive-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      table {
-        font-size: 0.85em;
-      }
-
-      th,
-      td {
-        padding: 8px;
-      }
-
-      h2,
-      h3 {
-        font-size: 1.1em;
-      }
-    }
-  </style>
 
 
 </div>
