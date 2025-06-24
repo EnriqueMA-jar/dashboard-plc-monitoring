@@ -27,6 +27,27 @@
     <h3>Peso de salida</h3>
     <canvas id="weightPieSalida"></canvas>
   </div>
+
+  <!-- Temperatura -->
+ <div>
+  <div>
+    <h3>Temperatura Entrada y Salida (°C)</h3>
+    <canvas id="tempChart" ></canvas>
+  </div>
+
+  <!-- Peso -->
+  <div>
+    <h3>Peso Entrada y Salida (kg)</h3>
+    <canvas id="pesoChart"></canvas>
+  </div>
+
+  <!-- Humedad -->
+  <div>
+    <h3>Humedad Entrada y Salida (%)</h3>
+    <canvas id="humedadChart"></canvas>
+  </div>
+</div>
+
 </div>
 
 <script src="{% static 'js/chart.js' %}"></script>
@@ -218,12 +239,13 @@
 </div>
 
 <!-- Estilos CSS para la tabla -->
+
 <style>
   .responsive-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    padding: 20px;
+    padding: min(2.5em, 8%);
     align-items: start;
   }
 
@@ -257,14 +279,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
+  h3, h2, h1 {
+    text-align: center;
+    font-size: clamp(2vw, 3vw + 1rem, 3.5vw);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
   thead {
     background-color: #db0632;
     color: white;
     text-align: left;
   }
 
-  th,
-  td {
+  th, td {
     padding: 12px 15px;
     text-align: center;
     white-space: nowrap;
@@ -293,13 +320,11 @@
       font-size: 0.85em;
     }
 
-    th,
-    td {
+    th, td {
       padding: 8px;
     }
 
-    h2,
-    h3 {
+    h2, h3 {
       font-size: 1.1em;
     }
   }
@@ -424,5 +449,74 @@
     });
   }
 </script>
+
+
+
+  <script>
+    // Simulación de datos para una carga
+    const carga = {
+      tempStart: 65,
+      tempEnd: 40,
+      pesoStart: 2000,
+      pesoEnd: 1500,
+      humedadStart: 15,
+      humedadEnd: 5
+    };
+
+    // Configuración base para cada donut
+    function crearDonut(idCanvas, labels, data, colores, titulo) {
+      new Chart(document.getElementById(idCanvas), {
+        type: 'doughnut',
+        data: {
+          labels: labels,
+          datasets: [{
+            data: data,
+            backgroundColor: colores,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  return `${context.label}: ${context.raw}`;
+                }
+              }
+            }
+          },
+          cutout: '60%'
+        }
+      });
+    }
+
+    // Crear las 3 gráficas
+    crearDonut(
+      'tempChart',
+      ['Entrada (°C)', 'Salida (°C)'],
+      [carga.tempStart, carga.tempEnd],
+      ['#ff9800', '#03a9f4']
+    );
+
+    crearDonut(
+      'pesoChart',
+      ['Entrada (kg)', 'Salida (kg)'],
+      [carga.pesoStart, carga.pesoEnd],
+      ['#4caf50', '#f44336']
+    );
+
+    crearDonut(
+      'humedadChart',
+      ['Entrada (%)', 'Salida (%)'],
+      [carga.humedadStart, carga.humedadEnd],
+      ['#9c27b0', '#ffeb3b']
+    );
+  </script>
+
+</div>
 
 {% endblock %}
