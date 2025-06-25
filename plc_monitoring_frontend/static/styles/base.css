@@ -1,9 +1,9 @@
 :root {
   --base-clr: #ffffff;
-  --line-clr: #42434a;
-  --hover-clr: #222533;
+  --line-clr: #000000;
+  --hover-clr: #ff7878;
   --text-clr: #000000;
-  --accent-clr: #ee1414;
+  --accent-clr: #000000;
   --secondary-text-clr: #535353;
 }
 * {
@@ -16,7 +16,7 @@ html {
 }
 body {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100dvh; 
   background-color: var(--base-clr);
   color: var(--text-clr);
   display: grid;
@@ -160,14 +160,16 @@ main p {
     padding: 0;
   }
   #sidebar {
-    height: 60px;
+    height: auto;
+    min-height: 80px;
+    max-height: 100px;
     width: 100%;
-    border-right: none;
-    border-top: 1px solid var(--line-clr);
-    padding: 0;
     position: fixed;
-    top: unset;
     bottom: 0;
+    top: unset;
+    display: grid;
+    grid-auto-columns: 60px;
+    grid-auto-flow: column;
 
     > ul {
       padding: 0;
