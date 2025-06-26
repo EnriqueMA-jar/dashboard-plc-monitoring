@@ -1,12 +1,19 @@
-{% extends 'dashboard/base.html' %}{% block content %}
-<h1>Bienvenido al dashboard principal</h1><hr>
-
-<h4>Aqui encontraras:</h4><br>
-<ul>
-    <li>Graficas de metricas del plc</li>
-    <li>Tarjetaspersonalizadas con informacion esencial de cada elemento del plc</li>
-    <li>Posible adicion de alertas</li>
-    <li>Informacion secundaria de los usuarios</li>
-</ul>
-
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prueba dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/dashboard/dashboard.css' %}" />
+  </head>
+  <div class="static-bar"></div>
+  <body class="grid-container">
+    <nav class="nav grid-item">Breadcrumb</nav>
+    <aside class="sidebar grid-item">Sidebar Menu</aside>
+    <article class="data-in grid-item">Data ins</article>
+    <article class="data-out grid-item">Data outs</article>
+    <article class="graphs grid-item">Daily graphs</article>
+    <article class="data grid-item">Daily data</article>
+  </body>
+</html>

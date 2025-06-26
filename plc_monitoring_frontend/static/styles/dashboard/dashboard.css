@@ -1,0 +1,105 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'poppins', sans-serif;
+    font-size: 1.3 rem;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #f2f2f2;
+
+}
+.static-bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background-color: #e21c44;
+    color: white;
+    z-index: -1;
+    font-size: 16px;
+}
+.grid-item{
+    box-shadow: 10px 6px 37px -13px rgba(51, 51, 51, 0.75);
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 500;
+    
+}
+.grid-container {
+    
+  z-index: 1000;
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    "nav"
+    "sidebar"
+    "data-in"
+    "data-out"
+    "graphs"
+    "data";
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px auto;
+  min-height: 100vh; /* ocupa toda la altura de la pantalla */
+}
+
+.nav {
+    grid-area: nav;
+    color: white;
+    box-shadow: none;
+}
+.sidebar {
+    grid-area: sidebar;
+    background-color: white;
+    text-align: center;
+}
+.data-in {
+    grid-area: data-in;
+    background-color: white;
+}
+.data-out {
+    grid-area: data-out;
+    background-color: white;
+}
+.graphs {
+    grid-area: graphs;
+    background-color: white;
+}
+.data {
+    grid-area: data;
+    background-color: white;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-areas:
+      "sidebar nav"
+      "sidebar data-in"
+      "sidebar data-out"
+      "sidebar graphs"
+      "sidebar data";
+    
+    grid-template-columns: 150px auto; /* aumentamos el ancho del sidebar */
+    grid-template-rows: 80px 80px 80px 1fr 1fr;
+    height: 100vh; /* fuerza la altura de la grid al tamaño de la ventana */
+  }
+}
+
+/* Escritorio */
+@media (min-width: 992px) {
+  .grid-container {
+    grid-template-areas:
+      "sidebar nav nav"
+      "sidebar data-in data-out"
+      "sidebar graphs data";
+
+    grid-template-columns: 300px 1fr 1fr; /* sidebar aún más ancho en desktop */
+    grid-template-rows: 80px 0.3fr 1fr;
+    height: 100vh;
+  }
+}
