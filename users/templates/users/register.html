@@ -4,21 +4,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Iniciar Sesion</title>
-    <link rel="stylesheet" href="{% static 'styles/login/login.css' %}" />
+    <title>Registrarse</title>
+    <!-- <link rel="stylesheet" href="{% static 'styles/login/login.css' %}" /> -->
   </head>
   <body class="grid-container">
     <article class="form grid-item">
-      <h1>Iniciar Sesión</h1><br>
-      <form id="login-form">
+      <h1>Registrarse</h1><br>
+      <form id="register-form">
+        <input type="email" name="email" placeholder="Correo electronico" required>
         <input type="text" name="username" placeholder="Usuario" required>
         <input type="password" name="password" placeholder="Contraseña" required>
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit">Registrarse</button>
       </form>
-      <a href="{% url 'register' %}">Crear nuevo usuario</a>
+      <a href="/">Iniciar sesión</a>
     </article>
-    <article class="carrousel grid-item">Imagenes</article>
 
-    <script src="{% static 'js/login/login.js' %}"></script>
+    <script src="{% static 'js/register/register.js' %}"></script>
   </body>
 </html>

@@ -10,10 +10,14 @@
   <div class="static-bar"></div>
   <body class="grid-container">
     <nav class="nav grid-item">Breadcrumb</nav>
-    <aside class="sidebar grid-item">Sidebar Menu</aside>
+    <aside class="sidebar grid-item">
+      Sidebar Menu <br>
+      <button id="logout-btn">Cerrar sesión</button>
+    </aside>
     <article class="data-in grid-item">Data ins</article>
     <article class="data-out grid-item">Data outs</article>
     <article class="graphs grid-item">Daily graphs</article>
     <article class="data grid-item">Daily data</article>
+    <script src="{% static 'js/dashboard/dashboard.js' %}"></script>
   </body>
 </html>
