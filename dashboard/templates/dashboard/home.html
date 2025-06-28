@@ -7,17 +7,43 @@
     <title>Prueba dashboard</title>
     <link rel="stylesheet" href="{% static 'styles/dashboard/dashboard.css' %}" />
   </head>
+
   <div class="static-bar"></div>
   <body class="grid-container">
-    <nav class="nav grid-item">Breadcrumb</nav>
-    <aside class="sidebar grid-item">
-      Sidebar Menu <br>
+    {% csrf_token %}
+    <nav class="nav grid-item">Breadcrumb
+      {% block breadcrumb %} <!-- Aqui se va a cargar el contenido de la plantilla global del breadcrumb -->
+      {% endblock %}
+    </nav>
+    <aside class="sidebar grid-item">Sidebar Menu <br>
+      {% block sidebar %} <!-- Aqui se va a cargar el contenido de la plantilla global del sidebar responsive -->
+      {% endblock %}
       <button id="logout-btn">Cerrar sesión</button>
     </aside>
-    <article class="data-in grid-item">Data ins</article>
-    <article class="data-out grid-item">Data outs</article>
-    <article class="graphs grid-item">Daily graphs</article>
-    <article class="data grid-item">Daily data</article>
-    <script src="{% static 'js/dashboard/dashboard.js' %}"></script>
+    <article class="data-in grid-item">Data ins 
+      {% block data-in %}<!-- Aqui se va a cargar el contenido de la plantilla global de los datos de entrada -->
+      {% endblock %}
+    </article>
+    <article class="data-out grid-item">Data outs 
+      {% block data-out %}<!-- Aqui se va a cargar el contenido de la plantilla global de los datos de salida -->
+      {% endblock %}
+    </article>
+    <article class="graphs grid-item">Daily graphs
+      {% block graphs %}<!-- Aqui se va a cargar el contenido de la plantilla global de los graficos de lectura -->
+      {% endblock %}
+    </article>
+    <article class="data grid-item">Daily data
+      {% block data %}<!-- Aqui se va a cargar el contenido de la plantilla global de las cargas del dia -->
+      {% endblock %}
+    </article>
+    <!-- Validación de sesión al cargar la vista -->
+    <!-- <script src="{% static 'js/session/validate_session.js' %}"></script>
+
+    <script src="{% static 'js/sidebar/sidebar_navigation.js' %}"></script>
+
+    
+     Para pruebas, se coloca el logout para probar el boton -->
+     <!--<script src="{% static 'js/session/logout_session.js' %}"></script> -->
+     <a href="{% url 'reports' %}">reports</a>
   </body>
 </html>

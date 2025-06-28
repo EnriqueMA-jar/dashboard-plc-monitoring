@@ -11,6 +11,7 @@
     <article class="form grid-item">
       <h1>Registrarse</h1><br>
       <form id="register-form">
+        {% csrf_token %}
         <input type="email" name="email" placeholder="Correo electronico" required>
         <input type="text" name="username" placeholder="Usuario" required>
         <input type="password" name="password" placeholder="Contraseña" required>
@@ -19,6 +20,6 @@
       <a href="/">Iniciar sesión</a>
     </article>
 
-    <script src="{% static 'js/register/register.js' %}"></script>
+    <!--<script src="{% static 'js/register/register.js' %}"></script>-->
   </body>
 </html>
