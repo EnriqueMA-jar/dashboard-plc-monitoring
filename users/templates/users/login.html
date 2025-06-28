@@ -11,14 +11,14 @@
     <article class="form grid-item">
       <h1>Iniciar Sesión</h1><br>
       <form id="login-form">
-        <input type="text" name="username" placeholder="Usuario" required>
-        <input type="password" name="password" placeholder="Contraseña" required>
+        <input type="text" id="username" name="username" placeholder="Usuario" required>
+        <input type="password" id="password" name="password" placeholder="Contraseña" required>
         <button type="submit">Iniciar sesión</button>
       </form>
       <a href="{% url 'register' %}">Crear nuevo usuario</a>
     </article>
     <article class="carrousel grid-item">Imagenes</article>
 
-    <!--<script src="{% static 'js/login/login.js' %}"></script>-->
+    <script src="{% static 'js/login/login.js' %}"></script>
   </body>
 </html>
