@@ -17,7 +17,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 250px;
+    height: 300px;
     background-color: #e21c44;
     color: white;
     z-index: -1;
@@ -31,31 +31,24 @@ body {
     
 }
 .grid-container {
-    
   z-index: 1000;
   display: grid;
   gap: 20px;
   grid-template-areas:
     "nav"
-    "sidebar"
     "data-in"
     "data-out"
     "graphs"
     "data";
   grid-template-columns: 1fr;
   grid-template-rows: 80px auto;
-  min-height: 100vh; /* ocupa toda la altura de la pantalla */
+  min-height: 100vh;
 }
 
 .nav {
     grid-area: nav;
     color: white;
     box-shadow: none;
-}
-.sidebar {
-    grid-area: sidebar;
-    background-color: white;
-    text-align: center;
 }
 .data-in {
     grid-area: data-in;
@@ -78,27 +71,26 @@ body {
 @media (min-width: 768px) {
   .grid-container {
     grid-template-areas:
-      "sidebar nav"
-      "sidebar data-in"
-      "sidebar data-out"
-      "sidebar graphs"
-      "sidebar data";
-    
-    grid-template-columns: 150px auto; /* aumentamos el ancho del sidebar */
+      "nav"
+      "data-in"
+      "data-out"
+      "graphs"
+      "data";
+    grid-template-columns: 1fr;
     grid-template-rows: 80px 80px 80px 1fr 1fr;
-    height: 100vh; /* fuerza la altura de la grid al tamaño de la ventana */
+    height: 100vh;
   }
 }
+
 
 /* Escritorio */
 @media (min-width: 992px) {
   .grid-container {
     grid-template-areas:
-      "sidebar nav nav"
-      "sidebar data-in data-out"
-      "sidebar graphs data";
-
-    grid-template-columns: 300px 1fr 1fr; /* sidebar aún más ancho en desktop */
+      "nav nav"
+      "data-in data-out"
+      "graphs data";
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 80px 0.3fr 1fr;
     height: 100vh;
   }

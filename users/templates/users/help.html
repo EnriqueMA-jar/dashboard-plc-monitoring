@@ -1,19 +1,16 @@
+{% extends "dashboard/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayuda</title>
-    <link rel="stylesheet" href="{% static 'styles/users/help.css' %}">
-</head>
-<div class="static-bar"></div>
-<body class="grid-container">
-    <nav class="nav grid-item">Breadcrumb</nav>
-    <aside class="sidebar grid-item">sidebar Menu</aside>
-    <article class="data grid-item">Data</article>
-    <!-- Para pruebas, se coloca el validate para probar el acceso, en produccion va en el breadcrumb o en el sidebar -->
-    <script src="{% static 'js/session/validate_session.js' %}"></script>
-    <!-- Para pruebas, se coloca el logout para probar el boton -->
-</body>
-</html>
+
+{% block title %}Prueba ayuda{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'styles/users/help.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="static-bar"></div>
+  <div class="grid-container">
+      <nav class="nav grid-item">Breadcrumb</nav>
+      <article class="data grid-item">Data</article>
+  </div>
+{% endblock %}

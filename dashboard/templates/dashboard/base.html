@@ -1,1 +1,92 @@
-<!DOCTYPE html><html><head><title>PLC Frontend</title></head><body>{% block content %}{% endblock %}</body></html>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Home{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+  <!-- Botón hamburguesa -->
+  <button id="toggle-btn" onclick="toggleSidebar()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="15px" width="15px" fill="#e8eaed" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16" stroke="#e8eaed" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <!-- Contenedor principal con sidebar y contenido -->
+  <div id="layout-container" style="display: flex; min-height: 100vh;">
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-inner">
+        <ul>
+          <li>
+            <span class="logo">Sal Real de Colima</span>
+          </li>
+
+          <li>
+            <a href="{% url 'dashboard:home' %}">
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <li class="active">
+            <a href="{% url 'records:records' %}">
+              <span>Records</span>
+            </a>
+          </li>
+
+          <li>
+            <button onclick="toggleSubMenu(this)" class="dropdown-btn">
+              <span>Reportes</span>
+            </button>
+            <ul class="sub-menu">
+              <div>
+                <li><a href="{% url 'reports:reports' %}">Reportes</a></li>
+                <li><a href="{% url 'reports:historicos' %}">De todo el tiempo</a></li>
+              </div>
+            </ul>
+          </li>
+
+          <li>
+            <button onclick="toggleSubMenu(this)" class="dropdown-btn">
+              <span>Usuario</span>
+            </button>
+            <ul class="sub-menu">
+              <div>
+                <li><a href="{% url 'users:help' %}">Ayuda</a></li>
+                <li><a href="{% url 'users:manage' %}">Administrar</a></li>
+              </div>
+            </ul>
+          </li>
+
+          
+        </ul>
+
+        <!-- BOTÓN FIJO ABAJO -->
+        <div class="sidebar-bottom-button">
+          <a href="#">
+            <span>Salir</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    
+
+    <!-- Contenido principal -->
+    <main id="main-content" style="flex-grow: 1; padding: 20px;">
+      {% block content %}
+      <!-- Aquí irá el contenido de cada página -->
+      {% endblock %}
+    </main>
+  </div>
+
+  <script src="{% static 'js/base.js' %}"></script>
+</body>
+</html>

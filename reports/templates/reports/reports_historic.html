@@ -1,0 +1,18 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block title %}Reportes Historicos{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'styles/reports/historic_reports.css' %}">
+{% endblock %}
+
+{% block content %}
+</head>
+<div class="static-bar"></div>
+<div class="grid-container">
+    <nav class="nav grid-item">Breadcrumb</nav>
+    <article class="data grid-item">Data</article>
+    
+</div>
+{% endblock %}

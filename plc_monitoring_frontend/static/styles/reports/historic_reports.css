@@ -17,7 +17,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    height: 250px;
+    height: 300px;
     background-color: #e21c44;
     color: white;
     z-index: -1;
@@ -37,7 +37,6 @@ body {
   gap: 20px;
   grid-template-areas:
     "nav"
-    "sidebar"
     "data";
   grid-template-columns: 1fr;
   grid-template-rows: 80px 80px auto;
@@ -49,11 +48,7 @@ body {
     color: white;
     box-shadow: none;
 }
-.sidebar {
-    grid-area: sidebar;
-    background-color: white;
-    text-align: center;
-}
+
 .data {
     grid-area: data;
     background-color: white;
@@ -67,10 +62,10 @@ body {
 @media (min-width: 768px) {
   .grid-container {
     grid-template-areas:
-      "sidebar nav nav"
-      "sidebar data data";
+      "nav nav"
+      "data data";
     
-    grid-template-columns: 150px auto; /* aumentamos el ancho del sidebar */
+    grid-template-columns: 150px auto; /* aumentamos el ancho del */
     grid-template-rows: 80px 1fr;
     height: 100vh; /* fuerza la altura de la grid al tamaño de la ventana */
   }
@@ -80,11 +75,12 @@ body {
 @media (min-width: 992px) {
   .grid-container {
     grid-template-areas:
-      "sidebar nav nav"
-      "sidebar data data"
+      "nav nav"
+      "data data"
     ;
-    grid-template-columns: 300px 1fr 320px; /* sidebar aún más ancho en desktop */
+    grid-template-columns: 300px 1fr 320px; /* aún más ancho en desktop */
     grid-template-rows: 80px 1fr;
     height: 100vh;
   }
 }
+

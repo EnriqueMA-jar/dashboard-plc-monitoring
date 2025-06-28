@@ -1,17 +1,18 @@
+{% extends "dashboard/base.html" %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba records</title>
-    <link rel="stylesheet" href="{% static 'styles/records/records.css' %}">
-</head>
-<div class="static-bar"></div>
-<body class="grid-container">
-    <nav class="nav grid-item">Breadcrumb</nav>
-    <aside class="sidebar grid-item">sidebar Menu</aside>
-    <article class="data grid-item">Data</article>
-    <aside class="filters grid-item">Filters</article>
-    
-</body>
+
+{% block title %}Prueba records{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'styles/records/records.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="static-bar"></div>
+  <div class="grid-container">
+      <nav class="nav grid-item">Breadcrumb</nav>
+      <article class="data grid-item">Data</article>
+      <aside class="filters grid-item">Filters</aside>
+  </div>
+{% endblock %}

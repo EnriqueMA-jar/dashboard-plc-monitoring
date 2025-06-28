@@ -37,6 +37,7 @@ body {
   gap: 20px;
   grid-template-areas:
     "nav"
+    "filters"
     "data";
   grid-template-columns: 1fr;
   grid-template-rows: 80px 80px auto;
@@ -67,9 +68,9 @@ body {
   .grid-container {
     grid-template-areas:
       "nav nav"
-      "data data";
+      "data filters";
     
-    grid-template-columns: 1fr; /* aumentamos el ancho del sidebar */
+    grid-template-columns: auto 100px; /* aumentamos el ancho del */
     grid-template-rows: 80px 1fr;
     height: 100vh; /* fuerza la altura de la grid al tamaño de la ventana */
   }
@@ -80,9 +81,9 @@ body {
   .grid-container {
     grid-template-areas:
       "nav nav"
-      "data data"
+      "data filters"
     ;
-    grid-template-columns: 1fr; /* sidebar aún más ancho en desktop */
+    grid-template-columns:  1fr 320px; /* sidebar aún más ancho en desktop */
     grid-template-rows: 80px 1fr;
     height: 100vh;
   }
