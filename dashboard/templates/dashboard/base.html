@@ -70,11 +70,10 @@
 
         <!-- BOTÓN FIJO ABAJO -->
         <div class="sidebar-bottom-button">
-          <a href="#">
+          <button id="logout-btn">
             <span>Salir</span>
-          </a>
+          </button>
         </div>
-      </div>
     </nav>
 
     
@@ -86,7 +85,7 @@
       {% endblock %}
     </main>
   </div>
-
+  <script src="{% static 'js/session/session.js' %}"></script>
   <script src="{% static 'js/base.js' %}"></script>
 </body>
 </html>
