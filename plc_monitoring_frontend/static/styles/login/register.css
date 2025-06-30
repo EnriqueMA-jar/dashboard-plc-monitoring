@@ -103,6 +103,12 @@ body {
   margin-top: 20px;
 }
 
+#register-form button:hover{
+  background-color: #a00;
+  cursor: pointer;
+}
+
+
 /* ENLACE PARA VOLVER AL LOGIN */
 .form a {
   display: block;
@@ -111,6 +117,11 @@ body {
   font-size: 0.95rem;
   color: #e21c44;
   text-decoration: none;
+}
+
+.form a:hover {
+  background-color: #f2f2f2;
+  color: black;
 }
 
 /* Responsive - Tablets */

@@ -133,6 +133,11 @@ body {
 
 }
 
+#login-form button:hover{
+  background-color: #a00;
+  cursor: pointer;
+}
+
 /* Mantener sesión + enlace */
 .session-options {
   display: flex;

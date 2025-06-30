@@ -169,26 +169,6 @@
   background-color: var(--btn-hover-bg);
 }
 
-/* === RESPONSIVE SOLO PARA SIDEBAR === */
-@media (max-width: 770px) {
-  #sidebar {
-    position: fixed;
-    top: var(--sidebar-margin);
-    left: var(--sidebar-margin);
-    height: calc(100vh - var(--sidebar-margin) * 2);
-    width: var(--sidebar-width);
-    transform: translateX(calc(-200% - var(--sidebar-margin)));
-    z-index: 1000;
-  }
-
-  #sidebar.open {
-    transform: translateX(0);
-  }
-
-  #toggle-btn {
-    display: block;
-  }
-}
 
 /* === NUEVAS CLASES PARA BOTÓN ABAJO === */
 .sidebar-inner {
@@ -218,3 +198,42 @@
 .sidebar-bottom-button a:hover {
   background-color: #ff4e71 !important;
 }
+
+#logout-btn {
+  background-color: #e21c44;
+  color: white;
+  border: none;
+  padding: 0.85em;
+  border-radius: 0.5em;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+#logout-btn:hover {
+  background-color: #ff4e71;
+}
+
+/* === RESPONSIVE SOLO PARA SIDEBAR === */
+@media (max-width: 770px) {
+  #sidebar {
+    position: fixed;
+    top: var(--sidebar-margin);
+    left: var(--sidebar-margin);
+    height: calc(100vh - var(--sidebar-margin) * 2);
+    width: var(--sidebar-width);
+    transform: translateX(calc(-200% - var(--sidebar-margin)));
+    z-index: 1000;
+  }
+
+  #sidebar.open {
+    transform: translateX(0);
+  }
+
+  #toggle-btn {
+    display: block;
+  }
+}
+
+
