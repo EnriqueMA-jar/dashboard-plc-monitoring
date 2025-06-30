@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,14 +10,38 @@
   </head>
   <body class="grid-container">
     <article class="form grid-item">
-      <h1>Iniciar Sesión</h1><br>
+      <!-- LOGO -->
+      <div class="logo-container">
+        <img src="{% static 'imgs/srdclogolet.png' %}" alt="Logo Sal Real">
+      </div>
+
+      <!-- TÍTULO -->
+      <h1>INICIAR SESIÓN</h1><br>
+
+      <!-- FORMULARIO -->
       <form id="login-form">
         <input type="text" id="username" name="username" placeholder="Usuario" required>
         <input type="password" id="password" name="password" placeholder="Contraseña" required>
+
+        <!-- OPCIONES DE SESIÓN -->
+        <div class="session-options">
+          <label>
+            <span class="switch">
+              <input type="checkbox" checked>
+              <span class="slider"></span>
+            </span>
+            Mantener sesión iniciada
+          </label>
+          <a href="{% url 'users:register' %}">Crear nuevo Usuario</a>
+        </div>
+
+        <!-- BOTÓN -->
         <button type="submit">Iniciar sesión</button>
       </form>
-      <a href="{% url 'users:register' %}">Crear nuevo usuario</a>
+
     </article>
+
+    <!-- LADO DERECHO -->
     <article class="carrousel grid-item">Imagenes</article>
 
     <script src="{% static 'js/login/login.js' %}"></script>

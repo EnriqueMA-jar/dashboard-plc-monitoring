@@ -69,3 +69,128 @@ body {
     height: 100vh;
   }
 }
+
+
+
+/* Estilo para el logo */
+.logo-container {
+  display: flex;
+  justify-content: flex-start; /* ya estaba a la izquierda */
+  align-items: center;
+  margin-bottom: 40px; /* más espacio hacia abajo */
+  padding-left: 30px;   /* mover a la derecha */
+  padding-top: 20px;    /* mover un poco hacia abajo */
+}
+
+.logo-container img {
+  width: 150px;
+  height: auto;
+}
+
+/* Estilo para el encabezado */
+.form h1 {
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-left: 40px; /* <- esto mueve el h1 10px a la derecha */
+}
+
+/* Centrar todo el formulario */
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; /* mueve los campos hacia abajo */
+}
+
+
+/* Input styles */
+#login-form input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  background-color: #dfdbdb;
+  font-size: 1rem;
+  align-items: center;
+
+}
+
+/* Botón de iniciar sesión */
+#login-form button {
+  width: 90%;
+  padding: 15px;
+  background-color: #e21c44;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 50px;
+
+}
+
+/* Mantener sesión + enlace */
+.session-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%; /* mismo ancho que los inputs */
+  margin: 15px auto 30px auto; /* centrado del bloque, pero elementos alineados */
+  font-size: 0.9rem;
+  font-family: 'poppins', sans-serif;
+}
+
+
+.session-options label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'poppins', sans-serif;
+}
+
+/* Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: rgb(229, 1, 1);
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: #a00;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+
