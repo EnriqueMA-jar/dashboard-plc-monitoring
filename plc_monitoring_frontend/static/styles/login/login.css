@@ -149,7 +149,10 @@ body {
   font-family: 'poppins', sans-serif;
 }
 
+.btn-login{
+text-align: start;
 
+}
 .session-options label {
   display: flex;
   align-items: center;
@@ -172,7 +175,7 @@ body {
 .slider {
   position: absolute;
   cursor: pointer;
-  background-color: rgb(229, 1, 1);
+  background-color: #dfdbdb;
   border-radius: 34px;
   top: 0;
   left: 0;
@@ -192,7 +195,7 @@ body {
   transition: 0.4s;
 }
 input:checked + .slider {
-  background-color: #a00;
+  background-color: #e21c44;
 }
 input:checked + .slider:before {
   transform: translateX(20px);

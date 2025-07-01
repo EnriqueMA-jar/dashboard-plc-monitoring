@@ -27,7 +27,7 @@
         <div class="session-options">
           <label>
             <span class="switch">
-              <input type="checkbox" checked>
+              <input type="checkbox" id="remember-me" name="remember_me">
               <span class="slider"></span>
             </span>
             Mantener sesión iniciada
@@ -36,14 +36,14 @@
         </div>
 
         <!-- BOTÓN -->
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit" class="btn-login">Iniciar sesión</button>
       </form>
 
     </article>
 
     <!-- LADO DERECHO -->
     <article class="carrousel grid-item">Imagenes</article>
-
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
     <script src="{% static 'js/login/login.js' %}"></script>
   </body>
 </html>
