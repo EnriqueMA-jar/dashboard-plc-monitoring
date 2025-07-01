@@ -17,6 +17,7 @@ body {
     border-radius: 10px;
     padding: 10px;
     font-weight: 500;
+    background-color: white;
 }
 .grid-container{
     display: grid;
@@ -32,6 +33,7 @@ body {
 }
 .form{
     grid-area: form;
+    background-color: white;
 }
 .carrousel{
     /* Resolución para teléfonos */
@@ -200,5 +202,4 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(20px);
 }
-
 

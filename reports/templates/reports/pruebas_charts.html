@@ -1,4 +1,4 @@
-{% extends 'reports/base.html' %} {% load static %} {% block content %}
+ {% load static %} {% block content %}
 
 <h2>Últimas cargas de sal</h2>
 <ul id="charge-list">
@@ -55,7 +55,7 @@
     const humidityEndData = [];
 
     document.addEventListener("DOMContentLoaded", function () {
-      fetch("http://127.0.0.1:8001/api/charges/")
+      fetch("http://127.0.0.1:8001/api/charges/", { credentials: "include" })
         .then((response) => {
           if (!response.ok)
             throw new Error("Error en la respuesta del servidor");
@@ -70,9 +70,9 @@
             return;
           }
 
-          const last15 = data.slice(-15);
+          const last8 = data.slice(-8);
 
-          last15.forEach((charge) => {
+          last8.forEach((charge) => {
             const id = charge.id;
             const startTime = new Date(
               charge.charge_time_start
@@ -239,7 +239,7 @@
     document.addEventListener("DOMContentLoaded", function () {
       const tableBody = document.querySelector("#charge-table tbody");
 
-      fetch("http://127.0.0.1:8001/api/charges/")
+      fetch("http://127.0.0.1:8001/api/charges/", { credentials: "include" })
         .then((response) => {
           if (!response.ok)
             throw new Error("Error al obtener los datos del servidor");
@@ -439,7 +439,7 @@
   <h2>Tabla</h2>
   
   <hr />
-  <div class="table-container">
+  <div id="table-container">
     <table id="charge-table">
       <thead>
         <tr>
@@ -461,11 +461,110 @@
     </table>
   </div>
 
+  <h1>Prueba de cargas con estilo</h1>
+  <div id="charges">
 
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+  fetch("http://127.0.0.1:8001/api/charges/", { credentials: "include" })
+    .then((response) => {
+      if (!response.ok) throw new Error("Error en la respuesta del servidor");
+      return response.json();
+    })
+    .then((data) => {
+      const list = document.getElementById("charges");
+      list.innerHTML = "";
+
+      if (data.length === 0) {
+        list.innerHTML = "<b>No hay cargas registradas.</b>";
+        return;
+      }
+
+      data.slice(-8).forEach((charge) => {
+        const startTime = new Date(charge.charge_time_start).toLocaleTimeString("es-MX", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const endTime = new Date(charge.charge_time_finish).toLocaleTimeString("es-MX", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        // Crear contenedor
+        const container = document.createElement("div");
+        container.className = "container";
+
+        // Crear tabla
+        const table = document.createElement("table");
+        table.className = "table-charge";
+
+        // Fila 1 - encabezado dinámico
+        const header = document.createElement("tr");
+        header.innerHTML = `
+          <th class="charge">Carga: #${charge.id}</th>
+          <th class="time">Hora: ${startTime} - ${endTime}</th>
+        `;
+        table.appendChild(header);
+
+        // Fila 2 - títulos
+        const titles = document.createElement("tr");
+        titles.innerHTML = `
+          <td><strong>Entrada</strong></td>
+          <td><strong>Salida</strong></td>
+        `;
+        table.appendChild(titles);
+
+        // Fila 3 - datos
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${charge.charge_temperature_start} ºC / ${charge.charge_weight_start} kg / ${charge.charge_humidity_start}%</td>
+          <td>${charge.charge_temperature_finish} ºC / ${charge.charge_weight_finish} kg / ${charge.charge_humidity_finish}%</td>
+        `;
+        table.appendChild(row);
+
+        container.appendChild(table);
+        list.appendChild(container);
+      });
+    })
+    .catch((error) => {
+      document.getElementById("charges").innerHTML =
+        `<p>Error: ${error.message}</p>`;
+      console.error("Error al obtener los datos:", error);
+    });
+});
+
+  </script>
 
   <!-- Estilos CSS para la tabla -->
 
 <style>
+ #charges {
+  display: block;
+  margin-bottom: 10px;
+}
+.container{
+  border: solid 1px black;
+  margin: 10px;
+  border-radius: 0.5em;
+  text-align: start;
+  text-size-adjust: 75%;
+}
+th{
+  text-align: end;
+}
+table, th, td{
+  padding: 10px;
+}
+
+  .table-charge {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
   .responsive-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(500px, 100%), 1fr));
@@ -513,7 +612,7 @@
     overflow: hidden;
   }
 
-  table {
+  .table2{
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
@@ -537,22 +636,22 @@
     text-align: left;
   }
 
-  th, td {
+  .th, .td {
     padding: 12px 15px;
     text-align: center;
     white-space: nowrap;
   }
 
-  tr:nth-child(even) {
+  .tr:nth-child(even) {
     background-color: #f8f8f8;
   }
 
-  tr:hover {
+  .tr:hover {
     background-color: #800000;
     color: white;
   }
 
-  th {
+  .th {
     font-weight: bold;
   }
 
@@ -577,11 +676,11 @@
       font-size: 0.8rem;
     }
 
-    table {
+    .table2 {
       font-size: 0.8rem;
     }
 
-    th, td {
+    .th, .td {
       padding: 8px;
     }
 

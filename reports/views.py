@@ -9,3 +9,6 @@ def reports_view(request):
 # @login_required(login_url='/')
 def historic(request):
     return render(request, 'reports/reports_historic.html')
+
+def pruebas(request):
+    return render(request, 'reports/pruebas_charts.html')
