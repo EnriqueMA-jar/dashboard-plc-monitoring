@@ -65,7 +65,7 @@ body {
       "nav nav"
       "data filters";
     
-    grid-template-columns: 2fr 1fr;  /* Solo dos columnas: data y filters */
+    grid-template-columns: auto 100px;  /* Solo dos columnas: data y filters */
     grid-template-rows: 80px 1fr;
     height: 100vh;
   }
@@ -78,7 +78,7 @@ body {
     grid-template-areas:
       "nav nav"
       "data filters";
-    grid-template-columns: 2fr 1fr;  /* También solo dos columnas */
+    grid-template-columns: 1fr 320px;  /* También solo dos columnas */
     grid-template-rows: 80px 1fr;
     height: 100vh;
   }

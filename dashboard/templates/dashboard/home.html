@@ -15,7 +15,12 @@
     <article class="data-in grid-item">Data ins</article>
     <article class="data-out grid-item">Data outs</article>
     <article class="graphs grid-item">Daily graphs</article>
-    <article class="data grid-item">Daily data</article>
+    <article class="data grid-item">
+      Daily data <br>
+      {% block card_table_records %}
+        {% include 'records/components/card_table_records.html' %}
+      {% endblock %}
+    </article>
   </div>
 {% endblock %}
 

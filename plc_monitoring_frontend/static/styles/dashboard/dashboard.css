@@ -91,8 +91,40 @@ body {
       "nav nav"
       "data-in data-out"
       "graphs data";
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 80px 0.3fr 1fr;
+    grid-template-columns: 0.7fr 0.7fr;
+    grid-template-rows: 80px 200px 450px; /* 🔥 Alturas fijas */
     height: 100vh;
   }
+
+  .data,
+  .data-in,
+  .data-out,
+  .graphs {
+    height: 100%; /* se ajustan a su fila */
+    min-height: 0; /* previene crecimiento inesperado */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .data-scroll-area {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  .data-scroll-area::-webkit-scrollbar {
+  width: 6px; /* grosor */
+}
+
+.data-scroll-area::-webkit-scrollbar-track {
+  background: transparent; /* fondo del riel */
+}
+
+.data-scroll-area::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4;  /* color del thumb */
+  border-radius: 10px;        /* bordes redondeados */
+}
+
+.data-scroll-area::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;  /* color al pasar el cursor */
+}
 }

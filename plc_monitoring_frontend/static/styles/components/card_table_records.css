@@ -1,0 +1,89 @@
+.charge {
+  text-align: start;
+}
+
+#charges {
+  padding: 10px;
+  display: block;
+  width: fit-content; 
+  max-width: 600px;
+  max-height: fit-content;         /* Ancho del contenedor */
+  margin-bottom: 10px;
+  max-height: fit-content;       /* Altura máxima del contenedor */
+  overflow-y: auto;        /* Scroll vertical cuando sea necesario */
+  overflow-x: hidden;      /* Evita scroll horizontal innecesario */
+}
+
+.time{
+    font-size: 0.75rem; /* tamaño de fuente más pequeño */
+}
+.container {
+  width: fit-content;
+  background-color: #f2f2f2;
+  margin: 10px;
+  border-radius: 0.5em;
+  text-align: start;
+  font-size: 0.75rem; /* tamaño de fuente más pequeño */
+}
+
+table, th, td {
+  padding: 6px 6px; /* reducido desde 10px */
+}
+
+.table-charge {
+  width: 100%;               /* se adapta al ancho del container */
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.75rem;
+}
+
+.table-charge th,
+.table-charge td {
+  width: 50%;                /* columnas iguales */
+  padding: 4px;
+  text-align: left;
+    
+}
+
+.responsive-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr)); /* menor min width */
+  gap: 10px;
+  padding: 5px;
+  align-items: center;
+}
+
+#charge-list {
+  padding-left: 10px;
+  margin-bottom: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: clamp(0.6rem, 0.35vw + 0.35rem, 0.75rem); /* tamaño responsivo más pequeño */
+}
+#charge-table th, #charge-table td {
+  width: 50%; /* Divide el ancho en dos columnas iguales */
+}
+.table-container {
+  width: fit-content;
+  max-width: 70vw; /* más angosto */
+  overflow-x: auto;
+  background-color: #ffffff;
+  padding: 0.5rem; /* menos espacio interno */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#charge-table {
+  width: fit-content;
+  max-width: fit-content; /* máximo ancho del contenedor */
+  border-collapse: collapse;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.75rem; /* antes era 0.95rem */
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
