@@ -554,9 +554,7 @@
   text-align: start;
   text-size-adjust: 75%;
 }
-th{
-  text-align: end;
-}
+
 table, th, td{
   padding: 10px;
 }
@@ -693,7 +691,112 @@ table, th, td{
   }
 </style>
 
+<style>
+  .data-in-table{
+    width: 50%;
+    border:solid 1px black;
+    border-color: black;
+    margin: 20px 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  td, th{
+    border: solid 1px black;
+  }
+</style>
 
+<hr>
+<h1>Pruebas data in</h1>
+<table class="data-in-table">
+  <tr>
+    <th>Humedad de entrada</th>
+    <th>Temperatura de entrada</th>
+  </tr>
+  <tr>
+    <td><b>23.069 %</b></td>
+    <td><b>25 ºC</b></td>
+  </tr>
+  <tr>
+    <td>+ 2% que la carga anterior</td>
+    <td>-1 ºC que la carga anterior</td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" class="hum-icon">
+    </td>
+    <td>
+      <img src="" class="temp-icon">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Ultima carga
+    </td>
+  </tr>
+</table>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+  const humValueCell = document.querySelector(".data-in-table tr:nth-child(2) td:nth-child(1) b");
+  const tempValueCell = document.querySelector(".data-in-table tr:nth-child(2) td:nth-child(2) b");
+
+  const humDiffCell = document.querySelector(".data-in-table tr:nth-child(3) td:nth-child(1)");
+  const tempDiffCell = document.querySelector(".data-in-table tr:nth-child(3) td:nth-child(2)");
+
+  const humIcon = document.querySelector(".hum-icon");
+  const tempIcon = document.querySelector(".temp-icon");
+
+  fetch("http://127.0.0.1:8001/api/charges/", { credentials: "include" })
+    .then((response) => {
+      if (!response.ok) throw new Error("Error al obtener los datos del servidor");
+      return response.json();
+    })
+    .then((data) => {
+      if (data.length === 0) {
+        humValueCell.textContent = "Sin datos";
+        tempValueCell.textContent = "Sin datos";
+        return;
+      }
+
+      const last = data[data.length - 1];
+      const prev = data.length > 1 ? data[data.length - 2] : null;
+
+      const humStart = parseFloat(last.charge_humidity_start);
+      const tempStart = parseFloat(last.charge_temperature_start);
+
+      humValueCell.textContent = `${humStart.toFixed(3)} %`;
+      tempValueCell.textContent = `${tempStart.toFixed(0)} ºC`;
+
+      // Comparación con la carga anterior
+      if (prev) {
+        const prevHum = parseFloat(prev.charge_humidity_start);
+        const prevTemp = parseFloat(prev.charge_temperature_start);
+
+        const humDiff = humStart - prevHum;
+        const tempDiff = tempStart - prevTemp;
+
+        humDiffCell.textContent = `${humDiff >= 0 ? "+" : ""}${humDiff.toFixed(1)}% que la carga anterior`;
+        tempDiffCell.textContent = `${tempDiff >= 0 ? "+" : ""}${tempDiff.toFixed(0)} ºC que la carga anterior`;
+
+        humIcon.src = humDiff > 0 ? "up.svg" : humDiff < 0 ? "down.svg" : "equal.svg";
+        tempIcon.src = tempDiff > 0 ? "up.svg" : tempDiff < 0 ? "down.svg" : "equal.svg";
+      } else {
+        humDiffCell.textContent = "Primera carga registrada";
+        tempDiffCell.textContent = "Primera carga registrada";
+        humIcon.src = "equal.svg";
+        tempIcon.src = "equal.svg";
+      }
+    })
+    .catch((error) => {
+      humValueCell.textContent = `Error: ${error.message}`;
+      tempValueCell.textContent = `Error`;
+      console.error("Error al obtener los datos:", error);
+    });
+});
+
+</script>
 
 
 

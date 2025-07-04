@@ -16,11 +16,15 @@
     <article class="data-out grid-item">Data outs</article>
     <article class="graphs grid-item">Daily graphs</article>
     <article class="data grid-item">
-      Daily data <br>
+      <div class="data-row">
+        <p class="data-title">Registro diario: </p>
+        <a href="#" class="data-link">Ver mas</a>
+      </div>
       {% block card_table_records %}
         {% include 'records/components/card_table_records.html' %}
       {% endblock %}
     </article>
+    
   </div>
 {% endblock %}
 

@@ -128,3 +128,29 @@ body {
   background-color: #a0a0a0;  /* color al pasar el cursor */
 }
 }
+
+.data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.data-title {
+  color: #333;
+  margin: 0;
+}
+
+.data-link {
+  margin-right: 20px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 1em;
+}
+.data-link:hover {
+  color: #0056b3;
+}
+.data-link:active {
+  color: lightblue;
+}
