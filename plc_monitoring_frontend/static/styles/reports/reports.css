@@ -84,7 +84,7 @@ body {
       "data filters"
     ;
     grid-template-columns:  1fr 320px; /* sidebar aún más ancho en desktop */
-    grid-template-rows: 80px 1fr;
+    grid-template-rows: 80px 0.8fr;
     height: 100vh;
   }
 }
