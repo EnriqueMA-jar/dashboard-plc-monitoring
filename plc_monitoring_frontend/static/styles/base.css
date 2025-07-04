@@ -226,7 +226,7 @@
 }
 
 /* === RESPONSIVE SOLO PARA SIDEBAR === */
-@media (max-width: 770px) {
+@media (max-width: 950px) {
   #sidebar {
     position: fixed;
     top: var(--sidebar-margin);
