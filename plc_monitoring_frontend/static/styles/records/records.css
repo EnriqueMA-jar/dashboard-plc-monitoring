@@ -6,7 +6,7 @@
 }
 body {
     font-family: 'poppins', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1rem;
     min-height: 100vh;
     padding: 20px;
     background-color: #f2f2f2;
@@ -67,7 +67,7 @@ body {
     
     grid-template-columns: auto 100px;  /* Solo dos columnas: data y filters */
     grid-template-rows: 80px 1fr;
-    height: 100vh;
+    height: 80vh;
   }
 }
 
@@ -80,6 +80,6 @@ body {
       "data filters";
     grid-template-columns: 1fr 320px;  /* También solo dos columnas */
     grid-template-rows: 80px 1fr;
-    height: 100vh;
+    height: 80vh;
   }
 }

@@ -257,9 +257,3 @@ a {
   pointer-events: auto !important;
   cursor: pointer;
 }
-@media (min-width: 992px){
-  body{
-    overflow-y: hidden;
-  }
-  
-}
