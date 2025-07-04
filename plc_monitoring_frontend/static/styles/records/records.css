@@ -79,7 +79,7 @@ body {
       "nav nav"
       "data filters";
     grid-template-columns: 1fr 320px;  /* También solo dos columnas */
-    grid-template-rows: 80px 0.8fr;
+    grid-template-rows: 80px 0.9fr;
     height: 80vh;
   }
 }

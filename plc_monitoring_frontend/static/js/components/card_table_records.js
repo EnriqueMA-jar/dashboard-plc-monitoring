@@ -13,7 +13,7 @@
         return;
       }
 
-      data.slice(-4).forEach((charge) => {
+      data.slice(-5).forEach((charge) => {
         const startTime = new Date(charge.charge_time_start).toLocaleTimeString("es-MX", {
           hour: "2-digit",
           minute: "2-digit",
