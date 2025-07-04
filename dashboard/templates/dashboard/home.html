@@ -14,7 +14,11 @@
     <nav class="nav grid-item">Breadcrumb</nav>
     <article class="data-in grid-item">Data ins</article>
     <article class="data-out grid-item">Data outs</article>
-    <article class="graphs grid-item">Daily graphs</article>
+    <article class="graphs grid-item">
+      {% block chart_records %}
+        {% include 'records/components/card_chart_records.html' %}
+      {% endblock %}
+    </article>
     <article class="data grid-item">
       <div class="data-row">
         <p class="data-title">Registro diario: </p>
