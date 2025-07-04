@@ -15,7 +15,7 @@
   --btn-hover-bg: #e4dfdf;
 
   /* Otros */
-  --accent-clr: #000000;
+  --accent-clr: #000000;  
   --secondary-text-clr: #b0b3c1;
 }
 
@@ -112,6 +112,16 @@
   gap: 1em;
 }
 
+.logo {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    width: 130px;
+    align-items: center
+}
+
+
 #sidebar .dropdown-btn:hover {
   background-color: var(--btn-hover-bg);
 }
@@ -151,7 +161,7 @@
   top: var(--sidebar-margin);
   left: var(--sidebar-margin);
   z-index: 2000;
-  background-color: var(--btn-bg);
+  background-color: #f72500;
   color: var(--btn-text);
   padding: 0.75em;
   border-radius: 0.5em;
@@ -161,12 +171,12 @@
 }
 
 #toggle-btn svg {
-  fill: var(--btn-text);
+  fill: black;
   transition: rotate 150ms ease;
 }
 
 #toggle-btn:hover {
-  background-color: var(--btn-hover-bg);
+  background-color: #f98d81;
 }
 
 

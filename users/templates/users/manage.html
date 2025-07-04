@@ -11,7 +11,7 @@
   <div class="static-bar"></div>
   <div class="grid-container">
       <nav class="nav grid-item">Breadcrumb</nav>
-      <article class="data grid-item">
+        <article class="data grid-item">
         <h2 class="form-title">ACTUALIZAR CREDENCIALES</h2>
         <form class="password-form" method="POST">
             {% csrf_token %}
@@ -20,6 +20,6 @@
             <input type="password" name="confirm_password" placeholder="Confirmar contraseña nueva" required>
             <button type="submit" class="submit-btn">Cambiar contraseña</button>
         </form>
-    </article>
+      </article>
   </div>
 {% endblock %}
