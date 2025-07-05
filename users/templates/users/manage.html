@@ -13,13 +13,16 @@
       <nav class="nav grid-item">Breadcrumb</nav>
         <article class="data grid-item">
         <h2 class="form-title">ACTUALIZAR CREDENCIALES</h2>
-        <form class="password-form" method="POST">
+        <form id="password-form" class="password-form" method="POST">
             {% csrf_token %}
-            <input type="password" name="current_password" placeholder="Contraseña actual" required>
-            <input type="password" name="new_password" placeholder="Contraseña nueva" required>
-            <input type="password" name="confirm_password" placeholder="Confirmar contraseña nueva" required>
+            <input type="password" id="current-password" placeholder="Contraseña actual" required>
+            <input type="password" id="new-password" placeholder="Contraseña nueva" required>
+            <input type="password" id="confirm-password" placeholder="Confirmar contraseña nueva" required>
             <button type="submit" class="submit-btn">Cambiar contraseña</button>
         </form>
       </article>
+      <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/manage/manage.js' %}"></script>
+
   </div>
 {% endblock %}
