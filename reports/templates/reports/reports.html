@@ -10,8 +10,20 @@
 {% block content %}
   <div class="static-bar"></div>
   <div class="grid-container">
-      <nav class="nav grid-item">Breadcrumb</nav>
-      <article class="data grid-item">Data</article>
-      <aside class="filters grid-item">Filters</aside>
+    <div class="nav grid-item">
+  <nav class="breadcrumb">
+    <span>\</span> <a href="/dashboard/">Dashboard </a> 
+    <span>\</span> <a href="/reports/">Reportes</a> 
+    <span>\</span> <span class="active">Filtrados</span>
+  </nav>
+
+  <div class="section-title">
+    <h2>Reportes</h2>
+    <p>Generar reportes mediante el filtrado de los datos almacenados – linea de proceso de secado de la sal.</p>
+  </div>
+</div>
+
+    <article class="data grid-item">Data</article>
+    <aside class="filters grid-item">Filters</aside>
   </div>
 {% endblock %}

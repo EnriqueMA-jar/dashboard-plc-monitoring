@@ -8,11 +8,22 @@
 {% endblock %}
 
 {% block content %}
-</head>
-<div class="static-bar"></div>
-<div class="grid-container">
-    <nav class="nav grid-item">Breadcrumb</nav>
-    <article class="data grid-item">Data</article>
-    
+  <div class="static-bar"></div>
+  <div class="grid-container">
+    <div class="nav grid-item">
+  <nav class="breadcrumb">
+    <span>\</span> <a href="/dashboard/">Dashboard </a> 
+    <span>\</span> <a href="/reports/">Reportes</a> 
+    <span>\</span> <span class="active">Historicos</span>
+  </nav>
+
+  <div class="section-title">
+    <h2>Reportes</h2>
+    <p>Generar reportes, datos históricos almacenados – línea de proceso de secado de la sal.</p>
+  </div>
 </div>
+
+    <article class="data grid-item">Data</article>
+    <aside class="filters grid-item">Filters</aside>
+  </div>
 {% endblock %}
