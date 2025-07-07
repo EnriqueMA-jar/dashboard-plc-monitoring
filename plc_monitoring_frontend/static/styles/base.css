@@ -24,7 +24,7 @@
 /* Sidebar */
 #sidebar {
   width: var(--sidebar-width);
-  height: calc(100vh - var(--sidebar-margin) * 2);
+  height: 93.5vh;
   margin: var(--sidebar-margin) 0;
   padding: 1em;
   background-color: var(--sidebar-bg);

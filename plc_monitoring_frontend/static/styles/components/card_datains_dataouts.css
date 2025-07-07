@@ -1,0 +1,20 @@
+.diff{
+    font-size: 0.8rem;
+}
+
+.data-in-table, .data-out-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+.data-info{
+    font-size: 1.5rem;
+}
+.data-info2{
+    float: right;
+    font-size: 1.2rem;
+    color: #666;
+}

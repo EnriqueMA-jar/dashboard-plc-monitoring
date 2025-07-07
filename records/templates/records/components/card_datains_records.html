@@ -1,0 +1,33 @@
+{% load static %}
+<table class="data-in-table">
+  <tr>
+    <th>Humedad de entrada</th>
+    <th>Temperatura de entrada</th>
+  </tr>
+  <tr>
+    <td><b></b></td>
+    <td><b></b></td>
+  </tr>
+  <tr>
+    <td><p class="diff"></p></td>
+    <td><p class="diff"></p></td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" class="hum-icon">
+    </td>
+    <td>
+      <img src="" class="temp-icon">
+    </td>
+  </tr>
+  <tr>
+    <td>
+        
+    </td>
+    <td>
+      <b class="data-info2">Última carga</b>
+    </td>
+  </tr>
+</table>
+<script src="{% static 'js/components/card_datains_records.js' %}"></script>
+<link rel="stylesheet" href="{% static 'styles/components/card_datains_dataouts.css' %}">

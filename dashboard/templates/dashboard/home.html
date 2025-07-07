@@ -23,8 +23,16 @@
       </div>
     </nav>
 
-    <article class="data-in grid-item">Data ins</article>
-    <article class="data-out grid-item">Data outs</article>
+    <article class="data-in grid-item">
+      {% block datains %}
+        {% include 'records/components/card_datains_records.html' %}
+      {% endblock %}
+    </article>
+    <article class="data-out grid-item">
+      {% block dataouts %}
+        {% include 'records/components/card_dataouts_records.html' %}
+      {% endblock %}
+    </article>
     <article class="graphs grid-item">
       {% block chart_records %}
         {% include 'records/components/card_chart_records.html' %}
