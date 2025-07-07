@@ -7,9 +7,11 @@
 body {
     font-family: 'poppins', sans-serif;
     font-size: 1rem;
-    min-height: 100vh;
-    padding: 20px;
+    min-height: 80vh;
+    padding: 20px 10px;
     background-color: #f2f2f2;
+    overflow-x: hidden;
+    box-sizing: border-box;
 
 }
 .static-bar{
@@ -91,7 +93,7 @@ body {
       "nav nav"
       "data-in data-out"
       "graphs data";
-    grid-template-columns: 0.7fr 0.7fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 80px 200px 450px; /* 🔥 Alturas fijas */
     height: 100vh;
   }
