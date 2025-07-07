@@ -10,6 +10,8 @@ body {
     min-height: 100vh;
     padding: 20px;
     background-color: #f2f2f2;
+    overflow-x: hidden; /* Bloquea scroll horizontal */
+    box-sizing: border-box;
 }
 .static-bar{
     position: fixed;
