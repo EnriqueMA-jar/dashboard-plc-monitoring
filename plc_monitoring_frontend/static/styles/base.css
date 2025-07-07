@@ -1,186 +1,71 @@
 :root {
-  /* Sidebar */
   --sidebar-width: 200px;
   --sidebar-collapsed-width: 60px;
   --sidebar-margin: 10px;
-
-  /* Colores para sidebar */
   --sidebar-bg: #ffffff;
   --sidebar-border: #ffffff;
   --sidebar-shadow: rgba(0, 0, 0, 0.15);
-
-  /* Botones sidebar */
   --btn-bg: #e4dfdf;
   --btn-text: #000000;
   --btn-hover-bg: #e4dfdf;
-
-  /* Otros */
-  --accent-clr: #000000;  
+  --accent-clr: #000000;
   --secondary-text-clr: #b0b3c1;
 }
 
-/* === SIDEBAR === */
-#sidebar {
+/* Layout principal */
+#layout-container {
+  display: flex;
+  min-height: 100vh;
+  gap: var(--sidebar-margin);
+  padding: var(--sidebar-margin);
   box-sizing: border-box;
-  height: 93.5vh;
+}
+
+/* Sidebar */
+#sidebar {
   width: var(--sidebar-width);
-  margin: var(--sidebar-margin);
-  padding: 5px 1em;
+  height: calc(100vh - var(--sidebar-margin) * 2);
+  margin: var(--sidebar-margin) 0;
+  padding: 1em;
   background-color: var(--sidebar-bg);
-  color: #000;
   border-radius: 10px;
   position: sticky;
   top: var(--sidebar-margin);
-  align-self: start;
   overflow-y: auto;
-  transform: translateX(0);
-  transition: transform 0.3s ease-in-out;
-  border-right: 1px solid var(--sidebar-border);
   box-shadow: 0 4px 12px var(--sidebar-shadow);
+  transition: transform 0.3s ease-in-out;
   font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.5rem;
-}
-
-#sidebar.close {
-  width: var(--sidebar-collapsed-width);
-  transform: translateX(calc(-100% - var(--sidebar-margin)));
 }
 
 #sidebar ul {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
 }
 
-#sidebar > ul > li:first-child {
+#sidebar a, .dropdown-btn {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 16px;
-}
-
-#sidebar .logo {
-  font-weight: 600;
-}
-
-#sidebar ul li.active a {
-  color: var(--accent-clr);
-}
-
-#sidebar ul li.active a svg {
-  fill: var(--accent-clr);
-}
-
-#sidebar a,
-#sidebar .dropdown-btn,
-#sidebar .logo {
-  border-radius: 0.5em;
+  align-items: center;
   padding: 0.85em;
-  text-decoration: none;
+  border-radius: 0.5em;
   color: #000;
-  display: flex;
-  align-items: center;
+  text-decoration: none;
   gap: 1em;
-}
-
-#sidebar a:hover,
-#sidebar .dropdown-btn:hover {
-  background-color: var(--btn-bg);
-}
-
-#sidebar svg {
-  flex-shrink: 0;
-  fill: #000;
-}
-
-#sidebar a span,
-#sidebar .dropdown-btn span {
-  flex-grow: 1;
-}
-
-/* === BOTONES DROPDOWN === */
-#sidebar .dropdown-btn {
-  background-color: var(--sidebar-bg);
-  color: var(--btn-text);
-  border-radius: 0.5em;
-  padding: 0.85em;
-  width: 100%;
-  text-align: left;
+  background: none;
   border: none;
-  font: inherit;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 1em;
+  font: inherit;
 }
 
-.logo {
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    object-fit: contain;
-    width: 130px;
-    align-items: center
-}
-
-
-#sidebar .dropdown-btn:hover {
+#sidebar a:hover, .dropdown-btn:hover {
   background-color: var(--btn-hover-bg);
 }
 
-#sidebar .dropdown-btn svg {
-  fill: var(--btn-text);
-  transition: 200ms ease;
+.logo {
+  width: 130px;
+  margin: 0 auto 1rem;
+  display: block;
 }
 
-#sidebar .rotate svg:last-child {
-  rotate: 180deg;
-}
-
-/* === SUBMENÚ === */
-#sidebar .sub-menu {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: 300ms ease-in-out;
-}
-
-#sidebar .sub-menu > div {
-  overflow: hidden;
-}
-
-#sidebar .sub-menu.show {
-  grid-template-rows: 1fr;
-}
-
-#sidebar .sub-menu a {
-  padding-left: 2em;
-}
-
-/* === BOTÓN HAMBURGUESA === */
-#toggle-btn {
-  display: none;
-  position: fixed;
-  top: var(--sidebar-margin);
-  left: var(--sidebar-margin);
-  z-index: 2000;
-  background-color: #f72500;
-  color: var(--btn-text);
-  padding: 0.75em;
-  border-radius: 0.5em;
-  border: none;
-  cursor: pointer;
-  font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#toggle-btn svg {
-  fill: black;
-  transition: rotate 150ms ease;
-}
-
-#toggle-btn:hover {
-  background-color: #f98d81;
-}
-
-
-/* === NUEVAS CLASES PARA BOTÓN ABAJO === */
 .sidebar-inner {
   display: flex;
   flex-direction: column;
@@ -189,24 +74,8 @@
 
 .sidebar-bottom-button {
   margin-top: auto;
-  margin-bottom: 20px;
   padding-top: 1em;
   text-align: center;
-}
-
-.sidebar-bottom-button a {
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  padding: 0.85em;
-  text-decoration: none;
-  color: white !important;
-  border-radius: 0.5em;
-  background-color: #e21c44;
-}
-
-.sidebar-bottom-button a:hover {
-  background-color: #ff4e71 !important;
 }
 
 #logout-btn {
@@ -215,27 +84,74 @@
   border: none;
   padding: 0.85em;
   border-radius: 0.5em;
-  font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
+  font: inherit;
   width: 100%;
+  cursor: pointer;
 }
 
 #logout-btn:hover {
   background-color: #ff4e71;
 }
 
-/* === RESPONSIVE SOLO PARA SIDEBAR === */
+/* Contenido principal */
+#main-content {
+  flex-grow: 1;
+  min-width: 0; /* ← esto permite que el contenido se reduzca */
+  box-sizing: border-box;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Botón toggle */
+#toggle-btn {
+  display: none;
+  position: fixed;
+  top: var(--sidebar-margin);
+  left: var(--sidebar-margin);
+  background-color: #f72500;
+  color: white;
+  padding: 0.75em;
+  border-radius: 0.5em;
+  border: none;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+#toggle-btn svg {
+  fill: white;
+}
+
+/* Submenús */
+.sub-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease;
+}
+
+.sub-menu > div {
+  overflow: hidden;
+}
+
+.sub-menu.show {
+  grid-template-rows: 1fr;
+}
+
+/* Responsive */
 @media (max-width: 950px) {
+  #layout-container {
+    flex-direction: column;
+    padding: 0;
+  }
+
   #sidebar {
     position: fixed;
     top: var(--sidebar-margin);
     left: var(--sidebar-margin);
-    height: calc(100vh - var(--sidebar-margin) * 2);
-    width: var(--sidebar-width);
-    transform: translateX(calc(-200% - var(--sidebar-margin)));
     z-index: 1000;
+    transform: translateX(calc(-200% - var(--sidebar-margin)));
   }
+
   #sidebar.open {
     transform: translateX(0);
   }
@@ -243,17 +159,14 @@
   #toggle-btn {
     display: block;
   }
-}
 
-
-table{
-  user-select: none;
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE10+/Edge */
+  #main-content {
+    padding: 1rem;
+  }
 }
-a {
-  user-select: auto !important;
-  pointer-events: auto !important;
-  cursor: pointer;
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }

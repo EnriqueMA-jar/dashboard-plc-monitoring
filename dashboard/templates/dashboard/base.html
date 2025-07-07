@@ -1,11 +1,10 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{% block title %}Home{% endblock %}</title>
+  <title>{% block title %}Dashboard{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'styles/base.css' %}">
   {% block extra_css %}{% endblock %}
 </head>
@@ -18,33 +17,18 @@
     </svg>
   </button>
 
-  <!-- Contenedor principal con sidebar y contenido -->
-  <div id="layout-container" style="display: flex; min-height: 100vh;">
-
+  <!-- Contenedor principal -->
+  <div id="layout-container">
+    
     <!-- Sidebar -->
     <nav id="sidebar">
       <div class="sidebar-inner">
         <ul>
+          <li><img src="{% static 'imgs/srdclogofix.PNG' %}" alt="Sal Real de Colima" class="logo"></li>
+          <li><a href="{% url 'dashboard:home' %}"><span>Dashboard</span></a></li>
+          <li class="active"><a href="{% url 'records:records' %}"><span>Consultar datos</span></a></li>
           <li>
-            <img src="{% static 'imgs/srdclogofix.PNG' %}" alt="Sal Real de Colima" class="logo">
-          </li>
-
-          <li>
-            <a href="{% url 'dashboard:home' %}">
-              <span>Dashboard</span>
-            </a>
-          </li>
-
-          <li class="active">
-            <a href="{% url 'records:records' %}">
-              <span>Consultar datos</span>
-            </a>
-          </li>
-
-          <li>
-            <button onclick="toggleSubMenu(this)" class="dropdown-btn">
-              <span>Reportes</span>
-            </button>
+            <button onclick="toggleSubMenu(this)" class="dropdown-btn"><span>Reportes</span></button>
             <ul class="sub-menu">
               <div>
                 <li><a href="{% url 'reports:reports' %}">Reportes</a></li>
@@ -52,11 +36,8 @@
               </div>
             </ul>
           </li>
-
           <li>
-            <button onclick="toggleSubMenu(this)" class="dropdown-btn">
-              <span>Usuario</span>
-            </button>
+            <button onclick="toggleSubMenu(this)" class="dropdown-btn"><span>Usuario</span></button>
             <ul class="sub-menu">
               <div>
                 <li><a href="{% url 'users:help' %}">Ayuda</a></li>
@@ -64,28 +45,22 @@
               </div>
             </ul>
           </li>
-
-          
         </ul>
 
-        <!-- BOTÓN FIJO ABAJO -->
+        <!-- Botón salir -->
         <div class="sidebar-bottom-button">
-          <button id="logout-btn">
-            <span>Salir</span>
-          </button>
+          <button id="logout-btn"><span>Salir</span></button>
         </div>
-        </div>
+      </div>
     </nav>
 
-    
-
     <!-- Contenido principal -->
-    <main id="main-content" style="flex-grow: 1; padding: 20px;">
-      {% block content %}
-      <!-- Aquí irá el contenido de cada página -->
-      {% endblock %}
+    <main id="main-content">
+      {% block content %}{% endblock %}
     </main>
   </div>
+
+  <!-- Scripts -->
   <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
   <script src="{% static 'js/session/session.js' %}"></script>
   <script src="{% static 'js/base.js' %}"></script>
