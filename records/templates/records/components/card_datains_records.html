@@ -12,22 +12,21 @@
     <td><p class="diff"></p></td>
     <td><p class="diff"></p></td>
   </tr>
-  <tr>
+  
+  <tr class="data-bottom">
     <td>
-      <img src="" class="hum-icon">
+      <div class="hum-icon-in">
+        <img src="{% static 'icons/humidity_mid_24dp.svg' %}" class="hum-icon">
+      </div>
     </td>
     <td>
-      <img src="" class="temp-icon">
+      <div class="temp-icon-in">
+        <img src="{% static 'icons/thermometer_loss_24dp.svg' %}" class="temp-icon">
+      </div>
     </td>
-  </tr>
-  <tr>
-    <td>
-        
-    </td>
-    <td>
-      <b class="data-info2">Última carga</b>
-    </td>
+    
   </tr>
 </table>
+<b class="data-info2">Última carga</b>
 <script src="{% static 'js/components/card_datains_records.js' %}"></script>
 <link rel="stylesheet" href="{% static 'styles/components/card_datains_dataouts.css' %}">

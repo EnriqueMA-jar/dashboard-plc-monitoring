@@ -1,20 +1,85 @@
-.diff{
-    font-size: 0.8rem;
+/* Estilo base para tablas */
+.data-in-table, .data-out-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.data-in-table, .data-out-table {
-    width: 100%;
-    border-collapse: collapse;
-}
 th, td {
-    padding: 8px;
-    text-align: left;
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle;
 }
-.data-info{
-    font-size: 1.5rem;
+
+/* Texto de datos */
+.data-info {
+  font-size: 1.3rem;
 }
-.data-info2{
-    float: right;
-    font-size: 1.2rem;
-    color: #666;
+
+.data-info2 {
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* Texto pequeño adicional */
+.diff {
+  font-size: 0.8rem;
+}
+
+/* Separación inferior */
+.data-bottom {
+  margin-top: 20px;
+}
+
+/* Contenedores circulares para íconos con fondo gradiente */
+.hum-icon-in,
+.temp-icon-in,
+.hum-icon-out,
+.temp-icon-out {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;         /* alinea a la derecha dentro del <td> */
+  margin-right: 0;
+  flex-shrink: 0;            /* evita que se compriman */
+}
+
+/* Gradientes personalizados */
+.hum-icon-in {
+  background: linear-gradient(45deg, #051473, #0c49a4, #3e80e3);
+}
+
+.temp-icon-in {
+  background: linear-gradient(45deg, #024d28, #16ba68, #78e78b);
+}
+
+.hum-icon-out {
+  background: linear-gradient(45deg, #122ee1, #7fb2ff, #a3c8ff);
+}
+
+.temp-icon-out {
+  background: linear-gradient(45deg, #630202, #d30909, #ff5e5e);
+}
+
+/* Íconos SVG internos: se adaptan sin deformarse */
+.hum-icon,
+.temp-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive: reduce tamaño de íconos en pantallas pequeñas */
+@media (max-width: 600px) {
+  .hum-icon-in,
+  .temp-icon-in,
+  .hum-icon-out,
+  .temp-icon-out {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+  }
 }
