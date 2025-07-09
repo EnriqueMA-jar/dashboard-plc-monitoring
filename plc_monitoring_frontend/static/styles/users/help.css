@@ -26,7 +26,6 @@ body {
 .grid-item{
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
-    padding: 10px;
     font-weight: 500;
     
 }
@@ -54,8 +53,11 @@ body {
     text-align: center;
 }
 .data {
-    grid-area: data;
-    background-color: white;
+  grid-area: data;
+  overflow-x: auto;
+  overflow-y: auto;
+  background-color: white;
+  padding: 10px 20px 20px 20px;
 }
 .filters {
     grid-area: filters;
