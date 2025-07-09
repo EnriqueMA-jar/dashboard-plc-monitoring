@@ -62,6 +62,7 @@ body {
 .data {
   grid-area: data;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 .filters {
