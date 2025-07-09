@@ -212,6 +212,7 @@ body {
   width: 55%;
 }
 
+
 .filter-item select,
 .filter-item input[type="text"] {
   padding: 5px 10px;
@@ -219,7 +220,7 @@ body {
   border: 1px solid #ccc;
   background-color: white;
   font-size: 0.85rem;
-  width: 120px;
+  width: 200px;
 }
 
 .filter-footer {

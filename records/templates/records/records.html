@@ -30,6 +30,7 @@
       <table id="charge-table">
         <thead>
           <tr>
+            <th>Fecha</th>
             <th>Inicio</th>
             <th>Fin</th>
             <th>Peso entrada</th>
@@ -171,19 +172,21 @@
       }
 
       data.forEach(charge => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${new Date(charge.charge_time_start).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}</td>
-          <td>${new Date(charge.charge_time_finish).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}</td>
-          <td>${charge.charge_weight_start}</td>
-          <td>${charge.charge_weight_finish}</td>
-          <td>${charge.charge_temperature_start}</td>
-          <td>${charge.charge_temperature_finish}</td>
-          <td>${charge.charge_humidity_start}</td>
-          <td>${charge.charge_humidity_finish}</td>
-        `;
-        tableBody.appendChild(row);
-      });
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${new Date(charge.charge_time_start).toLocaleDateString("es-MX")}</td>
+    <td>${new Date(charge.charge_time_start).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}</td>
+    <td>${new Date(charge.charge_time_finish).toLocaleTimeString("es-MX", { hour: "2-digit", minute: "2-digit" })}</td>
+    <td>${charge.charge_weight_start}</td>
+    <td>${charge.charge_weight_finish}</td>
+    <td>${charge.charge_temperature_start}</td>
+    <td>${charge.charge_temperature_finish}</td>
+    <td>${charge.charge_humidity_start}</td>
+    <td>${charge.charge_humidity_finish}</td>
+  `;
+  tableBody.appendChild(row);
+});
+
     }
 
     document.getElementById("search-input").addEventListener("input", function () {
