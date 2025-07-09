@@ -48,9 +48,8 @@ body {
     "filters"
     "data";
   grid-template-columns: 1fr;
-  grid-template-rows: 80px auto auto;
+  grid-template-rows: 90px auto auto;
   min-height: 100vh;
-  padding-top: 1px;
 }
 
 .nav {
