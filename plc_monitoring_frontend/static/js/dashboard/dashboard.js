@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   let lastId = null;
-  let chartInstance = null;
 
   async function pollAndUpdate() {
     try {

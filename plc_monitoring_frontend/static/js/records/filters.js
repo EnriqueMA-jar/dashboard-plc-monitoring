@@ -1,4 +1,5 @@
 let charges = [];
+let lastChargeId = null;
 
 function clearFilters(e) {
   e.preventDefault();
@@ -34,18 +35,34 @@ function renderCharges(data) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const tableBody = document.querySelector("#charge-table tbody");
-
-  fetch("http://127.0.0.1:8001/api/charges/", { credentials: "include" })
-    .then(response => response.json())
-    .then(data => {
-      charges = data;
-      renderCharges(charges);
-    })
-    .catch(error => {
-      tableBody.innerHTML = `<tr><td colspan="9">Error: ${error.message}</td></tr>`;
+async function pollAndUpdate() {
+  try {
+    const response = await fetch("http://127.0.0.1:8001/api/charges/", {
+      credentials: "include",
     });
+    if (!response.ok) throw new Error("Error en la respuesta del servidor");
+
+    const data = await response.json();
+
+    // Solo renderiza si hay cambios (nuevo ID)
+    const newLastId = data.length > 0 ? data[data.length - 1].id : null;
+    if (newLastId !== lastChargeId) {
+      lastChargeId = newLastId;
+      charges = data;
+      applyFilters(); // mantiene filtros activos
+    }
+
+  } catch (error) {
+    const tableBody = document.querySelector("#charge-table tbody");
+    tableBody.innerHTML = `<tr><td colspan="9">Error: ${error.message}</td></tr>`;
+    console.error("Error en polling:", error);
+  } finally {
+    setTimeout(pollAndUpdate, 10000); // polling cada 10 segundos
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  pollAndUpdate(); // inicia el polling al cargar
 
   document.getElementById("search-input").addEventListener("input", function () {
     const keyword = this.value.toLowerCase();
@@ -58,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".filter-item select").forEach(select => {
     select.addEventListener("change", applyFilters);
   });
+
+  document.querySelector("#clear-filters")?.addEventListener("click", clearFilters);
 });
 
 function applyFilters() {
