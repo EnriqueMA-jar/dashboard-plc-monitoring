@@ -26,7 +26,7 @@ body {
     font-size: 16px;
 }
 .grid-item{
-    box-shadow: 10px 6px 37px -13px rgba(51, 51, 51, 0.75);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
     padding: 10px;
     font-weight:500;
