@@ -50,6 +50,7 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 80px auto auto;
   min-height: 100vh;
+  padding-top: 1px;
 }
 
 .nav {
