@@ -35,6 +35,7 @@
   box-shadow: 0 4px 12px var(--sidebar-shadow);
   transition: transform 0.3s ease-in-out;
   font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
 }
 
 #sidebar ul {
