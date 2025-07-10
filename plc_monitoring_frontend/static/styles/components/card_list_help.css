@@ -1,11 +1,11 @@
 .grid-container-help{
     display: grid;
-    gap: 20px;
+    gap: 10px;
 }
 .grid-item-help{
     border-radius: 10px;
     font-weight: 500;
-    padding: 20px;
+    padding: 10px;
 }
 ul li a{
     text-decoration: none;
