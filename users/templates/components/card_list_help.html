@@ -1,0 +1,22 @@
+{% load static %}
+<div class="grid-container-help">
+    <div class="common-answers grid-item-help">
+        <h3>Preguntas frecuentes</h3>
+        <ul>
+            <li><a href="#" class="question">¿Cómo inicio sesión?</a></li>
+            <li><a href="#" class="question">¿Cómo cambio mi contraseña?</a></li>
+            <li><a href="#" class="question">¿Qué hacer si olvido mi contraseña?</a></li>
+            <li><a href="#" class="question">¿Cómo navegar entre páginas?</a></li>
+            <li><a href="#" class="question">¿Cómo funcionan los filtros de búsqueda?</a></li>
+            <li><a href="#" class="question">¿Cómo exportar datos (generar reportes)</a></li>
+            <li><a href="#" class="question">¿Cómo reporto un problema técnico?</a></li>
+            <li><a href="#" class="question">¿Dónde encuentro la documentación del usuario?</a></li>
+        </ul>
+    </div>
+    <div class="user-manual grid-item-help">
+        <h3>Manual del usuario</h3>
+        <p>Descarga el manual completo para obtener instrucciones detalladas sobre el uso del software.</p>
+        <a href="{% static 'documents/user_manual.pdf' %}" class="download-link">Descargar Manual</a>
+    </div>
+</div>
+<link rel="stylesheet" href="{% static 'styles/components/card_list_help.css' %}">

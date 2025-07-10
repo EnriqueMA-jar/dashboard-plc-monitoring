@@ -1,7 +1,7 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
 
-{% block title %}Prueba ayuda{% endblock %}
+{% block title %}Ayuda{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/users/help.css' %}">
@@ -21,7 +21,13 @@
       <p>Preguntas frecuentes, dudas y uso – software de linea de proceso de secado de la sal.</p>
     </div>
     </div>
-
-    <article class="data grid-item">Data</article>
+    <div class=" cards grid-item">
+      <article class="data">
+        {% block card_list_help %}
+          {% include 'components/card_list_help.html' %}
+        {% endblock %}
+      </article>
+    </div>
+    
   </div>
 {% endblock %}

@@ -1,0 +1,33 @@
+.grid-container-help{
+    display: grid;
+    gap: 20px;
+}
+.grid-item-help{
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 20px;
+}
+ul li a{
+    text-decoration: none;
+}
+.grid-item-help a{
+    color: black;
+}
+.grid-item-help a:hover{
+    color: #e21c44;
+}
+.grid-item-help h3{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.question{
+    display: block;
+    background-color: #f2f2f2;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    border-radius: 10px;
+}
+li{
+    text-decoration: none;
+    list-style: none;
+}
