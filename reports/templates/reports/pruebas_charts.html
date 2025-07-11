@@ -5,6 +5,102 @@
   <li>Cargando datos...</li>
 </ul>
 
+
+<button id="generate-pdf">Generar PDF</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const { jsPDF } = window.jspdf;
+
+    const pdfButton = document.getElementById("generate-pdf");
+
+    if (pdfButton) {
+      pdfButton.addEventListener("click", function () {
+        const doc = new jsPDF();
+
+        // === COLOR PRINCIPAL ===
+        const red = [226, 28, 68]; // #E21C44
+
+        // === ENCABEZADO ===
+        doc.setFillColor(...red);
+        doc.rect(0, 0, 210, 30, 'F');
+
+        doc.setFont("helvetica", "bold");
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(20);
+        doc.text("Informe de Cargas", 10, 17); // Alineado a la izquierda
+
+        doc.setFontSize(10);
+        doc.text("Comercializadora Al Grano S. de R.L.", 195, 10, { align: 'right' });
+        doc.text("Km 74 Carretera libre Armería-Manzanillo, Nuevo Cuyutlán,", 195, 14, { align: 'right' });
+        doc.text("Manzanillo, Col. C.P. 28880", 195, 18, { align: 'right' });
+
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(14);
+        doc.text("Información General", 20, 40);
+
+        doc.setFontSize(11);
+        doc.setFillColor(...red);
+        doc.setTextColor(255, 255, 255);
+        doc.rect(20, 45, 170, 10, 'F');
+        doc.text("Lote", 30, 52);
+        doc.text("Inicio", 95, 52);
+        doc.text("Fin", 160, 52);
+
+        doc.setDrawColor(0);
+        doc.setFillColor(255, 255, 255);
+        doc.setTextColor(0, 0, 0);
+        doc.rect(20, 55, 170, 10);
+
+        doc.setFontSize(14);
+        doc.text("Descripción", 20, 80);
+
+        doc.setFontSize(11);
+        doc.setFillColor(...red);
+        doc.setTextColor(255, 255, 255);
+        doc.rect(20, 85, 170, 10, 'F');
+        doc.text("Peso de entrada", 45, 92);
+        doc.text("Peso de salida", 135, 92);
+
+        doc.setTextColor(0, 0, 0);
+        doc.rect(20, 95, 170, 10); 
+
+        doc.setFillColor(...red);
+        doc.setTextColor(255, 255, 255);
+        doc.rect(20, 110, 170, 10, 'F');
+        doc.text("% Humedad de entrada", 45, 117);
+        doc.text("% Humedad de salida", 135, 117);
+
+        doc.setTextColor(0, 0, 0);
+        doc.rect(20, 120, 170, 10); 
+
+        doc.setFillColor(...red);
+        doc.setTextColor(255, 255, 255);
+        doc.rect(20, 135, 170, 10, 'F');
+        doc.text("Temp de entrada (°C)", 45, 142);
+        doc.text("Temp de salida (°C)", 135, 142);
+
+        doc.setTextColor(0, 0, 0);
+        doc.rect(20, 145, 170, 10); 
+
+        doc.setFillColor(...red);
+        doc.setTextColor(255, 255, 255);
+        doc.rect(160, 260, 40, 10, 'F');
+        doc.text("Fecha de emisión", 180, 267, { align: 'center' });
+
+        doc.setTextColor(0, 0, 0);
+        doc.rect(160, 270, 40, 10); 
+
+        window.open(doc.output('bloburl'), '_blank');
+      });
+    }
+  });
+</script>
+
+
+
 <!-- Chart de humedad conectado al API -->
 
 <div class="responsive-container">
