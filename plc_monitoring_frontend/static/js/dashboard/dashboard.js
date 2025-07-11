@@ -3,95 +3,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function pollAndUpdate() {
     try {
-      const response = await fetch("http://127.0.0.1:8001/api/charges/", {
-        credentials: "include",
-      });
-      if (!response.ok) throw new Error("Error en la respuesta del servidor");
-      const data = await response.json();
+      const [weightsRes, latestRes, lastThreeRes] = await Promise.all([
+        fetch("http://127.0.0.1:8001/api/Charges/weights/", { credentials: "include" }),
+        fetch("http://127.0.0.1:8001/api/Charges/latest/", { credentials: "include" }),
+        fetch("http://127.0.0.1:8001/api/Charges/last-three/", { credentials: "include" }) // <-- aquí
+      ]);
 
-      const newId = data.length ? data[data.length - 1].id : null;
+      if (!weightsRes.ok || !latestRes.ok || !lastThreeRes.ok)
+        throw new Error("Error en la respuesta del servidor");
+
+      const weightsData = await weightsRes.json();
+      const latest = await latestRes.json();
+      const lastThree = await lastThreeRes.json();
+
+      // Suponiendo que quieres seguir usando lastId para evitar renders innecesarios
+      const newId = lastThree.length ? lastThree[0].id : null;
 
       if (newId !== lastId) {
         lastId = newId;
-        updateAllComponents(data);
+        updateAllComponents(weightsData, latest, lastThree);
       }
     } catch (error) {
       console.error("Error en polling:", error);
     } finally {
-      setTimeout(pollAndUpdate, 10000); // polling cada 10 segundos
+      setTimeout(pollAndUpdate, 600000);
     }
   }
 
-  function updateAllComponents(data) {
-    renderWeightChart(data);
-    renderInputTable(data);
-    renderOutputTable(data);
-    renderRecentCharges(data);
+  function updateAllComponents(weightsData, latest, lastThree) {
+    renderWeightChart(weightsData);
+    renderInputTable(lastThree);
+    renderOutputTable(lastThree);
+    renderRecentCharges(lastThree);
   }
-
-  function renderWeightChart(charges) {
-  const labels = charges.map((c) => `Carga #${c.id}`);
-  const weightStart = charges.map((c) => c.charge_weight_start);
-  const weightFinish = charges.map((c) => c.charge_weight_finish);
-  const canvas = document.getElementById("weight-comparisson");
-
-  // 🛠️ Solución correcta: destruir gráfico existente antes de crear uno nuevo
-  const existingChart = Chart.getChart(canvas);
-  if (existingChart) {
-    existingChart.destroy();
-  }
-
-  const ctx = canvas.getContext("2d");
-
-  new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [
-        {
-          label: "Peso Entrada (kg)",
-          data: weightStart,
-          backgroundColor: "blue",
-        },
-        {
-          label: "Peso Salida (kg)",
-          data: weightFinish,
-          backgroundColor: "red",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: "bottom" },
-        title: {
-          display: true,
-          text: "Peso registrado en todas las cargas",
-          font: {
-            size: 18,
-            family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-          },
-        },
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: { display: true, text: "Kilogramos (kg)" },
-        },
-        x: {
-          title: {
-            display: true,
-            text: "Cargas registradas",
-            font: {
-              family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-            },
-          },
-        },
-      },
-    },
-  });
-}
 
   function renderInputTable(data) {
     const humidityCell = document.querySelector(".data-in-table tr:nth-child(2) td:nth-child(1) b");
@@ -105,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const last = data[data.length - 1];
-    const prev = data[data.length - 2] || last;
+    const last = data[0];   // Última carga (más reciente)
+    const prev = data[1] || last; // Anterior
 
     const hum = last.charge_humidity_start || 0;
     const temp = last.charge_temperature_start || 0;
@@ -133,8 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const last = data[data.length - 1];
-    const prev = data[data.length - 2] || last;
+    const last = data[0];
+    const prev = data[1] || last;
 
     const hum = last.charge_humidity_finish || 0;
     const temp = last.charge_temperature_finish || 0;
@@ -148,6 +92,65 @@ document.addEventListener("DOMContentLoaded", function () {
     humidityDiff.textContent = `${humDiff >= 0 ? "+" : ""}${humDiff.toFixed(3)} % que la carga anterior`;
     tempDiff.textContent = `${tempDiffVal >= 0 ? "+" : ""}${tempDiffVal.toFixed(0)} °C que la carga anterior`;
   }
+  function renderWeightChart(data) {
+  const canvas = document.getElementById("weight-comparisson");
+  const existingChart = Chart.getChart(canvas);
+  if (existingChart) {
+    existingChart.destroy();
+  }
+
+  const ctx = canvas.getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Última carga"],
+      datasets: [
+        {
+          label: "Peso Entrada (kg)",
+          data: [data.charge_weight_start],
+          backgroundColor: "blue",
+        },
+        {
+          label: "Peso Salida (kg)",
+          data: [data.charge_weight_finish],
+          backgroundColor: "red",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: "bottom" },
+        title: {
+          display: true,
+          text: "Peso de la última carga",
+          font: {
+            size: 18,
+            family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+          },
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: "Kilogramos (kg)" },
+        },
+        x: {
+          title: {
+            display: true,
+            text: "Carga",
+            font: {
+              family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+            },
+          },
+        },
+      },
+    },
+  });
+}
+
 
   function renderRecentCharges(data) {
     const list = document.getElementById("charges");
@@ -158,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    data.slice(-3).forEach((c) => {
+    data.forEach((c) => {
       const startTime = new Date(c.charge_time_start).toLocaleTimeString("es-MX", {
         hour: "2-digit",
         minute: "2-digit",
@@ -195,6 +198,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Iniciar polling
   pollAndUpdate();
 });
