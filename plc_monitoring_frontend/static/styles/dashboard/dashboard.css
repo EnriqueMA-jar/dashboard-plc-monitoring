@@ -64,6 +64,7 @@ body {
 .graphs {
     grid-area: graphs;
     background-color: white;
+    display: flex;
 }
 .data {
     grid-area: data;
@@ -105,8 +106,6 @@ body {
     height: 100%; /* se ajustan a su fila */
     min-height: 0; /* previene crecimiento inesperado */
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
   }
 
   .data-scroll-area {
@@ -206,5 +205,6 @@ body {
     display: none;
   }
 }
-
-
+.graphs{
+  align-items: center;
+}
