@@ -162,15 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     data.forEach((c) => {
-      const startTime = new Date(c.charge_time_start).toLocaleTimeString("es-MX", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
+      const startTime = c.charge_time_start;
 
-      const endTime = new Date(c.charge_time_finish).toLocaleTimeString("es-MX", {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
+      const endTime = c.charge_time_finish;
 
       const container = document.createElement("div");
       container.className = "container";

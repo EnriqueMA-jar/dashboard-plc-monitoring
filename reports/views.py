@@ -12,3 +12,6 @@ def historic(request):
 
 def pruebas(request):
     return render(request, 'reports/pruebas_charts.html')
+
+def pruebas_datatable(request):
+    return render(request, 'reports/pruebas_datatable.html')

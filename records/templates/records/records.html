@@ -4,7 +4,7 @@
 {% block title %}Prueba records{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'styles/records/records.css' %}">
+   <link rel="stylesheet" href="{% static 'styles/records/records.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -27,7 +27,7 @@
   <article class="data grid-item">
     <h3 style="margin-bottom: 10px;">Registro de cargas</h3>
     <div class="table-container">
-      <table id="charge-table">
+      <table id="charge-table" class="display">
         <thead>
           <tr>
             <th>Fecha</th>
@@ -139,7 +139,6 @@
     </div>
   </aside>
 </div>
-
 <script src="{% static 'js/records/filters.js' %}"></script>
 
 {% endblock %}
