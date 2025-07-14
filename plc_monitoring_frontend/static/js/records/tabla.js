@@ -1,3 +1,23 @@
+let dataTable;
+let dataTableIsInitialized = false;
+
+const initiDataTable = async () => {
+  if (dataTableIsInitialized) {
+    dataTable.destroy();
+  }
+
+  await listCharges();
+
+  dataTable = $("#datatable_charges").DataTable({
+    responsive: true,
+    autoWidth: false,
+    language: {
+      url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+    }
+  });
+
+  dataTableIsInitialized = true;
+};
 const listCharges=async()=>{
     try{
         const response = await fetch("http://127.0.0.1:8001/api/Charges/list/", { credentials: 'include' });
@@ -27,5 +47,5 @@ const listCharges=async()=>{
 }
 
 window.addEventListener("load", async () => {
-    await listCharges();
+    await initiDataTable();
 });

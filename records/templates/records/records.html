@@ -25,120 +25,12 @@
 
   <!-- TABLA DE DATOS -->
   <article class="data grid-item">
-    <h3 style="margin-bottom: 10px;">Registro de cargas</h3>
-    <div class="table-container">
-      <table id="charge-table" class="display">
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Inicio</th>
-            <th>Fin</th>
-            <th>Peso entrada</th>
-            <th>Peso salida</th>
-            <th>Temp. entrada</th>
-            <th>Temp. salida</th>
-            <th>Humedad entrada</th>
-            <th>Humedad salida</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td colspan="9">Cargando datos...</td></tr>
-        </tbody>
-      </table>
-    </div>
+    {% block records_datatable %}
+      {% include 'records/components/table_records.html' %}
+    {% endblock %}
   </article>
 
-  <!-- FILTROS -->
-  <aside class="filters grid-item">
-    <div class="filters-wrapper">
-
-      <!-- Encabezado: Búsqueda + Limpiar -->
-      <div class="filter-header">
-        <h3>Búsqueda</h3>
-        <a href="#" class="clear-filters" onclick="clearFilters(event)">Limpiar filtros</a>
-      </div>
-
-      <!-- Barra de búsqueda -->
-      <div class="filter-item" style="margin-bottom: 10px;">
-        <label for="search-input">Buscar:</label>
-        <input type="text" id="search-input" placeholder="Lote, fecha...">
-      </div>
-
-      <!-- Cuerpo de filtros -->
-      <div class="filter-body">
-        <div class="filter-section-title">Ordenar por:</div>
-
-        <div class="filter-item">
-          <label for="order-date">Fecha:</label>
-          <select id="order-date">
-            <option value="">Seleccionar</option>
-            <option value="asc">Más reciente</option>
-            <option value="desc">Más antigua</option>
-          </select>
-        </div>
-
-        <div class="filter-item">
-          <label for="weight-in">Peso de entrada:</label>
-          <select id="weight-in">
-            <option value="">Seleccionar</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
-          </select>
-        </div>
-
-        <div class="filter-item">
-          <label for="weight-out">Peso de salida:</label>
-          <select id="weight-out">
-            <option value="">Seleccionar</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
-          </select>
-        </div>
-
-        <div class="filter-item">
-          <label for="temp-in">Temp. de entrada:</label>
-          <select id="temp-in">
-            <option value="">Seleccionar</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
-          </select>
-        </div>
-
-        <div class="filter-item">
-          <label for="temp-out">Temp. de salida:</label>
-          <select id="temp-out">
-            <option value="">Seleccionar</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
-          </select>
-        </div>
-
-        <div class="filter-item">
-          <label for="hum-in">Humedad de entrada:</label>
-          <select id="hum-in">
-            <option value="">Seleccionar</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
-          </select>
-        </div>
-
-        <div class="filter-item">
-          <label for="hum-out">Humedad de salida:</label>
-          <select id="hum-out">
-            <option value="">Seleccionar</option>
-            <option value="asc">Menor</option>
-            <option value="desc">Mayor</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Botón de acción -->
-      <div class="filter-footer">
-        <a href="{% url 'reports:reports' %}" class="btn-filter">Reportes</a>
-      </div>
-    </div>
-  </aside>
+  
 </div>
-<script src="{% static 'js/records/filters.js' %}"></script>
 
 {% endblock %}
