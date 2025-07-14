@@ -1,36 +1,32 @@
 {% extends "dashboard/base.html" %}
 {% load static %}
 
-{% block title %}Prueba records{% endblock %}
+{% block title %}Registros{% endblock %}
 
 {% block extra_css %}
-   <link rel="stylesheet" href="{% static 'styles/records/records.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/records/records.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="static-bar"></div>
-<div class="grid-container">
+  <div class="static-bar"></div>
 
-  <!-- NAV + TITULO -->
-  <div class="nav grid-item">
-    <nav class="breadcrumb">
-      <span>\</span> <a href="/dashboard/">Dashboard</a> 
-      <span>\</span> <span class="active">Consultas</span>
+  <div class="grid-container">
+    <nav class="nav grid-item">
+      <nav class="breadcrumb">
+        <span>\</span> <a href="/dashboard/">Dashboard</a>
+        <span>\</span> <span class="active">Consultas</span>
+      </nav>
+
+      <div class="section-title">
+        <h2>Registros</h2>
+        <p>Registros de producción recientes – línea de proceso de secado de la sal.</p>
+      </div>
     </nav>
-    <div class="section-title">
-      <h2>Registros</h2>
-      <p>Registros de producción recientes – línea de proceso de secado de la sal.</p>
-    </div>
+
+    <article class="data grid-item">
+      {% block records_datatable %}
+        {% include 'records/components/table_records.html' %}
+      {% endblock %}
+    </article>
   </div>
-
-  <!-- TABLA DE DATOS -->
-  <article class="data grid-item">
-    {% block records_datatable %}
-      {% include 'records/components/table_records.html' %}
-    {% endblock %}
-  </article>
-
-  
-</div>
-
 {% endblock %}
