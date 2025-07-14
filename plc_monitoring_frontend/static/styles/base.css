@@ -106,27 +106,32 @@
 
 /* Botón toggle */
 #toggle-btn {
-  display: none;
-  position: fixed !important;
-  top: var(--sidebar-margin) !important;
-  left: var(--sidebar-margin) !important;
-  background-color: #f72500 !important;
-  color: white !important;
-  padding: 0.75em !important;
-  border-radius: 0.5em !important;
-  border: none !important;
-  z-index: 2000 !important;
-  cursor: pointer !important;
-  width: auto !important;     /* asegurar ancho automático */
-  height: auto !important;    /* asegurar alto automático */
-  box-sizing: border-box !important;
+  all: unset;
+  position: fixed;
+  top: var(--sidebar-margin);
+  left: var(--sidebar-margin);
+  background-color: #f72500;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  z-index: 2000;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  display: none; /* o block si lo necesitas mostrar por default en pruebas */
+  font-size: 0; /* <-- esto elimina espaciado raro dentro del botón */
+  line-height: normal;
 }
 
 #toggle-btn svg {
-  fill: white !important;
-  width: 15px !important;     /* tamaño fijo para el icono */
-  height: 15px !important;
+  all: unset;
+  width: 15px;
+  height: 15px;
+  fill: white;
+  display: block; /* <-- evita espacio invisible por ser inline */
 }
+
 
 /* Submenús */
 .sub-menu {
