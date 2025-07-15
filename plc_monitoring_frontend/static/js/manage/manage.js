@@ -57,20 +57,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 Swal.fire({
+                    toast: true,
+                    position: 'top-end',
                     icon: "success",
-                    title: "Contraseña actualizada",
-                    text: data.message,
-                    timer: 2500,
-                    showConfirmButton: false
+                    title: data.message,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
                 });
                 form.reset();
-            } else {
+                } else {
                 Swal.fire({
+                    toast: true,
+                    position: 'top-end',
                     icon: "error",
                     title: "Error",
                     text: data.error || "No se pudo cambiar la contraseña",
+                    showConfirmButton: false,
                     timer: 3000,
-                    showConfirmButton: false
+                    timerProgressBar: true
                 });
             }
         } catch (error) {

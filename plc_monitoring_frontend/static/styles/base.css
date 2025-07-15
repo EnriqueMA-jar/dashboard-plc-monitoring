@@ -109,7 +109,7 @@
   flex-grow: 1;
   min-width: 0; /* ← esto permite que el contenido se reduzca */
   box-sizing: border-box;
-  padding: 1rem;
+  padding: 5px;
   width: 100%;
   overflow-x: auto;
 }
