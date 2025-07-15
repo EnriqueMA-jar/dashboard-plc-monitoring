@@ -6,9 +6,7 @@ from django.contrib.auth.decorators import login_required
 def reports_view(request):
     return render(request, 'reports/reports.html')
 
-# @login_required(login_url='/')
-def historic(request):
-    return render(request, 'reports/reports_historic.html')
+
 
 def pruebas(request):
     return render(request, 'reports/pruebas_charts.html')
