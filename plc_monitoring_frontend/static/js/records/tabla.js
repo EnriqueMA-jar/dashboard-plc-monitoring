@@ -1,45 +1,35 @@
 let dataTable;
 
 const initDataTable = async () => {
-  await listCharges();
-
-  dataTable = $("#datatable_charges").DataTable({
-    responsive: true,
-    autoWidth: false,
-    language: {
-      url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+  ataTable = $('#datatable_charges').DataTable({
+  serverSide: true,
+  processing: true,
+  responsive: true,
+  autoWidth: false,
+  ajax: {
+    url: 'http://127.0.0.1:8001/api/Charges/records/',
+    type: 'GET',
+    dataType: 'json',
+    xhrFields: {
+      withCredentials: true  // <-- ESTO ES CLAVE para que se envíe la cookie de sesión
     }
-  });
-};
-
-const listCharges = async () => {
-  try {
-    const response = await fetch("http://127.0.0.1:8001/api/Charges/list/", {
-      credentials: 'include'
-    });
-    const charges = await response.json();
-
-    let content = ``;
-    charges.forEach((charges, index) => {
-      content += `
-        <tr>
-            <td>${index + 1}</td>
-            <td>${charges.charge_date}</td>
-            <td>${charges.charge_time_start}</td>
-            <td>${charges.charge_time_finish}</td>
-            <td>${charges.charge_weight_start}</td>
-            <td>${charges.charge_weight_finish}</td>
-            <td>${charges.charge_humidity_start}</td>
-            <td>${charges.charge_humidity_finish}</td>
-            <td>${charges.charge_temperature_start}</td>
-            <td>${charges.charge_temperature_finish}</td>
-        </tr>
-      `;
-    });
-    tableBody_charges.innerHTML = content;
-  } catch (error) {
-    alert("Error al cargar los datos: " + error);
-  }
+  },
+  language: {
+    url: "/static/js/datatables/es-ES.json"
+  },
+  columns: [
+    { data: 'id' },
+    { data: 'charge_date' },
+    { data: 'charge_time_start' },
+    { data: 'charge_time_finish' },
+    { data: 'charge_weight_start' },
+    { data: 'charge_weight_finish' },
+    { data: 'charge_humidity_start' },
+    { data: 'charge_humidity_finish' },
+    { data: 'charge_temperature_start' },
+    { data: 'charge_temperature_finish' },
+  ]
+});
 };
 
 window.addEventListener("DOMContentLoaded", async () => {

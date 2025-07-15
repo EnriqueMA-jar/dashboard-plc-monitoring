@@ -95,7 +95,7 @@ body {
       "data-in data-out"
       "graphs data";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 80px 200px 400px; /* 🔥 Alturas fijas */
+    grid-template-rows: 80px 200px 450px; /* 🔥 Alturas fijas */
     height: 100vh;
   }
 
