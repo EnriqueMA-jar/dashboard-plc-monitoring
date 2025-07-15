@@ -186,6 +186,7 @@
   }
 }
 html, body {
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   overflow-x: hidden;
   margin: 0;

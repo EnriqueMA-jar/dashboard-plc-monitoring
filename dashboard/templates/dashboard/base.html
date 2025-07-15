@@ -7,6 +7,12 @@
   <title>{% block title %}Dashboard{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'styles/base.css' %}">
   {% block extra_css %}{% endblock %}
+
+  <style>
+  body, html {
+    font-family: var(--bs-body-font-family, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  }
+</style>
 </head>
 <body>
 

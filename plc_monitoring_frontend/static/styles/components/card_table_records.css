@@ -30,13 +30,15 @@
   padding: 8px;
   box-sizing: border-box;
 }
+html, body {
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 
 /* Tabla de datos */
 .table-charge {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.9rem;
   max-width: 100%;
   overflow-x: auto;
@@ -71,7 +73,7 @@
 #charge-list {
   padding-left: 10px;
   margin-bottom: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'helvetica neue', sans-serif;
   font-size: clamp(0.6rem, 0.35vw + 0.35rem, 0.75rem);
   box-sizing: border-box;
 }
@@ -137,5 +139,7 @@
 body {
   overflow-x: hidden;
 }
-
+html, body {
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 

@@ -1,11 +1,12 @@
-@import "https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap";
+html, body {
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 body {
-    font-family: 'poppins', sans-serif;
     font-size: 1rem;
     min-height: 100vh;
     padding: 20px;
