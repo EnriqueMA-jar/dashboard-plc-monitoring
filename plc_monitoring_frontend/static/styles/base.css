@@ -86,11 +86,11 @@
 #logout-btn {
   background-color: #e21c44;
   color: white;
-  border: none;
-  padding: 0.85em;
-  border-radius: 0.5em;
+  border: none !important;
+  padding: 0.85em !important;
+  border-radius: 0.5em !important;
   font: inherit;
-  width: 100%;
+  width: 100% !important;
   cursor: pointer;
 }
 

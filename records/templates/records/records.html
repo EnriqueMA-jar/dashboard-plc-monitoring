@@ -24,16 +24,15 @@
     </nav>
 
     <article class="data grid-item">
-      {% block records_datatable %}
-      {% include 'records/components/table_records.html' %}
-      {% endblock %}
+      <div class="data-scroll-area">
+        {% block records_datatable %}
+          {% include 'records/components/table_records.html' %}
+        {% endblock %}
+      </div>
 
-  <!-- Botón para exportar PDF -->
-    <div class="sidebar-bottom-button" style="margin-top: 2rem; text-align: right;">
-      <a href="{% url 'reports:reports' %}" id="generate-pdf">Reportes</a>
-    </div>
-
-</article>
-
+      <div class="sidebar-bottom-button" style="text-align: right;">
+        <a href="{% url 'reports:reports' %}" id="generate-pdf">Reportes</a>
+      </div>
+    </article>
   </div>
 {% endblock %}
