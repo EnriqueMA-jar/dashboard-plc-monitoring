@@ -25,8 +25,15 @@
 
     <article class="data grid-item">
       {% block records_datatable %}
-        {% include 'records/components/table_records.html' %}
+      {% include 'records/components/table_records.html' %}
       {% endblock %}
-    </article>
+
+  <!-- Botón para exportar PDF -->
+    <div class="sidebar-bottom-button" style="margin-top: 2rem; text-align: right;">
+      <a href="{% url 'reports:reports' %}" id="generate-pdf">Reportes</a>
+    </div>
+
+</article>
+
   </div>
 {% endblock %}

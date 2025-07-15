@@ -108,7 +108,7 @@ body {
   padding: 4px 0 !important;    /* importante para que no se sobrescriba */
   margin-bottom: 1px !important;/* importante para separación */
   display: block !important;    /* clave para que sea bloque */
-  width: 100% !important;       /* para ocupar toda la línea */
+  width: 100% !important;         /* para ocupar toda la línea */
 }
 
 .breadcrumb a {
@@ -163,4 +163,24 @@ body {
 }
 .graphs{
   align-items: center !important;
+}
+
+#generate-pdf {
+  all: unset;
+  background-color: #0d6efd;
+  color: white;
+  padding: 0.85em 2em;
+  border-radius: 0.5em;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow:  0 4px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+  align-items: end;
+  text-align: center;
+}
+
+#generate-pdf:hover {
+  background-color: #5999f8;
 }
