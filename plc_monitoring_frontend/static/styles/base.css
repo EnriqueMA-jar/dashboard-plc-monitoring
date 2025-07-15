@@ -84,14 +84,20 @@
 }
 
 #logout-btn {
+  all: unset;
+  display: block;
+  width: 100%;
   background-color: #e21c44;
   color: white;
-  border: none !important;
-  padding: 0.85em !important;
-  border-radius: 0.5em !important;
-  font: inherit;
-  width: 100% !important;
+  padding: 0.70em;
+  border-radius: 0.5em;
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 500;
+  text-align: center;
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 #logout-btn:hover {
