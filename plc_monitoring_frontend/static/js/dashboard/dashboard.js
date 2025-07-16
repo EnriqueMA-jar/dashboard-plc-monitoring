@@ -131,6 +131,16 @@ document.addEventListener("DOMContentLoaded", function () {
             family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
           },
         },
+        datalabels: {
+          color: "white",
+          anchor: "end",
+          align: "start",
+          font: {
+            weight: "bold",
+            size: 12,
+          },
+          formatter: (value) => `${value} kg`,
+        },
       },
       scales: {
         y: {
@@ -148,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
       },
     },
+    plugins: [ChartDataLabels],
   });
 }
 
