@@ -1,5 +1,3 @@
-
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -103,67 +101,6 @@ body {
   }
 }
 
-.breadcrumb {
-  font-size: 15px;               /* sin !important, seguro */
-  color: #ffffff;
-  padding: 4px 0 !important;    /* importante para que no se sobrescriba */
-  margin-bottom: 1px !important;/* importante para separación */
-  display: block !important;    /* clave para que sea bloque */
-  width: 100% !important;         /* para ocupar toda la línea */
-}
-
-.breadcrumb a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: normal;
-  margin-top: -5px;
-  padding-left: 1px;
-  position: relative;
-  z-index: 50;
-}
-
-.breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-.breadcrumb span {
-  color: #ffffff;
-  font-weight: normal;
-  margin-right: 5px;
-}
-
-.breadcrumb .active {
-  font-weight: bold;
-}
-
-.section-title {
-  color: white;
-  display: block !important;    /* importante para bloque */
-  width: 100% !important;       /* importante para línea nueva */
-  clear: both !important;       /* limpia posibles floats */
-}
-
-.section-title h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 1px !important; /* importante para controlar espacio */
-}
-
-.section-title p {
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.4;
-}
-
-
-/* SOLO oculta el breadcrumb en pantallas pequeñas */
-@media (max-width: 600px)  {
-  .breadcrumb {
-    display: none !important ;
-    margin-bottom: 10px !important;
-  }
-}
-
 
 .graphs{
   align-items: center !important;
@@ -209,7 +146,8 @@ html, body {
   }
 
 
-  .breadcrumb-section {
+  
+.breadcrumb-section {
   margin-top: -10px !important;
   padding-left: 20px !important;
   position: relative !important;
@@ -265,14 +203,14 @@ html, body {
 }
 
 .section-title h2 {
-  font-size: 20px !important;
+  font-size: 18px !important;
   font-weight: bold !important;
   margin-bottom: 2px !important;
   color: white !important;
 }
 
 .section-title p {
-  font-size: 13px !important;
+  font-size: 14px !important;
   margin-top: 0 !important;
   font-weight: normal !important;
   color: white !important;
