@@ -9,26 +9,28 @@
 
 {% block content %}
   <div class="static-bar"></div>
+
   <div class="grid-container">
     <div class="nav grid-item">
-      <nav class="breadcrumb">
-      <span>\</span> <a href="/dashboard/ ">Dashboard </a> 
-      <span>\</span> <a href="">Usuario</a> 
-      <span>\</span> <span class="active">Ayuda</span>
-    </nav>
+      <div class="breadcrumb-section">
+        <nav class="breadcrumb">
+          <span>\</span> <a href="/dashboard/">Dashboard</a> 
+          <span>\</span> <span class="active">Ayuda</span>
+        </nav>
 
-    <div class="section-title">
-      <h2>Ayuda</h2>
-      <p>Preguntas frecuentes, dudas y uso – software de linea de proceso de secado de la sal.</p>
+        <div class="section-title">
+          <h2>Ayuda</h2>
+          <p>Preguntas frecuentes, dudas y uso – software de línea de proceso de secado de la sal.</p>
+        </div>
+      </div>
     </div>
-    </div>
-    <div class=" cards grid-item">
+
+    <div class="cards grid-item">
       <article class="data">
         {% block card_list_help %}
           {% include 'components/card_list_help.html' %}
         {% endblock %}
       </article>
     </div>
-    
   </div>
 {% endblock %}

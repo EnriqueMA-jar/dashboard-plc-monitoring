@@ -210,3 +210,67 @@ body {
 .graphs{
   align-items: center;
 }
+
+
+
+/* Contenedor para breadcrumb + título */
+.breadcrumb-section {
+  margin-top: -10px; /* Sube todo el bloque */
+  padding-left: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ajuste de breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  color: #ffffff;
+  padding: 0;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.breadcrumb a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: normal;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+.breadcrumb span {
+  margin-right: 5px;
+}
+
+.breadcrumb .active {
+  font-weight: bold;
+}
+
+/* Título + descripción */
+.section-title {
+  margin-top: 0;
+  padding-left: 2px;
+}
+
+.section-title h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: white;
+}
+
+.section-title p {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin-top: 0;
+  color: white;
+}
+
+/* Oculta breadcrumb en pantallas pequeñas */
+@media (max-width: 600px) {
+  .breadcrumb {
+    display: none;
+  }
+}
+

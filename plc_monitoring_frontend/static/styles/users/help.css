@@ -94,17 +94,30 @@ body {
   }
 }
 
+
+
+  /* Ajuste fijo y consistente de breadcrumb + título */
+.breadcrumb-section {
+  margin-top: -5px;
+  padding-left: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ajustes visuales del breadcrumb */
 .breadcrumb {
-  font-size: 15px;
-  color: #ffffff;
-  padding: 4px 0;
-  margin-bottom: 10px;
+  font-size: 14px !important;
+  margin-bottom: 4px !important;
+  margin-top: 6px !important;
+  padding: 0 !important;
+  width: 100% !important;
+  display: block !important;
+  color: white;
 }
 
 .breadcrumb a {
-  color: #ffffff;
+  color: white;
   text-decoration: none;
-  font-weight: normal;
 }
 
 .breadcrumb a:hover {
@@ -112,34 +125,38 @@ body {
 }
 
 .breadcrumb span {
-  color: #ffffff;
-  font-weight: normal;
   margin-right: 5px;
+  color: white;
 }
 
 .breadcrumb .active {
   font-weight: bold;
 }
 
+/* Estilo del título */
 .section-title {
+  margin-top: 0 !important;
+  padding-left: 2px;
   color: white;
 }
 
 .section-title h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 1px;
+  margin-bottom: 2px !important;
 }
 
 .section-title p {
-  font-size: 14px;
-  font-weight: normal;
+  font-size: 13px;
+  margin-top: 0 !important;
   line-height: 1.4;
+  font-weight: normal;
+  color: white;
 }
 
-/* SOLO oculta el breadcrumb en pantallas pequeñas */
+/* Oculta breadcrumb en pantallas pequeñas */
 @media (max-width: 600px) {
   .breadcrumb {
-    display: none;
+    display: none !important;
   }
 }

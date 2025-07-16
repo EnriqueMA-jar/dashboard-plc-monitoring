@@ -203,3 +203,73 @@ body {
 html, body {
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+
+
+
+
+  
+
+  /* Ajuste fijo y consistente de breadcrumb + título */
+.breadcrumb-section {
+  margin-top: -10px;
+  padding-left: 10px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Ajustes visuales del breadcrumb */
+.breadcrumb {
+  font-size: 14px !important;
+  margin-bottom: 4px !important;
+  margin-top: 4px !important;
+  padding: 0 !important;
+  width: 100% !important;
+  display: block !important;
+  color: white;
+}
+
+.breadcrumb a {
+  color: white;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  margin-right: 5px;
+  color: white;
+}
+
+.breadcrumb .active {
+  font-weight: bold;
+}
+
+/* Estilo del título */
+.section-title {
+  margin-top: 0 !important;
+  padding-left: 2px;
+  color: white;
+}
+
+.section-title h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 2px !important;
+}
+
+.section-title p {
+  font-size: 13px;
+  margin-top: 0 !important;
+  line-height: 1.4;
+  font-weight: normal;
+  color: white;
+}
+
+/* Oculta breadcrumb en pantallas pequeñas */
+@media (max-width: 600px) {
+  .breadcrumb {
+    display: none !important;
+  }
+}

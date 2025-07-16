@@ -9,32 +9,34 @@
 
 {% block content %}
   <div class="static-bar"></div>
+
   <div class="grid-container">
-      <nav class="nav grid-item">
+    <div class="nav grid-item">
+      <div class="breadcrumb-section">
         <nav class="breadcrumb">
-          <span>\</span> <a href="/dashboard/">Dashboard </a> 
-          <span>\</span> <a href="">Usuario</a> 
-          <span>\</span> <span class="active">Administrar</span>
+          <span>\</span> <a href="/dashboard/">Dashboard</a> 
+          <span>\</span> <span class="active">Usuarios</span>
         </nav>
 
         <div class="section-title">
           <h2>Usuarios</h2>
-          <p>Administre su cuenta de usuario, actualice sus credenciales – software de linea de proceso de secado de la sal.</p>
+          <p>Administre su cuenta de usuario, actualice sus credenciales – software de línea de proceso de secado de la sal.</p>
         </div>
-      </nav>
+      </div>
+    </div>
 
-      <article class="data grid-item">
-        <h2 class="form-title">ACTUALIZAR CREDENCIALES</h2>
-        <form id="password-form" class="password-form" method="POST">
-            {% csrf_token %}
-            <input type="password" id="current-password" placeholder="Contraseña actual" required>
-            <input type="password" id="new-password" placeholder="Contraseña nueva" required>
-            <input type="password" id="confirm-password" placeholder="Confirmar contraseña nueva" required>
-            <button type="submit" class="submit-btn">Cambiar contraseña</button>
-        </form>
-      </article>
+    <article class="data grid-item">
+      <h2 class="form-title">ACTUALIZAR CREDENCIALES</h2>
+      <form id="password-form" class="password-form" method="POST">
+          {% csrf_token %}
+          <input type="password" id="current-password" placeholder="Contraseña actual" required>
+          <input type="password" id="new-password" placeholder="Contraseña nueva" required>
+          <input type="password" id="confirm-password" placeholder="Confirmar contraseña nueva" required>
+          <button type="submit" class="submit-btn">Cambiar contraseña</button>
+      </form>
+    </article>
 
-      <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
-      <script src="{% static 'js/manage/manage.js' %}"></script>
+    <script src="{% static 'js/sweetalert2.all.min.js' %}"></script>
+    <script src="{% static 'js/manage/manage.js' %}"></script>
   </div>
 {% endblock %}
