@@ -1,13 +1,13 @@
-
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 html, body {
-    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 body {
   font-size: 1rem;
   min-height: 80vh;
@@ -61,6 +61,10 @@ body {
   overflow-y: auto;
   min-height: 400px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Tablet */
@@ -83,6 +87,7 @@ body {
   .data-scroll-area {
     flex-grow: 1;
     overflow-y: auto;
+    padding-bottom: 1rem;
   }
 
   .data-scroll-area::-webkit-scrollbar {
@@ -103,125 +108,17 @@ body {
   }
 }
 
-.breadcrumb {
-  font-size: 15px;               /* sin !important, seguro */
-  color: #ffffff;
-  padding: 4px 0 !important;    /* importante para que no se sobrescriba */
-  margin-bottom: 1px !important;/* importante para separación */
-  display: block !important;    /* clave para que sea bloque */
-  width: 100% !important;         /* para ocupar toda la línea */
-}
-
-.breadcrumb a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: normal;
-}
-
-.breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-.breadcrumb span {
-  color: #ffffff;
-  font-weight: normal;
-  margin-right: 5px;
-}
-
-.breadcrumb .active {
-  font-weight: bold;
-}
-
-.section-title {
-  color: white;
-  display: block !important;    /* importante para bloque */
-  width: 100% !important;       /* importante para línea nueva */
-  clear: both !important;       /* limpia posibles floats */
-}
-
-.section-title h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 1px !important; /* importante para controlar espacio */
-}
-
-.section-title p {
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.4;
-}
-
-
-/* SOLO oculta el breadcrumb en pantallas pequeñas */
-@media (max-width: 600px)  {
-  .breadcrumb {
-    display: none !important ;
-    margin-bottom: 10px !important;
-  }
-}
-
-
-.graphs{
-  align-items: center !important;
-  }
-  .data {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .data-scroll-area {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding-bottom: 1rem;
-  }
-
- 
-  /* Botón estilo */
-  #generate-pdf {
-    all: unset;
-    background-color: #0d6efd;
-    color: white;
-    padding: 0.85em 1em;
-    border-radius: 0.5em;
-    font: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-block;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-
-  #generate-pdf:hover {
-    background-color: #5999f8;
-  }
-
-html, body {
-    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-
-
-
-
-  
-
- .breadcrumb-section {
-  margin-top: -10px !important;
+.breadcrumb-section {
+  margin-top: -5px !important;
   padding-left: 20px !important;
   position: relative !important;
   z-index: 10 !important;
   display: block !important;
 }
 
-/* Forzar apariencia del breadcrumb sobre Bootstrap y DataTables */
 .breadcrumb {
   font-size: 14px !important;
-  margin-bottom: 4px !important;
-  margin-top: 4px !important;
+  margin: 4px 0 !important;
   padding: 0 !important;
   width: 100% !important;
   display: block !important;
@@ -235,7 +132,6 @@ html, body {
   color: white !important;
   text-decoration: none !important;
   font-weight: normal !important;
-  background: none !important;
 }
 
 .breadcrumb a:hover {
@@ -253,7 +149,6 @@ html, body {
   color: white !important;
 }
 
-/* Título */
 .section-title {
   margin-top: 0 !important;
   padding-left: 2px !important;
@@ -279,9 +174,68 @@ html, body {
   line-height: 1.4 !important;
 }
 
-/* Ocultar en móviles */
+/* Ocultar breadcrumb en móviles */
 @media (max-width: 600px) {
   .breadcrumb {
     display: none !important;
   }
+}
+
+/* Botón PDF */
+#generate-pdf {
+  all: unset;
+  background-color: #0d6efd;
+  color: white;
+  padding: 0.85em 1em;
+  border-radius: 0.5em;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+#generate-pdf:hover {
+  background-color: #5999f8;
+}
+
+/* ✅ Agregado: soporte para fila de encabezado y enlace estilo dashboard */
+.data-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.data-title {
+  color: #333;
+  margin: 0;
+}
+
+.data-link {
+  margin-right: 20px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  margin-left: 1em;
+}
+
+.data-link:hover {
+  color: #0056b3;
+}
+
+.data-link:active {
+  color: lightblue;
+}
+
+/* ✅ Agregado: para bloques .data-in, .data-out, .graphs si se usan */
+.data-in,
+.data-out,
+.graphs {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background-color: white;
 }

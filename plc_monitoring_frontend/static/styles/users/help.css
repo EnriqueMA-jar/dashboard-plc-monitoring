@@ -97,14 +97,13 @@ body {
 
 
 .breadcrumb-section {
-  margin-top: -10px !important;
-  padding-left: 20px !important;
+  margin-top: 5px !important;
+  padding-left: 30px !important;
   position: relative !important;
   z-index: 10 !important;
   display: block !important;
 }
 
-/* Forzar apariencia del breadcrumb sobre Bootstrap y DataTables */
 .breadcrumb {
   font-size: 14px !important;
   margin-bottom: 4px !important;

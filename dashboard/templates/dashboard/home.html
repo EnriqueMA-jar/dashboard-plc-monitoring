@@ -13,15 +13,15 @@
   <div class="grid-container">
     <nav class="nav grid-item">
       <div class="breadcrumb-section">
-    <nav class="breadcrumb">
-      <span>\</span> <a href="/dashboard/">Dashboard </a> 
-    </nav>
+        <nav class="breadcrumb">
+          <span>\</span> <a href="/dashboard/">Dashboard</a>
+        </nav>
 
-    <div class="section-title">
-      <h2>Dashboard</h2>
-      <p>Información en tiempo real – linea de proceso de secado de la sal.</p>
-    </div>
-  </div>
+        <div class="section-title">
+          <h2>Dashboard</h2>
+          <p>Información en tiempo real sobre el sistema – monitoreo y control continuo de toda la línea de secado.</p>
+        </div>
+      </div>
     </nav>
 
     <article class="data-in grid-item">
@@ -29,26 +29,29 @@
         {% include 'records/components/card_datains_records.html' %}
       {% endblock %}
     </article>
+
     <article class="data-out grid-item">
       {% block dataouts %}
         {% include 'records/components/card_dataouts_records.html' %}
       {% endblock %}
     </article>
+
     <article class="graphs grid-item">
       {% block chart_records %}
         {% include 'records/components/card_chart_records.html' %}
       {% endblock %}
     </article>
+
     <article class="data grid-item">
       <div class="data-row">
         <p class="data-title"><b>Registro diario: </b></p>
-        <a href="/records/" class="data-link">Ver mas</a>
+        <a href="/records/" class="data-link">Ver más</a>
       </div>
       {% block card_table_records %}
         {% include 'records/components/card_table_records.html' %}
       {% endblock %}
     </article>
-    
   </div>
+
   <script src="{% static 'js/dashboard/dashboard.js' %}"></script>
 {% endblock %}

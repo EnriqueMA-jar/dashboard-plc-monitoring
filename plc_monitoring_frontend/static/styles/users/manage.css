@@ -173,8 +173,8 @@ body {
 }
 
 .breadcrumb-section {
-  margin-top: -10px !important;
-  padding-left: 20px !important;
+  margin-top: -3px !important;
+  padding-left: 18px !important;
   position: relative !important;
   z-index: 10 !important;
   display: block !important;
