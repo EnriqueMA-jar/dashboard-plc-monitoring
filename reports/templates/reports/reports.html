@@ -29,25 +29,25 @@
     <div class="row mb-4 reports-form">
       <div class="col-md-3">
         <label>Periodo:</label><br>
-        <select name="" id="" class="form-select">
+        <select id="period-select" class="form-select">
           <option value=""></option>
           <option value="1">Hoy</option>
           <option value="2">Ayer</option>
           <option value="3">Últimos 7 días</option>
           <option value="4">Últimos 30 días</option>
-          <option value="4">Personalizado</option>
+          <option value="5">Personalizado</option>
         </select>
       </div>
       <div class="col-md-3">
         <label>Fecha inicio:</label>
-        <input type="date" id="filterStart" class="form-control">
+        <input type="date" id="start-date" class="form-control" disabled>
       </div>
       <div class="col-md-3">
         <label>Fecha fin:</label>
-        <input type="date" id="filterEnd" class="form-control">
+        <input type="date" id="end-date" class="form-control" disabled>
       </div>
       <div class="col-md-3"><br>
-        <button class="btn btn-primary btn-buscar btn-block">Buscar</button>
+        <button id="btn-search" class="btn btn-primary btn-buscar btn-block">Buscar</button>
       </div>
     </div>
 

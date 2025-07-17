@@ -1,39 +1,90 @@
-document.getElementById("date-range-filter").addEventListener("change", async function () {
-  const range = this.value;
-  try {
-    const response = await fetch(`/api/Charges/filtered/?range=${range}`, { credentials: 'include' });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }else{
-         // Mostrar los datos en tabla
-        renderFilteredTable(data);
-        // Calcular y mostrar los promedios
-        renderChartsWithAverages(data);
+let dataTable = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  const periodSelect = document.getElementById("period-select");
+  const startDateInput = document.getElementById("start-date");
+  const endDateInput = document.getElementById("end-date");
+  const btnSearch = document.getElementById("btn-search");
+
+  // Habilitar/deshabilitar fechas si es personalizado
+  periodSelect.addEventListener("change", () => {
+    const isCustom = periodSelect.value === "5"; // valor 5 = Personalizado
+    startDateInput.disabled = !isCustom;
+    endDateInput.disabled = !isCustom;
+  });
+
+  btnSearch.addEventListener("click", async () => {
+    const periodValue = periodSelect.value;
+    let params = {};
+
+    switch (periodValue) {
+      case "1":
+        params.range = "today";
+        break;
+      case "2":
+        params.range = "yesterday";
+        break;
+      case "3":
+        params.range = "last_7_days";
+        break;
+      case "4":
+        params.range = "last_30_days";
+        break;
+      case "5":
+        
+        const start = startDateInput.value;
+        const end = endDateInput.value;
+
+        if (!start || !end) {
+          alert("Selecciona ambas fechas para un periodo personalizado.");
+          return;
+        }
+
+        params.range = "custom";
+        params.start_date = start;
+        params.end_date = end;
+        break;
+      default:
+        alert("Selecciona un periodo válido.");
+        return;
     }
-  } catch (error) {
-    console.error("Error al cargar los datos filtrados:", error);
-  }
+
+    try {
+      const query = new URLSearchParams(params).toString();
+      const response = await fetch(`http://127.0.0.1:8001/api/Charges/filtered/?${query}`, {
+        credentials: "include"
+      });
+
+      const data = await response.json();
+
+      renderFilteredTable(data);
+    } catch (error) {
+      console.error("Error al obtener los datos:", error);
+    }
+  });
 });
+
 function renderFilteredTable(data) {
   if ($.fn.DataTable.isDataTable("#datatable_charges")) {
-    $('#datatable_charges').DataTable().clear().rows.add(data).draw();
+    dataTable.clear().rows.add(data).draw();
   } else {
-    $('#datatable_charges').DataTable({
+    dataTable = $('#datatable_charges').DataTable({
       data: data,
       searching: false,
       lengthChange: false,
       pageLength: 6,
+      responsive: true,
       columns: [
+        { data: null, render: (data, type, row, meta) => meta.row + 1 }, // Número de carga
         { data: 'charge_date' },
         { data: 'charge_time_start' },
         { data: 'charge_time_finish' },
         { data: 'charge_weight_start' },
         { data: 'charge_weight_finish' },
-        { data: 'charge_temperature_start' },
-        { data: 'charge_temperature_finish' },
         { data: 'charge_humidity_start' },
         { data: 'charge_humidity_finish' },
+        { data: 'charge_temperature_start' },
+        { data: 'charge_temperature_finish' }
       ]
     });
   }
