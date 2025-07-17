@@ -5,7 +5,7 @@
     padding: 0;
 }
 body {
-    font-family: 'helvetica neue', sans-serif;
+    font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 1rem; /* corregido sin espacio */
     min-height: 100vh;
     padding: 20px;
