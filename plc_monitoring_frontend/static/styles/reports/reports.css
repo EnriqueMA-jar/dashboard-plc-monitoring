@@ -242,3 +242,12 @@ x
   overflow: hidden;
   background-color: white;
 }
+
+.reports-form{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-buscar{
+  width: 100%;
+}

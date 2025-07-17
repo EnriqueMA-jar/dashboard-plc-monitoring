@@ -1,0 +1,42 @@
+#datatable_charges_wrapper {
+  font-size: 0.9rem;
+}
+
+#datatable_charges thead th, 
+#datatable_charges tbody td {
+  padding: 8px 6px;
+}
+
+#datatable_charges tbody tr {
+  min-height: 40px;
+}
+
+/* Estilo para tablets pequeñas y móviles grandes (pantallas < 768px) */
+@media (max-width: 768px) {
+  #datatable_charges_wrapper {
+    font-size: 1rem;
+  }
+
+  #datatable_charges thead th, 
+  #datatable_charges tbody td {
+    padding: 10px 8px;
+  }
+
+  #datatable_charges tbody tr {
+    min-height: 50px;
+  }
+}
+
+/* Estilo para móviles muy pequeños (< 480px) */
+@media (max-width: 480px) {
+  
+
+  #datatable_charges thead th, 
+  #datatable_charges tbody td {
+    padding: 12px 10px;
+  }
+
+  #datatable_charges tbody tr {
+    min-height: 55px;
+  }
+}

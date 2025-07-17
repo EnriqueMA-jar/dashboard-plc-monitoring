@@ -4,31 +4,57 @@
 {% block title %}Reportes{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'styles/reports/reports.css' %}">
+<link rel="stylesheet" href="{% static 'styles/reports/reports.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="static-bar"></div>
+<div class="static-bar"></div>
 
-  <div class="grid-container">
-    <div class="nav grid-item">
-      <div class="breadcrumb-section">
-        <nav class="breadcrumb">
-          <span>\</span> <a href="/dashboard/">Dashboard</a>
-          <span>\</span> <span class="active">Reportes</span>
-        </nav>
+<div class="grid-container">
+  <div class="nav grid-item">
+    <div class="breadcrumb-section">
+      <nav class="breadcrumb">
+        <span> \</span> <a href="/dashboard/">Dashboard</a>
+        <span> \</span> <span class="active">Reportes</span>
+      </nav>
 
-        <div class="section-title">
-          <h2>Reportes</h2>
-          <p>Reportes filtrados con múltiples criterios – análisis detallado del proceso para decisiones informadas.</p>
-        </div>
+      <div class="section-title">
+        <h2>Reportes</h2>
+        <p>Reportes filtrados con múltiples criterios – análisis detallado del proceso para decisiones informadas.</p>
+      </div>
+    </div>
+  </div>
+
+  <article class="data grid-item">
+    <div class="row mb-4 reports-form">
+      <div class="col-md-3">
+        <label>Periodo:</label><br>
+        <select name="" id="" class="form-select">
+          <option value=""></option>
+          <option value="1">Hoy</option>
+          <option value="2">Ayer</option>
+          <option value="3">Últimos 7 días</option>
+          <option value="4">Últimos 30 días</option>
+          <option value="4">Personalizado</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label>Fecha inicio:</label>
+        <input type="date" id="filterStart" class="form-control">
+      </div>
+      <div class="col-md-3">
+        <label>Fecha fin:</label>
+        <input type="date" id="filterEnd" class="form-control">
+      </div>
+      <div class="col-md-3"><br>
+        <button class="btn btn-primary btn-buscar btn-block">Buscar</button>
       </div>
     </div>
 
-    <article class="data grid-item">
-      
 
-
-    </article>
-  </div>
+    {% block reports %}
+    {% include 'records/components/table_reports.html' %}
+    {% endblock %}
+  </article>
+</div>
 {% endblock %}

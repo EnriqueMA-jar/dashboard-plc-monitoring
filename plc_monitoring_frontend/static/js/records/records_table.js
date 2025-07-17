@@ -18,7 +18,7 @@ const initDataTable = async () => {
     url: "/static/js/datatables/es-ES.json"
   },
   columns: [
-    { data: 'id' },
+    { data : 'id'},
     { data: 'charge_date' },
     { data: 'charge_time_start' },
     { data: 'charge_time_finish' },
