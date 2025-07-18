@@ -5,7 +5,6 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/reports/reports.css' %}">
-
 {% endblock %}
 
 {% block content %}
@@ -27,48 +26,55 @@
   </div>
 
   <article class="data grid-item">
-    <div class="row mb-4 reports-form">
-      <div class="col-md-3">
-        <label>Periodo:</label><br>
-        <select id="period-select" class="form-select">
-          <option value=""></option>
-          <option value="1">Hoy</option>
-          <option value="2">Ayer</option>
-          <option value="3">Últimos 7 días</option>
-          <option value="4">Últimos 30 días</option>
-          <option value="5">Personalizado</option>
-        </select>
+    <div class="data-scroll-area">
+      <div class="row mb-4 reports-form">
+        <div class="col-md-3">
+          <label>Periodo:</label><br>
+          <select id="period-select" class="form-select">
+            <option value=""></option>
+            <option value="1">Hoy</option>
+            <option value="2">Ayer</option>
+            <option value="3">Últimos 7 días</option>
+            <option value="4">Últimos 30 días</option>
+            <option value="5">Personalizado</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label>Fecha inicio:</label>
+          <input type="date" id="start-date" class="form-control" disabled>
+        </div>
+        <div class="col-md-3">
+          <label>Fecha fin:</label>
+          <input type="date" id="end-date" class="form-control" disabled>
+        </div>
+        <div class="col-md-3"><br>
+          <button id="btn-search" class="btn btn-primary btn-buscar btn-block">Buscar</button>
+        </div>
       </div>
-      <div class="col-md-3">
-        <label>Fecha inicio:</label>
-        <input type="date" id="start-date" class="form-control" disabled>
+
+      {% block reports %}
+      {% include 'records/components/table_reports.html' %}
+      {% endblock %}
+
+      <div class="graphs-container">
+        <div class="graphs-item humidity">
+          <canvas id="humidityChart" class="chart"></canvas>
+        </div>
+        <div class="graphs-item temperature">
+          <canvas id="temperatureChart" class="chart"></canvas>
+        </div>
+        <div class="graphs-item weight">
+          <canvas id="weightChart" class="chart"></canvas>
+        </div>
       </div>
-      <div class="col-md-3">
-        <label>Fecha fin:</label>
-        <input type="date" id="end-date" class="form-control" disabled>
-      </div>
-      <div class="col-md-3"><br>
-        <button id="btn-search" class="btn btn-primary btn-buscar btn-block">Buscar</button>
-      </div>
+       <div class="bottom-button" style="text-align: right;">
+          <a id="generate-pdf">Exportar a PDF</a>
+          <a id="generate-excel" style="margin-left: 10px;">Exportar a Excel</a>
+        </div>
+    </div>
+      </article>
     </div>
 
-    {% block reports %}
-    {% include 'records/components/table_reports.html' %}
-    {% endblock %}
-
-    <div class="graphs-container">
-      <div class="graphs-item humidity">
-        <canvas id="humidityChart" class="chart"></canvas>
-      </div>
-      <div class="graphs-item temperature">
-        <canvas id="temperatureChart" class="chart"></canvas>
-      </div>
-      <div class="graphs-item weight">
-        <canvas id="weightChart" class="chart"></canvas>
-      </div>
-    </div>
-  </article>
-</div>
 <script src="{% static 'js/chart.js' %}"></script>
 <script src="{% static 'js/chartjs-plugin-datalabels.js' %}"></script>
 {% endblock %}

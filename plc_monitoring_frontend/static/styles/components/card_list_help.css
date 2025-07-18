@@ -1,11 +1,13 @@
 .grid-container-help{
     display: grid;
     gap: 5px;
+    
 }
+
 .grid-item-help{
     border-radius: 10px;
     font-weight: 500;
-    padding: 5px;
+    padding: 20px;
 }
 ul li a{
     text-decoration: none;
@@ -32,5 +34,23 @@ li{
     list-style: none;
 }
 html, body {
+    
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+
+.common-answers {
+    height: 100%;
+}
+
+ul{
+    padding: 0 !important;
+}
+
+/* Distribuir las preguntas en 2 columnas */
+@media (min-width: 768px) {
+  .common-answers ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* dos columnas iguales */
+    gap: 5px 10px;
+}
+}

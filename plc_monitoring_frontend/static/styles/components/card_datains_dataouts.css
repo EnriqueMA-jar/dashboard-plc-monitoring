@@ -5,18 +5,18 @@
 }
 
 th, td {
-  padding: 8px;
+  padding: 1px;
   text-align: left;
   vertical-align: middle;
 }
 
 /* Texto de datos */
 .data-info {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .data-info2 {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #666;
 }
 
@@ -35,8 +35,8 @@ th, td {
 .temp-icon-in,
 .hum-icon-out,
 .temp-icon-out {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   padding: 4px;
   display: flex;
@@ -44,7 +44,7 @@ th, td {
   justify-content: center;
   margin-left: auto;         /* alinea a la derecha dentro del <td> */
   margin-right: 0;
-  flex-shrink: 0;            /* evita que se compriman */
+  flex-shrink: 0;
 }
 
 /* Gradientes personalizados */
@@ -86,3 +86,33 @@ th, td {
 html, body {
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+
+
+
+/* Estirlo para escritorios */
+@media (min-width: 900px) {
+  th, td {
+  padding: 1px;
+  text-align: left;
+  vertical-align: middle;
+  font-size: 1.2rem;
+}
+
+.hum-icon-in,
+.temp-icon-in,
+.hum-icon-out,
+.temp-icon-out {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15rem;         /* alinea a la derecha dentro del <td> */
+  margin-right: 0;
+  flex-shrink: 0;
+}
+
+
+}

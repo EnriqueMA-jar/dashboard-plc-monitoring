@@ -26,13 +26,14 @@
     </div>
 
     <article class="data grid-item">
+      <p class="table-title">Consultar Registros</p>
       <div class="data-scroll-area">
         {% block records_datatable %}
           {% include 'records/components/table_records.html' %}
         {% endblock %}
       </div>
 
-      <div class="sidebar-bottom-button" style="text-align: right;">
+      <div class="bottom-button" style="text-align: right;">
         <a href="{% url 'reports:reports' %}" id="generate-pdf">Reportes</a>
       </div>
     </article>

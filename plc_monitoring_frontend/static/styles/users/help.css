@@ -10,7 +10,6 @@ body {
     min-height: 100vh;
     padding: 1px;
     background-color: #f2f2f2;
-
 }
 .static-bar{
     position: fixed;
@@ -26,14 +25,12 @@ body {
 .grid-item{
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
     border-radius: 10px;
-    font-weight: 500;
-    
+    font-weight: 500;    
 }
 .cards{
   background-color: white;
 }
 .grid-container {
-    
   z-index: 1000;
   display: grid;
   gap: 20px;
@@ -41,9 +38,11 @@ body {
     "nav"
     "data";
   grid-template-columns: 1fr;
-  grid-template-rows: 80px 80px auto;
-  min-height: 100vh; /* ocupa toda la altura de la pantalla */
+  grid-template-rows: 80px 1fr;
+  height: 100vh; 
+  overflow: hidden; 
 }
+
 
 .nav {
     grid-area: nav;
@@ -55,13 +54,14 @@ body {
     background-color: white;
     text-align: center;
 }
-.data {
+  data {
   grid-area: data;
   overflow-x: auto;
   overflow-y: auto;
   background-color: white;
-  padding: 10px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   border-radius: 10px;
+  overflow-x: hidden;
 }
 .filters {
     grid-area: filters;
@@ -115,6 +115,7 @@ body {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
+  overflow-y: hidden !important;
 }
 
 .breadcrumb a {

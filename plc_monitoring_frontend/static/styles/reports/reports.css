@@ -57,14 +57,13 @@ body {
 .data {
   grid-area: data;
   background-color: white;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: auto;
   min-height: 400px;
   height: auto;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  overflow: hidden;
 }
 
 /* Tablet */
@@ -334,3 +333,58 @@ body {
 .weight {
   grid-area: weight;
 }
+
+.data {
+  grid-area: data;
+  background-color: white;
+  min-height: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.data-scroll-area {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 1rem;
+}
+
+.data-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.data-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.data-scroll-area::-webkit-scrollbar-thumb {
+  background-color: #c4c4c4;
+  border-radius: 10px;
+}
+
+.data-scroll-area::-webkit-scrollbar-thumb:hover {
+  background-color: #a0a0a0;
+}
+
+#generate-pdf, #generate-excel {
+    all: unset;
+    background-color: #0d6efd;
+    color: white;
+    padding: 0.50em 1em;
+    border-radius: 0.5em;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+    text-align: center;
+    
+  }
+
+  #generate-pdf:hover, #generate-excel:hover {
+    background-color: #5999f8;
+  }
