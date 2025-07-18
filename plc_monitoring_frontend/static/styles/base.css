@@ -84,7 +84,6 @@
 }
 
 #logout-btn {
-  all: unset;
   display: block;
   width: 100%;
   background-color: #e21c44;

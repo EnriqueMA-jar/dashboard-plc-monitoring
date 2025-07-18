@@ -5,6 +5,8 @@
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'styles/users/manage.css' %}">
+  <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
@@ -33,7 +35,9 @@
           <input type="password" id="current-password" placeholder="Contraseña actual" required>
           <input type="password" id="new-password" placeholder="Contraseña nueva" required>
           <input type="password" id="confirm-password" placeholder="Confirmar contraseña nueva" required>
-          <button type="submit" class="submit-btn">Cambiar contraseña</button>
+          <div class="button-container">
+            <button type="submit" class="btn btn-block btn-danger">Cambiar contraseña</button>
+          </div>
       </form>
     </article>
 

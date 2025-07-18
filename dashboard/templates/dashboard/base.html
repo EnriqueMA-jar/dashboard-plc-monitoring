@@ -7,6 +7,7 @@
   <title>{% block title %}Dashboard{% endblock %}</title>
   <link rel="icon" href="{% static 'imgs/favicon/favicon.PNG' %}" type="image/png">
   <link rel="stylesheet" href="{% static 'styles/base.css' %}">
+  <link href="{% static 'styles/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
   {% block extra_css %}{% endblock %}
 
   <style>
@@ -48,8 +49,9 @@
 
         <!-- Botón salir -->
         <div class="sidebar-bottom-button">
-          <button id="logout-btn"><span>Salir</span></button>
+          <button id="logout-btn" class="btn btn-danger btn-block">Salir</button>
         </div>
+
       </div>
     </nav>
 
