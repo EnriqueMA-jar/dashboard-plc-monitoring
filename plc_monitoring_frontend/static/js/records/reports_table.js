@@ -72,7 +72,7 @@ function renderFilteredTable(data) {
       data: data,
       searching: false,
       lengthChange: false,
-      pageLength: 6,
+      pageLength: 5,
       responsive: true,
       columns: [
         { data: null, render: (data, type, row, meta) => meta.row + 1 }, // Número de carga

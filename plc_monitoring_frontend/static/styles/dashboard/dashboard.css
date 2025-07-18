@@ -74,7 +74,7 @@ body {
 }
 
 /* Tablet */
-@media (min-width: 992px) {
+@media (min-width: 991px) {
   .grid-container {
     grid-template-areas:
       "nav"
@@ -97,7 +97,7 @@ body {
       "data-in data-out"
       "graphs data";
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 80px 200px 450px; /* 🔥 Alturas fijas */
+    grid-template-rows: 80px 200px 450px;
     height: 100vh;
   }
 

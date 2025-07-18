@@ -51,10 +51,21 @@
       </div>
     </div>
 
-
     {% block reports %}
     {% include 'records/components/table_reports.html' %}
     {% endblock %}
+
+    <div class="graphs-container">
+      <div class="graphs-item humidity">
+        <canvas id="humidity-graph"></canvas>
+      </div>
+      <div class="graphs-item temperature">
+        <canvas id="temperature-graph"></canvas>
+      </div>
+      <div class="graphs-item weight">
+        <canvas id="weight-graph"></canvas>
+      </div>
+    </div>
   </article>
 </div>
 {% endblock %}
