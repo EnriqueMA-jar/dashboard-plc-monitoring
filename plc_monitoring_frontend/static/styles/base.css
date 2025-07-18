@@ -163,6 +163,7 @@
   #layout-container {
     flex-direction: column;
     padding: 0;
+
   }
 
   #sidebar {
@@ -191,5 +192,11 @@ html, body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
-  overflow-y: hidden;
+
+}
+
+@media (min-width: 950px) {
+  body, html {
+    overflow-y: hidden;
+  }
 }
