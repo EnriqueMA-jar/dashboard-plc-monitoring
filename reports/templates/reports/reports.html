@@ -5,6 +5,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'styles/reports/reports.css' %}">
+
 {% endblock %}
 
 {% block content %}
@@ -57,15 +58,17 @@
 
     <div class="graphs-container">
       <div class="graphs-item humidity">
-        <canvas id="humidity-graph"></canvas>
+        <canvas id="humidityChart" class="chart"></canvas>
       </div>
       <div class="graphs-item temperature">
-        <canvas id="temperature-graph"></canvas>
+        <canvas id="temperatureChart" class="chart"></canvas>
       </div>
       <div class="graphs-item weight">
-        <canvas id="weight-graph"></canvas>
+        <canvas id="weightChart" class="chart"></canvas>
       </div>
     </div>
   </article>
 </div>
+<script src="{% static 'js/chart.js' %}"></script>
+<script src="{% static 'js/chartjs-plugin-datalabels.js' %}"></script>
 {% endblock %}

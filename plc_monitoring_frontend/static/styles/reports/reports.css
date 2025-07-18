@@ -266,13 +266,14 @@ body {
   grid-template-rows: auto;
 }
 /* Tablet */
-@media(min-width: 991px) {
+@media(max-width: 991px) {
   .graphs-container {
     grid-template-areas:
       "humidity temperature"
       "weight weight";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
+    
   }
 }
 
@@ -284,11 +285,52 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
   }
+
+}
+@media (max-width: 767px) {
+  .graphs-container {
+    grid-template-areas:
+      "humidity"
+      "temperature"
+      "weight";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .graphs-item {
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
 }
 
-.graphs-item{
+.graphs-item {
   background-color: #f2f2f2;
-  display: inline-block;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
+  height: 250px;
+  width: 100%;
+  max-width: none; /* Elimina este límite */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.graphs-item canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.humidity {
+  grid-area: humidity;
+}
+.temperature {
+  grid-area: temperature;
+}
+.weight {
+  grid-area: weight;
 }
