@@ -373,13 +373,12 @@ body {
     all: unset;
     background-color: #0d6efd;
     color: white;
-    padding: 0.50em 1em;
+    padding: 0.40em 1em;
     border-radius: 0.5em;
     font: inherit;
     font-weight: 500;
     cursor: pointer;
     display: inline-block;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     transition: background-color 0.3s ease;
     text-align: center;
     
@@ -388,3 +387,34 @@ body {
   #generate-pdf:hover, #generate-excel:hover {
     background-color: #5999f8;
   }
+
+@media (max-width: 356px) {
+  .bottom-button {
+    display: flex;
+    justify-content: center;
+    gap: 10px;               
+    flex-wrap: wrap;        
+    text-align: center !important;
+  }
+
+  #generate-pdf,
+  #generate-excel {
+    all: unset;
+    background-color: #0d6efd;
+    color: white;
+    padding: 0.20em 1em;
+    border-radius: 0.5em;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+
+  #generate-pdf:hover,
+  #generate-excel:hover {
+    background-color: #5999f8;
+  }
+}
+
