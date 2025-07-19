@@ -6,11 +6,11 @@
 }
 body {
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-    font-size: 1rem; /* corregido sin espacio */
+    font-size: 1rem; 
     min-height: 100vh;
     padding: 1px;
     background-color: #f2f2f2;
-    overflow-x: hidden; /* Bloquea scroll horizontal */
+    overflow-x: hidden;
     box-sizing: border-box;
 }
 .static-bar{
@@ -39,7 +39,7 @@ body {
     "data";
   grid-template-columns: 1fr;
   grid-template-rows: 80px auto;
-  min-height: 100vh; /* ocupa toda la altura de la pantalla */
+  min-height: 100vh;
 }
 .nav {
     grid-area: nav;
@@ -66,9 +66,9 @@ body {
     grid-template-areas:
       "nav nav"
       "data data";
-    grid-template-columns: 1fr; /* aumentamos el ancho del sidebar */
+    grid-template-columns: 1fr;
     grid-template-rows: 80px 1fr;
-    height: 80vh; /* fuerza la altura de la grid al tamaño de la ventana */
+    height: 80vh;
   }
 }
 
@@ -79,7 +79,7 @@ body {
       "nav nav"
       "data data"
     ;
-    grid-template-columns: 1fr; /* sidebar aún más ancho en desktop */
+    grid-template-columns: 1fr;
     grid-template-rows: 80px 0.9fr;
     height: 80vh;
   }
@@ -118,7 +118,6 @@ body {
     margin-left: 10px;
     margin-right: 10px;
 }
-
 
 /* Responsivo formulario */
 @media (min-width: 768px) {
@@ -205,6 +204,7 @@ body {
   width: 100% !important;
   clear: both !important;
   font-family: inherit !important;
+  margin-left: 1rem !important;
 }
 
 .section-title h2 {
@@ -245,4 +245,32 @@ body {
   margin-left: -25px;
   margin-right: 10px;
   text-align: center;
+}
+
+.grid-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.data, .password-form, .grid-item {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .button-container {
+    width: 90% !important;
+    max-width: 90% !important;
+    margin: 0 auto;
+  }
+
+  .password-form input {
+    width: 90%;
+    max-width: 90%;
+  }
 }
