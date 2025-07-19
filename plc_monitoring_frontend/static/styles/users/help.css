@@ -5,12 +5,13 @@
     padding: 0;
 }
 body {
+  background-color: #f2f2f2 !important;
     font-family: 'helvetica neue', sans-serif;
     font-size: 1rem;
     min-height: 100vh;
     padding: 1px;
-    background-color: #f2f2f2;
 }
+
 .static-bar{
     position: fixed;
     top: 0;
@@ -29,6 +30,7 @@ body {
 }
 .cards{
   background-color: white;
+  padding: 10px;
 }
 .grid-container {
   z-index: 1000;
@@ -172,3 +174,4 @@ body {
     display: none !important;
   }
 }
+/*Hoy traigo ganas de cagar el pinche palo*/

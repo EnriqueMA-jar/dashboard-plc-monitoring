@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
   async function pollAndUpdate() {
     try {
       const [weightsRes, latestRes, lastThreeRes] = await Promise.all([
-        fetch("http://127.0.0.1:8001/api/Charges/weights/", { credentials: "include" }),
-        fetch("http://127.0.0.1:8001/api/Charges/latest/", { credentials: "include" }),
-        fetch("http://127.0.0.1:8001/api/Charges/last-three/", { credentials: "include" }) // <-- aquí
+        fetch("http://127.0.0.1:8001/api/Charges/weights/", { credentials: "include", cache: "no-store" }),
+        fetch("http://127.0.0.1:8001/api/Charges/list/", { credentials: "include", cache: "no-store" }),
+        fetch("http://127.0.0.1:8001/api/Charges/last-three/", { credentials: "include", cache: "no-store" }) // <-- aquí
       ]);
 
       if (!weightsRes.ok || !latestRes.ok || !lastThreeRes.ok)
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("Error en polling:", error);
     } finally {
-      setTimeout(pollAndUpdate, 600000);
+      setTimeout(pollAndUpdate, 5000);
     }
   }
 

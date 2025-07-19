@@ -4,7 +4,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
@@ -51,7 +52,7 @@ body {
   grid-area: nav;
   color: white;
   box-shadow: none;
-  display: block !important; 
+  display: block !important;
 }
 
 .data {
@@ -195,7 +196,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   display: inline-block;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease;
   text-align: center;
 }
@@ -243,16 +244,16 @@ body {
   background-color: white;
 }
 
-.reports-form{
+.reports-form {
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.btn-buscar{
+.btn-buscar {
   width: 100%;
 }
 
-.graphs-container{
+.graphs-container {
   z-index: 100;
   display: grid;
   gap: 20px;
@@ -264,6 +265,7 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: auto;
 }
+
 /* Tablet */
 @media(max-width: 991px) {
   .graphs-container {
@@ -272,7 +274,7 @@ body {
       "weight weight";
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
-    
+
   }
 }
 
@@ -286,6 +288,7 @@ body {
   }
 
 }
+
 @media (max-width: 767px) {
   .graphs-container {
     grid-template-areas:
@@ -314,22 +317,27 @@ body {
   border-radius: 10px;
   height: 250px;
   width: 100%;
-  max-width: none; /* Elimina este límite */
+  max-width: none;
+  /* Elimina este límite */
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .graphs-item canvas {
   width: 100% !important;
   height: 100% !important;
 }
+
 .humidity {
   grid-area: humidity;
 }
+
 .temperature {
   grid-area: temperature;
 }
+
 .weight {
   grid-area: weight;
 }
@@ -369,52 +377,28 @@ body {
   background-color: #a0a0a0;
 }
 
-#generate-pdf, #generate-excel {
-    all: unset;
-    background-color: #0d6efd;
-    color: white;
-    padding: 0.40em 1em;
-    border-radius: 0.5em;
-    font: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    text-align: center;
-    
-  }
+.bottom-button {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  justify-content: end;
 
-  #generate-pdf:hover, #generate-excel:hover {
-    background-color: #5999f8;
-  }
+}
+.generate{
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  text-align: center;
+}
 
 @media (max-width: 356px) {
   .bottom-button {
     display: flex;
+    gap: 20px;
+    padding: 0px;
     justify-content: center;
-    gap: 10px;               
-    flex-wrap: wrap;        
+    flex-wrap: wrap;
     text-align: center !important;
   }
 
-  #generate-pdf,
-  #generate-excel {
-    all: unset;
-    background-color: #0d6efd;
-    color: white;
-    padding: 0.20em 1em;
-    border-radius: 0.5em;
-    font: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    text-align: center;
-  }
-
-  #generate-pdf:hover,
-  #generate-excel:hover {
-    background-color: #5999f8;
-  }
 }
-
