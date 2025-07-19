@@ -24,11 +24,12 @@ body {
     z-index: -1;
     font-size: 16px;
 }
-.grid-item{
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: 500;
+.grid-item {
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 500;
+  min-height: 640px;
 }
 .grid-container {
   z-index: 1000;
@@ -67,7 +68,7 @@ body {
       "nav nav"
       "data data";
     grid-template-columns: 1fr;
-    grid-template-rows: 80px 1fr;
+    grid-template-rows: 800px 1fr;
     height: 80vh;
   }
 }
@@ -230,7 +231,7 @@ body {
 }
 
 .button-container {
-  margin-top: 11rem;
+  margin-top: 12.6rem;
   padding: 7px;
   height: 15px;
   width: 500px;
@@ -274,3 +275,4 @@ body {
     max-width: 90%;
   }
 }
+

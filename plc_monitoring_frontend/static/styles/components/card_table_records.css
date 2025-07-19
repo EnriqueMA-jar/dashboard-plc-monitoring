@@ -49,12 +49,12 @@ html, body {
 .table-charge th,
 .table-charge td {
   width: 50%;
-  padding: 8px;
+  padding: 5px;
   text-align: left;
   min-width: 0;
   word-wrap: break-word;
   box-sizing: border-box;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
 
 /* Contenedor grid responsivo */
