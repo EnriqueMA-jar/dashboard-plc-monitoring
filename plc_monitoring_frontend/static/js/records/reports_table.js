@@ -120,29 +120,30 @@ document.addEventListener("DOMContentLoaded", () => {
         { text: `Periodo reportado: ${selectedRange}`, margin: [0, 0, 0, 20] },
 
         { text: 'Humedad (%)', style: 'subheader' },
-        { image: humidityImage, width: 400, margin: [0, 0, 0, 20] },
+        { image: humidityImage, width: 200, margin: [0, 0, 0, 20] },
 
         { text: 'Temperatura (ºC)', style: 'subheader' },
-        { image: temperatureImage, width: 400, margin: [0, 0, 0, 20] },
+        { image: temperatureImage, width: 200, margin: [0, 0, 0, 20] },
 
         { text: 'Peso (Kg)', style: 'subheader' },
-        { image: weightImage, width: 400, margin: [0, 0, 0, 20] }
+        { image: weightImage, width: 200, margin: [0, 0, 0, 20] }
       ],
       styles: {
         header: {
-          fontSize: 16,
+          fontSize: 14,
           bold: true,
           margin: [0, 0, 0, 10]
         },
         subheader: {
-          fontSize: 13,
-          bold: true,
+          fontSize: 12,
+          bold: false,
           margin: [0, 10, 0, 5]
         }
       }
     };
 
     pdfMake.createPdf(docDefinition).download('Reporte Cargas Graficos.pdf');
+  
   });
 });
 
@@ -152,9 +153,10 @@ function renderFilteredTable(data) {
   } else {
     dataTable = $('#datatable_charges').DataTable({
       data: data,
-      dom: 'Bfrtip',
+      dom: 'frtip',
       buttons: [
         {
+          visible: false,
           extend: 'excelHtml5',
           text: 'Exportar a Excel',
           title: 'Reporte Cargas',
