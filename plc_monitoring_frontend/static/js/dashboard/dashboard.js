@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
           display: true,
           text: "Peso de la última carga",
           font: {
-            size: 18,
+            size: 16,
             family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
           },
         },

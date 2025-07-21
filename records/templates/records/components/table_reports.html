@@ -9,7 +9,11 @@
 <!-- DataTables Responsive -->
 <link rel="stylesheet" href="{% static 'styles/bootstrap/responsive.bootstrap5.min.css' %}" />
 
+<!-- Estilo de la pagina -->
 <link rel="stylesheet" href="{% static 'styles/records/records_datatables.css' %}">
+
+<!-- Datatables Buttons -->
+<link rel="stylesheet" href="{% static 'styles/dataTables/buttons.dataTables.min.css' %}">
 
   <div class="container">
     <div class="row">
@@ -22,12 +26,12 @@
                 <th data-priority="2">Fecha</th>
                 <th data-priority="3">Inicio</th>
                 <th data-priority="4">Fin</th>
-                <th>Peso entrada</th>
-                <th>Peso salida</th>
-                <th>Humedad entrada</th>
-                <th>Humedad salida</th>
-                <th>Temp. entrada</th>
-                <th>Temp. salida</th>
+                <th>Peso entrada (Kg)</th>
+                <th>Peso salida (Kg)</th>
+                <th>Humedad entrada (%)</th>
+                <th>Humedad salida (%)</th>
+                <th>Temperatura entrada (ºC)</th>
+                <th>Temperatura salida (ºC)</th>
               </tr>
             </thead>
             <tbody id="tableBody_charges">
@@ -53,5 +57,15 @@
 <script src="{% static 'js/dataTables/dataTables.responsive.min.js' %}"></script>
 <script src="{% static 'js/bootstrap/responsive.bootstrap5.min.js' %}"></script>
 
-<!-- Tu JS personalizado -->
+<!-- DataTables Buttons -->
+<script src="{% static 'js/dataTables/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'js/dataTables/buttons.html5.min.js' %}"></script>
+<script src="{% static 'js/dataTables/buttons.print.min.js' %}"></script>
+
+<!-- Export files -->
+<script src="{% static 'js/dataTables/export/jszip.min.js' %}"></script>
+<script src="{% static 'js/dataTables/export/pdfmake.min.js' %}"></script>
+<script src="{% static 'js/dataTables/export/vfs_fonts.js' %}"></script>
+
+<!-- JS Core -->
 <script src="{% static 'js/records/reports_table.js' %}"></script>

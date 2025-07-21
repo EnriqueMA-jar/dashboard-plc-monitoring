@@ -312,8 +312,8 @@ body {
 }
 
 .graphs-item {
-  background-color: #f2f2f2;
-  padding: 20px;
+  border: solid 2px;
+  border-color: #f2f2f2;
   border-radius: 10px;
   height: 250px;
   width: 100%;
@@ -325,9 +325,16 @@ body {
   justify-content: center;
 }
 
-.graphs-item canvas {
-  width: 100% !important;
-  height: 100% !important;
+canvas {
+  width: 80% !important;
+  height: 80% !important;
+  float: right;
+}
+.graph-detail{
+  width: 20% !important;
+  height: 80% !important;
+  text-align: center;
+  float: left;
 }
 
 .humidity {
