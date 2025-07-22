@@ -28,28 +28,28 @@ document.addEventListener("DOMContentLoaded", () => {
     let end = null;
 
     switch (periodValue) {
-      case "1": // Hoy
+      case "1":
         start = end = new Date();
         params.range = "today";
         break;
-      case "2": // Ayer
+      case "2":
         start = end = new Date();
         start.setDate(start.getDate() - 1);
         params.range = "yesterday";
         break;
-      case "3": // Últimos 7 días
+      case "3":
         end = new Date();
         start = new Date();
         start.setDate(end.getDate() - 6);
         params.range = "last_7_days";
         break;
-      case "4": // Últimos 30 días
+      case "4":
         end = new Date();
         start = new Date();
         start.setDate(end.getDate() - 29);
         params.range = "last_30_days";
         break;
-      case "5": // Personalizado
+      case "5":
         if (!startDateInput.value || !endDateInput.value) {
           alert("Selecciona ambas fechas para un periodo personalizado.");
           return;
@@ -87,63 +87,130 @@ document.addEventListener("DOMContentLoaded", () => {
       renderFilteredTable(data);
       renderCharts(data);
 
+      window.chargeData = data;
+
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }
   });
 
-
-  document.querySelector(".generate:nth-child(1)").addEventListener("click", () => {
-    dataTable.button('.buttons-pdf').trigger();
-  });
-
+  // Exportar Excel (sin cambios)
   document.querySelector(".generate:nth-child(2)").addEventListener("click", () => {
     dataTable.button('.buttons-excel').trigger();
   });
 
+  // Exportar PDFs (datos + gráficos) con fecha en nombre
   document.querySelector('.generate').addEventListener('click', () => {
+    const data = window.chargeData || [];
+
+    // Preparar PDF con tabla de datos
+    const pdfData = [
+      [
+        'Carga', 'Fecha', 'Inicio', 'Fin', 'Peso Entrada (Kg)', 'Peso Salida (Kg)',
+        'Humedad Entrada (%)', 'Humedad Salida (%)',
+        'Temperatura Entrada (°C)', 'Temperatura Salida (°C)'
+      ],
+      ...data.map((row, index) => [
+        index + 1,
+        row.charge_date,
+        row.charge_time_start,
+        row.charge_time_finish,
+        row.charge_weight_start,
+        row.charge_weight_finish,
+        row.charge_humidity_start,
+        row.charge_humidity_finish,
+        row.charge_temperature_start,
+        row.charge_temperature_finish
+      ])
+    ];
+
+    const pdfDefinitionTable = {
+      pageOrientation: 'landscape',
+      content: [
+        {
+          table: {
+            widths: ['*', '*'],
+            body: [
+              [
+                { text: 'Informe de Cargas', fontSize: 16, bold: true, alignment: 'center', border: [true, true, false, true] },
+                {
+                  stack: [
+                    'Comercializadora Al Grano S. de R.L.',
+                    'Km 74 Carretera libre Armería-Manzanillo, Nuevo Cuyutlán,',
+                    'Manzanillo, Col. C.P. 28880'
+                  ],
+                  fontSize: 10,
+                  alignment: 'right',
+                  border: [false, true, true, true]
+                }
+              ]
+            ]
+          },
+          layout: 'noBorders',
+          margin: [0, 0, 0, 10]
+        },
+        {
+          table: {
+            headerRows: 1,
+            widths: Array(10).fill('*'),
+            body: pdfData
+          },
+          layout: {
+            fillColor: (rowIndex) => rowIndex === 0 ? '#eeeeee' : null,
+            hLineWidth: () => 0.5,
+            vLineWidth: () => 0.5,
+            hLineColor: () => 'black',
+            vLineColor: () => 'black'
+          }
+        }
+      ]
+    };
+
+    // Preparar PDF con gráficos
     const humidityCanvas = document.getElementById('humidityChart');
     const temperatureCanvas = document.getElementById('temperatureChart');
     const weightCanvas = document.getElementById('weightChart');
 
-    // Convertimos cada canvas a imagen base64
     const humidityImage = humidityCanvas.toDataURL('image/png');
     const temperatureImage = temperatureCanvas.toDataURL('image/png');
     const weightImage = weightCanvas.toDataURL('image/png');
 
     const selectedRange = document.getElementById("selected-range").textContent;
 
-    // Estructura del PDF
     const docDefinition = {
+      pageOrientation: 'landscape',
       content: [
         { text: 'Análisis de los datos - Promedio de los resultados obtenidos en la búsqueda', style: 'header' },
         { text: `Periodo reportado: ${selectedRange}`, margin: [0, 0, 0, 20] },
-
-        { text: 'Humedad (%)', style: 'subheader' },
-        { image: humidityImage, width: 200, margin: [0, 0, 0, 20] },
-
-        { text: 'Temperatura (ºC)', style: 'subheader' },
-        { image: temperatureImage, width: 200, margin: [0, 0, 0, 20] },
-
-        { text: 'Peso (Kg)', style: 'subheader' },
-        { image: weightImage, width: 200, margin: [0, 0, 0, 20] }
+        {
+          columns: [
+            { image: humidityImage, width: 240 },
+            { image: temperatureImage, width: 240 },
+            { image: weightImage, width: 240 }
+          ]
+        }
       ],
       styles: {
         header: {
           fontSize: 14,
           bold: true,
           margin: [0, 0, 0, 10]
-        },
-        subheader: {
-          fontSize: 12,
-          bold: false,
-          margin: [0, 10, 0, 5]
         }
       }
     };
 
-    pdfMake.createPdf(docDefinition).download('Reporte Cargas Graficos.pdf');
-  
+    // Fecha para nombre de archivo
+    const hoy = new Date();
+    const dia = String(hoy.getDate()).padStart(2, '0');
+    const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+    const anio = hoy.getFullYear();
+
+    const nombrePdfDatos = `Reporte Cargas Datos ${dia}-${mes}-${anio}.pdf`;
+    const nombrePdfGraficos = `Reporte Cargas Graficos ${dia}-${mes}-${anio}.pdf`;
+
+    // Descargar ambos PDFs
+    pdfMake.createPdf(pdfDefinitionTable).download(nombrePdfDatos);
+    pdfMake.createPdf(docDefinition).download(nombrePdfGraficos);
   });
 });
 
@@ -187,7 +254,7 @@ function renderFilteredTable(data) {
       pageLength: 5,
       responsive: true,
       columns: [
-        { data: null, render: (data, type, row, meta) => meta.row + 1 }, // Número de carga
+        { data: null, render: (data, type, row, meta) => meta.row + 1 },
         { data: 'charge_date' },
         { data: 'charge_time_start' },
         { data: 'charge_time_finish' },
@@ -219,10 +286,10 @@ function renderCharts(data) {
   renderDoughnutChart('temperatureChart', ['Entrada', 'Salida'], [tempIn, tempOut], tcolors);
   renderDoughnutChart('humidityChart', ['Entrada', 'Salida'], [humIn, humOut], hcolors);
 }
+
 function renderDoughnutChart(canvasId, labels, data, colors) {
   const ctx = document.getElementById(canvasId).getContext('2d');
 
-  // Elimina el gráfico anterior si existe
   if (Chart.getChart(canvasId)) {
     Chart.getChart(canvasId).destroy();
   }
@@ -265,10 +332,7 @@ function renderDoughnutChart(canvasId, labels, data, colors) {
           }
         }
       }
-
     },
     plugins: [ChartDataLabels]
-
-
   });
 }
