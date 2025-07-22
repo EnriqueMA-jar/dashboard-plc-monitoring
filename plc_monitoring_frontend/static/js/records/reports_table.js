@@ -146,15 +146,15 @@ const pdfDefinitionTable = {
             {
               image: logoSRDC,
               width: 100,
-              border: [true, true, false, true]
+              border: [false, true, false, true]
             },
             {
-              text: 'INFORME DE CARGAS',
+              text: 'Reporte Periodico de Cargas',
               color: 'black',
-              fontSize: 18,
+              fontSize: 14,
               bold: true,
               alignment: 'center',
-              margin: [50, 5, 0, 0],
+              margin: [50, 10, 0, 0],
               border: [false, true, false, true],
               colSpan: 1
             },
@@ -163,7 +163,7 @@ const pdfDefinitionTable = {
               alignment: 'center',
               fontSize: 10,
               color: 'black',
-              margin: [0, 10, 0, 0],
+              margin: [0, 15, 0, 0],
               border: [false, true, false, true]
             },
             {
@@ -175,11 +175,19 @@ const pdfDefinitionTable = {
               fontSize: 9,
               alignment: 'right',
               border: [false, true, true, true]
+              
             }
           ]
         ]
       },
-      layout: 'noBorders',
+      layout: {
+        hLineWidth: () => 1,           // Mostrar líneas horizontales
+        vLineWidth: () => 0,           // Ocultar líneas verticales
+        hLineColor: () => '#000000',
+        vLineColor: () => '#000000',
+        paddingTop: () => 5,
+        paddingBottom: () => 5
+      },
       margin: [0, 0, 0, 10]
     },
 
@@ -214,7 +222,7 @@ const pdfDefinitionTable = {
 
     const selectedRange = document.getElementById("selected-range").textContent;
 
-    const docDefinition = {
+const docDefinition = {
   pageOrientation: 'landscape',
   content: [
     // TABLA DE ENCABEZADO CON LOGO Y DATOS DE LA EMPRESA
@@ -225,25 +233,22 @@ const pdfDefinitionTable = {
           [
             {
               image: logoSRDC,
-              width: 100,
-              border: [false, false, false, false]
+              width: 100
             },
             {
-              text: 'INFORME DE CARGAS',
+              text: 'Reporte Periodico de Cargas',
               color: 'black',
-              fontSize: 18,
+              fontSize: 14,
               bold: true,
               alignment: 'center',
-              margin: [50, 5, 0, 0],
-              border: [false, false, false, false]
+              margin: [50, 5, 0, 0]
             },
             {
               text: `Fecha de documento: ${fechaHoy}`,
               alignment: 'center',
               fontSize: 10,
               color: 'black',
-              margin: [0, 10, 0, 0],
-              border: [false, false, false, false]
+              margin: [0, 10, 0, 0]
             },
             {
               stack: [
@@ -252,15 +257,18 @@ const pdfDefinitionTable = {
                 { text: 'Manzanillo, Col. C.P. 28880' }
               ],
               fontSize: 9,
-              alignment: 'right',
-              border: [false, false, false, false]
+              alignment: 'right'
             }
           ]
         ]
       },
       layout: {
-        hLineWidth: () => 1,
-        vLineWidth: () => 1
+        hLineWidth: () => 1,           // Mostrar líneas horizontales
+        vLineWidth: () => 0,           // Ocultar líneas verticales
+        hLineColor: () => '#000000',
+        vLineColor: () => '#000000',
+        paddingTop: () => 5,
+        paddingBottom: () => 5
       },
       margin: [0, 0, 0, 20] // Espacio debajo del encabezado
     },
@@ -300,8 +308,97 @@ const pdfDefinitionTable = {
     const nombrePdfGraficos = `Reporte Cargas Graficos ${dia}-${mes}-${anio}.pdf`;
 
     // Descargar ambos PDFs
-    pdfMake.createPdf(pdfDefinitionTable).download(nombrePdfDatos);
-    pdfMake.createPdf(docDefinition).download(nombrePdfGraficos);
+        // NUEVO: Combinar ambos PDFs (tabla + gráficas) en uno solo
+const combinedDocDefinition = {
+  pageOrientation: 'landscape',
+  content: [
+    // Encabezado del bloque de datos
+    pdfDefinitionTable.content[0],
+
+    // Tabla de datos
+    pdfDefinitionTable.content[1],
+
+    { text: '', margin: [0, 20] }, // Espacio opcional
+
+    // ENCABEZADO NUEVO para el bloque de gráficas
+    {
+      table: {
+        widths: [60, '*', '*', '*'],
+        body: [
+          [
+            {
+              image: logoSRDC,
+              width: 100,
+              border: [true, true, true, true]
+            },
+            {
+              text: 'Reporte de eficiencia de Cargas',
+              color: 'black',
+              fontSize: 14,
+              bold: true,
+              alignment: 'center',
+              margin: [50, 10, 0, 0],
+              border: [true, true, true, true]
+            },
+            {
+              text: `Fecha de documento: ${fechaHoy}`,
+              alignment: 'center',
+              fontSize: 10,
+              color: 'black',
+              margin: [0, 15, 0, 0],
+              border: [true, true, true, true]
+            },
+            {
+              stack: [
+                { text: 'Comercializadora Al Grano S. de R.L.', margin: [0, 0, 0, 2] },
+                { text: 'Km 74 Carretera libre Armería-Manzanillo, Nuevo Cuyutlán,', margin: [0, 0, 0, 2] },
+                { text: 'Manzanillo, Col. C.P. 28880' }
+              ],
+              fontSize: 9,
+              alignment: 'right',
+              border: [true, true, true, true]
+            }
+          ]
+        ]
+      },
+      layout: {
+        hLineWidth: () => 1, // Bordes horizontales visibles
+        vLineWidth: () => 0, // Bordes verticales visibles
+        hLineColor: () => '#000000',
+        vLineColor: () => '#000000',
+        paddingTop: () => 5,
+        paddingBottom: () => 5
+      },
+      margin: [0, 0, 0, 20],
+      pageBreak: 'before' // <-- Aquí empieza nueva página
+    },
+
+    // Texto de análisis
+    {
+      text: 'Análisis de los datos - Promedio de los resultados obtenidos en la búsqueda',
+      style: 'header'
+    },
+    {
+      text: `Periodo reportado: ${selectedRange}`,
+      margin: [0, 0, 0, 20]
+    },
+
+    // Gráficas
+    {
+      columns: [
+        { image: humidityImage, width: 240 },
+        { image: temperatureImage, width: 240 },
+        { image: weightImage, width: 240 }
+      ]
+    }
+  ],
+  styles: docDefinition.styles // Reutiliza los estilos del docDefinition original
+};
+
+    // Exportar un solo PDF combinado
+    const nombrePdfCompleto = `Reporte Cargas Completo ${dia}-${mes}-${anio}.pdf`;
+    pdfMake.createPdf(combinedDocDefinition).open(); // O usa .download(nombrePdfCompleto) si prefieres descarga directa
+
   });
 });
 
@@ -427,23 +524,4 @@ function renderDoughnutChart(canvasId, labels, data, colors) {
     plugins: [ChartDataLabels]
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
