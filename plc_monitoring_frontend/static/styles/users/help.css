@@ -35,7 +35,7 @@ body {
 .grid-container {
   z-index: 1000;
   display: grid;
-  gap: 20px;
+  gap: 10px;
   grid-template-areas:
     "nav"
     "data";
@@ -173,5 +173,9 @@ body {
   .breadcrumb {
     display: none !important;
   }
+  .cards {
+    overflow-y: auto;
+    font-size: 17px;
+  }
+  
 }
-/*Hoy traigo ganas de cagar el pinche palo*/
