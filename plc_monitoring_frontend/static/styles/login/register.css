@@ -128,6 +128,7 @@ body {
 @media (min-width: 768px) {
   .carrousel {
     display: block;
+    height: 60vh;
   }
 }
 
@@ -140,51 +141,27 @@ body {
   }
 }
 
-
-.carrousel{
-  height: 95vh;
-  width: 100%;
-  display: grid;
-  place-content: center;
+@media (min-width: 991px) {
+  .carrousel {
+    display: block !important;
+    height: 100 vh; /* Ajusta la altura al tamaño de la ventana */
+  }
 }
 
-.slide {
-  width: 50vw;
-  max-width: 1000px;
-  height: auto;
+
+.carrousel {
+  height: 94vh; /* altura fija para el cuadro, ajusta a lo que necesites */
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 20px 0 0 20px; /* mantén tu estilo */
+  background-color: #e21c44;
+  padding: 0; /* elimina padding para que la imagen abarque todo */
 }
 
-.slide ul {
-  display: flex;
-  padding: 0;
-  margin: 0;
-  width: 500%;
-
-  animation: slide 20s infinite cubic-bezier(0.55, 0.48, 0.37, 0.92);
-}
-
-.slide img {
+.carrousel img {
   width: 100%;
-  border-radius: 10px;
-  object-fit: fill;
+  height: 100%;
+  object-fit: cover; /* recorta la imagen si es necesario */
+  display: block;
 }
 
 
-@keyframes slide {
-  0%   { margin-left: 0%; }
-  20%  { margin-left: 0%; }
-
-  25%  { margin-left: -100%; }
-  40%  { margin-left: -100%; }
-
-  45%  { margin-left: -200%; }
-  60%  { margin-left: -200%; }
-
-  65%  { margin-left: -300%; }
-  80%  { margin-left: -300%; }
-
-  85%  { margin-left: -400%; }
-  100% { margin-left: -400%; }
-}
