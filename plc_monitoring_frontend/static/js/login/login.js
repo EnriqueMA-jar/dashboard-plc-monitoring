@@ -29,31 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = document.getElementById("password").value.trim();
     const rememberMe = document.getElementById("remember-me").checked;
 
-    const response = await fetch("http://127.0.0.1:8001/api/login/", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ username, password, remember: rememberMe })
-    });
-
     if (!username || !password) {
       Swal.fire({
-      toast: true,
-      position: 'top-end',
-      icon: 'warning',
-      title: 'Campos incompletos',
-      text: 'Por favor ingresa usuario y contraseña',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer);
-        toast.addEventListener('mouseleave', Swal.resumeTimer);
-      }
+        toast: true,
+        position: 'top-end',
+        icon: 'warning',
+        title: 'Campos incompletos',
+        text: 'Por favor ingresa usuario y contraseña',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
       });
-
       return;
     }
 
@@ -79,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password, remember: rememberMe })
       });
 
       const data = await response.json();
@@ -90,35 +80,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         Swal.fire({
           toast: true,
-          position: 'top-end', 
+          position: 'top-end',
           icon: 'success',
           title: 'Bienvenido',
           showConfirmButton: false,
           timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
           }
         }).then(() => {
           window.location.href = "/dashboard/";
         });
 
-        } else if (response.status === 403) {
-          Swal.fire({
-            toast: true,
-            position: 'top-end',
-            icon: 'error',
-            title: 'Credenciales incorrectas',
-            text: 'Verifica tu usuario y contraseña',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer);
-              toast.addEventListener('mouseleave', Swal.resumeTimer);
-            }  
-          });
+      } else if (response.status === 403) {
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'error',
+          title: 'Credenciales incorrectas',
+          text: 'Verifica tu usuario y contraseña',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+          }
+        });
       } else {
         Swal.fire({
           toast: true,
