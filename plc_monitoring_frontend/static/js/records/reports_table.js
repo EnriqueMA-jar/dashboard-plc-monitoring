@@ -408,9 +408,9 @@ document.addEventListener("DOMContentLoaded", () => {
             widths: ['*', '*', '*'],
               body: [
             [
-              { text: 'Gráfica de Humedad', alignment: 'center'},
-              { text: 'Gráfica de Temperatura', alignment: 'center'},
-              { text: 'Gráfica de Peso', alignment: 'center'}
+              { text: 'Humedad (%)', alignment: 'center'},
+              { text: 'Temperatura (°C)', alignment: 'center'},
+              { text: 'Peso (kg)', alignment: 'center'}
             ],
             [
               { image: humidityImage, width: 250, alignment: 'center' },
