@@ -310,34 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
           margin: [0, 0, 0, 20]
         },
 
-        // GRÁFICAS
-        {
-          columns: [
-            {
-              width: '*',
-              stack: [
-                { text: 'Gráfica de Humedad', style: 'subheader', alignment: 'center', margin: [0, 0, 0, 8] },
-                { image: humidityImage, width: 240 }
-              ]
-            },
-            {
-              width: '*',
-              stack: [
-                { text: 'Gráfica de Temperatura', style: 'subheader', alignment: 'center', margin: [0, 0, 0, 8] },
-                { image: temperatureImage, width: 240 }
-              ]
-            },
-            {
-              width: '*',
-              stack: [
-                { text: 'Gráfica de Peso', style: 'subheader', alignment: 'center', margin: [0, 0, 0, 8] },
-                { image: weightImage, width: 240 }
-              ]
-            }
-          ]
-
-
-        }
       ],
 
       styles: {
@@ -432,12 +404,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Gráficas
         {
-          columns: [
-            { image: humidityImage, width: 240 },
-            { image: temperatureImage, width: 240 },
-            { image: weightImage, width: 240 }
-          ]
-        }
+          table: {
+            widths: ['*', '*', '*'],
+              body: [
+            [
+              { text: 'Gráfica de Humedad', alignment: 'center'},
+              { text: 'Gráfica de Temperatura', alignment: 'center'},
+              { text: 'Gráfica de Peso', alignment: 'center'}
+            ],
+            [
+              { image: humidityImage, width: 250, alignment: 'center' },
+              { image: temperatureImage, width: 250, alignment: 'center' },
+              { image: weightImage, width: 250, alignment: 'center' }
+            ]
+            ]
+          },
+  layout: 'noBorders', // Oculta todos los bordes de la tabla
+  margin: [0, 10, 0, 0]
+} 
       ],
       styles: docDefinition.styles // Reutiliza los estilos del docDefinition original
     };
