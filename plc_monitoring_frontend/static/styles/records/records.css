@@ -120,27 +120,6 @@ body {
     padding-bottom: 1rem;
   }
 
- 
-  /* Botón estilo */
-  #generate-pdf {
-    all: unset;
-    background-color: #0d6efd;
-    color: white;
-    padding: 0.50em 1em;
-    border-radius: 0.5em;
-    font: inherit;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-block;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    transition: background-color 0.3s ease;
-    text-align: center;
-    
-  }
-
-  #generate-pdf:hover {
-    background-color: #5999f8;
-  }
 
 html, body {
     font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -215,9 +194,26 @@ html, body {
   color: white !important;
   line-height: 1.4 !important;
 }
+.bottom-button {
+    width: 100%;
+    padding: 10px;
+  }
+  .btn-block {
+  display: block;
+  float: right;
+  width: 20%;
+  }
 
 /* Ocultar en móviles */
 @media (max-width: 600px) {
+  .bottom-button {
+    width: 100%;;
+  }
+  .btn-block {
+  display: block;
+  width: 95%;
+  margin: 10px;
+}
   .breadcrumb {
     display: none !important;
   }
