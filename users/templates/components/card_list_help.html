@@ -2,26 +2,29 @@
 <div class="grid-container-help">
     <div class="common-answers grid-item-help">
         <ul>
-            <li><a href="#" class="question">¿Cómo inicio sesión?</a></li>
-            <li><a href="#" class="question">¿Cómo cierro sesión?</a></li>
-            <li><a href="#" class="question">¿Cúanto tiempo se queda abierta mi sesión?</a></li>
-            <li><a href="#" class="question">¿Cómo cambio mi contraseña?</a></li>
-            <li><a href="#" class="question">¿Qué hacer si olvido mi contraseña?</a></li>
-            <li><a href="#" class="question">¿Cómo navegar entre páginas?</a></li>
-            <li><a href="#" class="question">¿Cómo funcionan los filtros de búsqueda?</a></li>
-            <li><a href="#" class="question">¿Cómo exportar datos (generar reportes)</a></li>
-            <li><a href="#" class="question">¿Cómo reporto un problema técnico?</a></li>
-            <li><a href="#" class="question">¿Dónde encuentro la documentación del usuario?</a></li>
-            <li><a href="#" class="question">pregunta 1</a></li>
-            <li><a href="#" class="question">pregunta 2</a></li>
-            <li><a href="#" class="question">pregunta 3</a></li>
-            <li><a href="#" class="question">pregunta 3</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=1" target="_blank" class="question">¿Cómo inicio sesión de nuevo?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=17" target="_blank" class="question">¿Cómo cierro sesión?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=3" target="_blank" class="question">¿Cúanto tiempo se queda abierta mi sesión?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=15" target="_blank" class="question">¿Cómo cambio mi contraseña?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=4" target="_blank" class="question">¿Qué datos necesito para registrar un nuevo usuario?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=8" target="_blank" class="question">¿Qué información puedo encontrar en el dashboard?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=9" target="_blank" class="question">¿Cómo puedo consultar el historial de registro de cargas?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=10" target="_blank" class="question">¿Cómo puedo ver mas registros de los que se muestran en la tabla?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=10" target="_blank" class="question">¿Cómo puedo exportar datos (generar reportes)?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=11" target="_blank" class="question">¿Cómo funciona la búsqueda filtrada en la sección de reportes?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=12" target="_blank" class="question">¿Cómo puedo exportar datos en formato PDF?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=13" target="_blank" class="question">¿Cómo puedo exportar datos en formato Excel?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=14" target="_blank" class="question">¿En qué sección puedo cambiar mis credenciales?</a></li>
+            <li><a href="{% static 'documents/manual de usuario.pdf' %}#page=17" target="_blank" class="question">¿Qué hacer después de actualizar mis credenciales?</a></li>
         </ul>
     </div>
     <div class="user-manual grid-item-help">
         <h3>Manual del usuario</h3>
         <p>Descarga el manual completo para obtener instrucciones detalladas sobre el uso del software.</p>
-        <a href="{% static 'documents/user_manual.pdf' %}" class="download-link">Descargar Manual</a>
+        <a href="{% static 'documents/manual de usuario.pdf' %}" class="download-link" target="_blank" rel="noopener noreferrer">
+    Descargar Manual
+</a>
+
     </div>
 </div>
 <link rel="stylesheet" href="{% static 'styles/components/card_list_help.css' %}">

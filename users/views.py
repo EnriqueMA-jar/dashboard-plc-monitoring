@@ -12,4 +12,3 @@ def manage_view(request):
 
 def help_view(request):
     return render(request, 'users/help.html')
-
