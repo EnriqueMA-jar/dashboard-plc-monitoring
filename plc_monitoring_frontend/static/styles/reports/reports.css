@@ -324,11 +324,88 @@ body {
   align-items: center;
   justify-content: center;
 }
+.graphs-item2 {
+  border: solid 2px;
+  border-color: #f2f2f2;
+  border-radius: 10px;
+  height: 250px;
+  width: 100%;
+  max-width: none;
+  /* Elimina este límite */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graphs-container2 {
+  z-index: 100;
+  display: grid;
+  gap: 20px;
+  padding: 10px !important;
+  grid-template-areas:
+    "presentation_count"
+    "presentation_weight";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
+/* Tablet */
+@media(max-width: 991px) {
+  .graphs-container2 {
+    grid-template-areas:
+      "presentation_count presentation_weight";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+
+  }
+}
+
+/* Escritorio */
+@media (min-width: 992px) {
+  .graphs-container2 {
+    grid-template-areas:
+      "presentation_count presentation_weight";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+
+  }
+
+}
+
+@media (max-width: 767px) {
+  .graphs-container2 {
+    grid-template-areas:
+      "presentation_count"
+      "presentation_weight";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto ;
+  }
+
+  .graphs-item2 {
+    max-width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  canvas {
+    max-width: auto !important;
+    height: auto !important;
+  }
+}
+
 
 canvas {
   width: 80% !important;
   height: 80% !important;
   float: right;
+}
+.chart2 {
+  margin: 10px;
+  width: 70% !important;
+  height: 95% !important;
+  float: right;
+  font-size: 2rem;
 }
 .graph-detail{
   width: 20% !important;

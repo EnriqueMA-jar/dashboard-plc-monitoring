@@ -19,6 +19,7 @@ const initDataTable = async () => {
   },
   columns: [
     { data : 'id'},
+    { data: 'charge_presentation' },
     { data: 'charge_date' },
     { data: 'charge_time_start' },
     { data: 'charge_time_finish' },

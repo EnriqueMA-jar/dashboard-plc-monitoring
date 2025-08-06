@@ -144,12 +144,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Preparar PDF con tabla de datos
     const pdfData = [
       [
-        'Carga', 'Fecha', 'Inicio', 'Fin', 'Peso Entrada (Kg)', 'Peso Salida (Kg)',
+        'Carga', 'Presentación', 'Fecha', 'Inicio', 'Fin', 'Peso Entrada (Kg)', 'Peso Salida (Kg)',
         'Humedad Entrada (%)', 'Humedad Salida (%)',
         'Temperatura Entrada (°C)', 'Temperatura Salida (°C)'
       ],
       ...data.map((row, index) => [
         index + 1,
+        row.charge_presentation,
         row.charge_date,
         row.charge_time_start,
         row.charge_time_finish,
@@ -167,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
       content: [
         {
           table: {
-            widths: [60, '*', '*', '*'],
+            widths: [30, '*', '*', '*'],
             body: [
               [
                 {
@@ -222,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {
           table: {
             headerRows: 1,
-            widths: Array(10).fill('*'),
+            widths: [35, '*', '*', '*', '*', 60, 60, 60, 60, 65, 65],
             body: pdfData
           },
           layout: {
@@ -246,6 +247,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const humidityImage = humidityCanvas.toDataURL('image/png');
     const temperatureImage = temperatureCanvas.toDataURL('image/png');
     const weightImage = weightCanvas.toDataURL('image/png');
+
+    const presentationCountCanvas = document.getElementById('presentationCountChart');
+    const presentationWeightCanvas = document.getElementById('presentationWeightChart');
+
+    const presentationCountImage = presentationCountCanvas.toDataURL('image/png');
+    const presentationWeightImage = presentationWeightCanvas.toDataURL('image/png');
 
     const selectedRange = document.getElementById("selected-range").textContent;
 
@@ -404,31 +411,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Gráficas
         {
-          table: {
-            widths: ['*', '*', '*'],
-              body: [
-            [
-              { text: 'Humedad (%)', alignment: 'center'},
-              { text: 'Temperatura (°C)', alignment: 'center'},
-              { text: 'Peso (kg)', alignment: 'center'}
-            ],
-            [
-              { image: humidityImage, width: 250, alignment: 'center' },
-              { image: temperatureImage, width: 250, alignment: 'center' },
-              { image: weightImage, width: 250, alignment: 'center' }
-            ]
-            ]
-          },
-  layout: 'noBorders', // Oculta todos los bordes de la tabla
+  table: {
+    widths: ['*', '*', '*'],
+    body: [
+      [
+        { text: 'Humedad (%)', alignment: 'center'},
+        { text: 'Temperatura (°C)', alignment: 'center'},
+        { text: 'Peso (kg)', alignment: 'center'}
+      ],
+      [
+        { image: humidityImage, width: 250, alignment: 'center' },
+        { image: temperatureImage, width: 250, alignment: 'center' },
+        { image: weightImage, width: 250, alignment: 'center' }
+      ],
+      // Nueva fila de títulos
+      [
+        { text: 'Cargas por presentación', alignment: 'center'},
+        { text: 'Peso total por presentación (Kg)', alignment: 'center'},
+        { text: '', alignment: 'center'} // Celda vacía si no quieres otra gráfica
+      ],
+      // Nueva fila con imágenes
+      [
+        { image: presentationCountImage, width: 250, alignment: 'center' },
+        { image: presentationWeightImage, width: 250, alignment: 'center' },
+        { text: '', alignment: 'center' }
+      ]
+    ]
+  },
+  layout: 'noBorders',
   margin: [0, 10, 0, 0]
-} 
+},
       ],
       styles: docDefinition.styles // Reutiliza los estilos del docDefinition original
     };
 
     // Exportar un solo PDF combinado
-    const nombrePdfCompleto = `Reporte Cargas Completo ${day}-${month}-${year}.pdf`;
-    pdfMake.createPdf(combinedDocDefinition).download(nombrePdfCompleto);
+    const nombrePdfCompleto = `Reporte_Cargas_Completo_${day}-${month}-${year}.pdf`;
+
+    pdfMake.createPdf(combinedDocDefinition).getBlob(function (blob) {
+      const blobUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = nombrePdfCompleto;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    });
+
+
+    pdfMake.createPdf(combinedDocDefinition).getBase64(function (base64) {
+      const nombrePdfCompleto = `Reporte Cargas Completo ${day}-${month}-${year}.pdf`;
+      if (window.Android && typeof Android.downloadBase64Pdf === 'function') {
+        Android.downloadBase64Pdf(base64, nombrePdfCompleto);
+      } else {
+        console.error('Interfaz Android no disponible');
+      }
+    });
+
 
   });
 });
@@ -447,7 +489,7 @@ function renderFilteredTable(data) {
           text: 'Exportar a Excel',
           title: 'Reporte Cargas',
           exportOptions: {
-            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
           }
         },
         {
@@ -457,13 +499,13 @@ function renderFilteredTable(data) {
           pageSize: 'letter',
           title: 'Reporte Cargas',
           exportOptions: {
-            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
           }
         },
         {
           extend: 'print',
           exportOptions: {
-            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+            columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
           },
           text: 'Imprimir'
         }
@@ -472,8 +514,12 @@ function renderFilteredTable(data) {
       lengthChange: false,
       pageLength: 5,
       responsive: true,
+      language: {
+        url: "/static/js/datatables/es-ES.json"
+      },
       columns: [
         { data: null, render: (data, type, row, meta) => meta.row + 1 },
+        { data: 'charge_presentation' },
         { data: 'charge_date' },
         { data: 'charge_time_start' },
         { data: 'charge_time_finish' },
@@ -504,6 +550,79 @@ function renderCharts(data) {
   renderDoughnutChart('weightChart', ['Entrada', 'Salida'], [weightIn, weightOut], wcolors);
   renderDoughnutChart('temperatureChart', ['Entrada', 'Salida'], [tempIn, tempOut], tcolors);
   renderDoughnutChart('humidityChart', ['Entrada', 'Salida'], [humIn, humOut], hcolors);
+
+  // --- NUEVOS: métricas de presentación ---
+  const presentations = {};
+  const presentationWeights = {};
+
+  data.forEach(d => {
+    const pres = d.charge_presentation || 'Desconocida';
+    presentations[pres] = (presentations[pres] || 0) + 1;
+
+    const pesoSalida = Number(d.charge_weight_finish) || 0;
+    presentationWeights[pres] = (presentationWeights[pres] || 0) + pesoSalida;
+  });
+
+  renderBarChart(
+    'presentationCountChart',
+    Object.keys(presentations),
+    Object.values(presentations),
+    'Cargas'
+  );
+
+  renderBarChart(
+    'presentationWeightChart',
+    Object.keys(presentationWeights),
+    Object.values(presentationWeights),
+    'Peso total (Kg)'
+  );
+}
+
+function renderBarChart(canvasId, labels, data, labelName) {
+  const ctx = document.getElementById(canvasId).getContext('2d');
+
+  if (Chart.getChart(canvasId)) {
+    Chart.getChart(canvasId).destroy();
+  }
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: labelName,
+        data: data,
+        backgroundColor: '#044e8bff'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        datalabels: {
+          color: "black",
+          anchor: "end",
+          align: "top",
+          font: {
+            weight: "bold",
+            size: 12,
+          },
+        },
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              return `${context.label}: ${context.parsed}`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    },
+    plugins: [ChartDataLabels]
+  });
+
 }
 
 function renderDoughnutChart(canvasId, labels, data, colors) {
