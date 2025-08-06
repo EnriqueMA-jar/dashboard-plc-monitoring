@@ -424,23 +424,92 @@ document.addEventListener("DOMContentLoaded", () => {
         { image: temperatureImage, width: 250, alignment: 'center' },
         { image: weightImage, width: 250, alignment: 'center' }
       ],
-      // Nueva fila de títulos
-      [
-        { text: 'Cargas por presentación', alignment: 'center'},
-        { text: 'Peso total por presentación (Kg)', alignment: 'center'},
-        { text: '', alignment: 'center'} // Celda vacía si no quieres otra gráfica
-      ],
-      // Nueva fila con imágenes
-      [
-        { image: presentationCountImage, width: 250, alignment: 'center' },
-        { image: presentationWeightImage, width: 250, alignment: 'center' },
-        { text: '', alignment: 'center' }
-      ]
+      
     ]
   },
   layout: 'noBorders',
   margin: [0, 10, 0, 0]
 },
+
+        // Nueva sección para gráficos de presentación
+        {
+          table: {
+            widths: [60, '*', '*', '*'],
+            body: [
+              [
+                {
+                  image: logoSRDC,
+                  width: 100,
+                  border: [true, true, true, true]
+                },
+                {
+                  text: 'Reporte de Cargas por presentación',
+                  color: 'black',
+                  fontSize: 14,
+                  bold: true,
+                  alignment: 'center',
+                  margin: [50, 10, 0, 0],
+                  border: [true, true, true, true]
+                },
+                {
+                  text: `Fecha de expedición del reporte: ${todayFormatted}`,
+                  alignment: 'center',
+                  fontSize: 10,
+                  color: 'black',
+                  margin: [0, 15, 0, 0],
+                  border: [true, true, true, true]
+                },
+                {
+                  stack: [
+                    { text: 'Comercializadora Al Grano S. de R.L.', margin: [0, 0, 0, 2] },
+                    { text: 'Km 74 Carretera libre Armería-Manzanillo, Nuevo Cuyutlán,', margin: [0, 0, 0, 2] },
+                    { text: 'Manzanillo, Col. C.P. 28880' }
+                  ],
+                  fontSize: 9,
+                  alignment: 'right',
+                  border: [true, true, true, true]
+                }
+              ]
+            ]
+          },
+          layout: {
+            hLineWidth: () => 1,
+            vLineWidth: () => 0,
+            hLineColor: () => '#000000',
+            vLineColor: () => '#000000',
+            paddingTop: () => 5,
+            paddingBottom: () => 5
+          },
+          margin: [0, 0, 0, 20],
+          pageBreak: 'before'  // ← AQUI SE CREA LA NUEVA PÁGINA
+        },
+        {
+          text: 'Resumen de Cargas por Presentación',
+          style: 'header'
+        },
+        {
+          text: `Periodo reportado: ${selectedRange}`,
+          margin: [0, 0, 0, 20]
+        },
+        {
+          table: {
+            widths: ['*', '*', '*'],
+            body: [
+              [
+                { text: 'Cargas por presentación', alignment: 'center'},
+                { text: 'Peso total por presentación (Kg)', alignment: 'center'},
+                { text: '', alignment: 'center'}
+              ],
+              [
+                { image: presentationCountImage, width: 250, alignment: 'center' },
+                { image: presentationWeightImage, width: 250, alignment: 'center' },
+                { text: '', alignment: 'center' }
+              ]
+            ]
+          },
+          layout: 'noBorders',
+          margin: [0, 10, 0, 0]
+        }
       ],
       styles: docDefinition.styles // Reutiliza los estilos del docDefinition original
     };
